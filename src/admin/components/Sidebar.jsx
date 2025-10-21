@@ -1,0 +1,65 @@
+import React from "react";
+import { Link } from "react-router-dom";
+
+const Sidebar = () => {
+  return (
+    <>
+      <aside className="w-64 bg-white shadow-md shrink-0 flex flex-col">
+        <div className="py-6 px-6 flex items-center border-b border-gray-200 ">
+          <span className="material-icons text-primary text-3xl">
+            local_pharmacy
+          </span>
+          <h1 className="text-2xl font-bold text-primary ml-2">MedsFinder</h1>
+        </div>
+        <nav className="mt-6 flex-1">
+          <Link
+            to={"/admin-dashboard"}
+            className="flex items-center py-3 px-6 text-white bg-primary"
+          >
+            <span className="material-icons">dashboard</span>
+            <span className="ml-4 font-semibold">Dashboard</span>
+          </Link>
+          <Link
+            to={"/admin-pharmacies"}
+            className="flex items-center py-3 px-6 text-gray-600  hover:bg-gray-100 "
+          >
+            <span className="material-icons">local_hospital</span>
+            <span className="ml-4">Pharmacies</span>
+          </Link>
+          <Link
+            to={"/admin-medicines"}
+            className="flex items-center py-3 px-6 text-gray-600  hover:bg-gray-100 "
+          >
+            <span className="material-icons">medication</span>
+            <span className="ml-4">Medicines</span>
+          </Link>
+          <Link
+            to={"/admin-advertisement"}
+            className="flex items-center py-3 px-6 text-gray-600  hover:bg-gray-100 "
+          >
+            <span className="material-icons">campaign</span>
+            <span className="ml-4">Advertisements</span>
+          </Link>
+        </nav>
+        <div className="py-4 px-6 border-t border-gray-200 dark:border-gray-700">
+          <Link
+            to={"/admin-settings"}
+            className="flex items-center py-3 px-6 rounded text-gray-600  hover:bg-gray-100 "
+          >
+            <span className="material-icons">settings</span>
+            <span className="ml-4">Settings</span>
+          </Link>
+          <a
+            className="flex items-center py-3 px-6 font-bold rounded text-red-600  hover:bg-red-100"
+            href="#"
+          >
+            <span className="material-icons">logout</span>
+            <span className="ml-4">Logout</span>
+          </a>
+        </div>
+      </aside>
+    </>
+  );
+};
+
+export default Sidebar;

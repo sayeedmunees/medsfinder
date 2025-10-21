@@ -19,11 +19,13 @@ const Header = () => {
               bookmark_border
             </span>
           </button>
-          <button className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
-            <span className="material-icons text-gray-600 dark:text-gray-400">
-              account_circle
-            </span>
-          </button>
+          <Link to={'/admin-dashboard'}>
+            <button className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+              <span className="material-icons text-gray-600 dark:text-gray-400">
+                account_circle
+              </span>
+            </button>
+          </Link>
         </div>
       </header>
     </>

@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+* {
+  font-family: "Poppins", "sans-serif";
+}
+
 .material-icons {
   font-family: "Material Icons";
   font-weight: normal;
@@ -14,4 +18,11 @@
   direction: ltr;
   -webkit-font-feature-settings: "liga";
   -webkit-font-smoothing: antialiased;
+}
+
+.tab-content {
+  display: none;
+}
+.tab-content.active {
+  display: block;
 }

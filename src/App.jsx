@@ -2,6 +2,11 @@ import { Route, Routes } from "react-router-dom";
 import HomePage from "./user/pages/HomePage";
 import SearchPage from "./user/pages/SearchPage";
 import ProductDetailsPage from "./user/pages/ProductDetailsPage";
+import AdminDashboard from "./admin/pages/AdminDashboard";
+import AdminPharmacies from "./admin/pages/AdminPharmacies";
+import AdminMedicines from "./admin/pages/AdminMedicines";
+import AdminAdvertisement from "./admin/pages/AdminAdvertisement";
+import AdminSettings from "./admin/pages/AdminSettings";
 
 function App() {
   return (
@@ -10,6 +15,12 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/search-result" element={<SearchPage />} />
         <Route path="/product" element={<ProductDetailsPage />} />
+
+        <Route path="/admin-dashboard" element={<AdminDashboard />} />
+        <Route path="/admin-pharmacies" element={<AdminPharmacies />} />
+        <Route path="/admin-medicines" element={<AdminMedicines />} />
+        <Route path="/admin-advertisement" element={<AdminAdvertisement />} />
+        <Route path="/admin-settings" element={<AdminSettings />} />
       </Routes>
     </>
   );
