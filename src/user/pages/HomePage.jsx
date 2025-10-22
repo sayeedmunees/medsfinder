@@ -25,9 +25,10 @@ const HomePage = () => {
               </span>
               <select className="form-select border-none bg-transparent text-gray-700 dark:text-gray-300 focus:ring-0">
                 <option>Location</option>
+                <option>Edapally</option>
                 <option>Kakkanad</option>
-                <option>Mumbai</option>
-                <option>Delhi</option>
+                <option>Kalamassery</option>
+                <option>Palarivattam</option>
               </select>
             </div>
             <div className="h-8 border-l border-gray-300 dark:border-gray-600"></div>
@@ -80,7 +81,10 @@ const HomePage = () => {
             <h3 className="text-3xl font-bold text-gray-800 dark:text-white">
               Beauty &amp; Personal Care
             </h3>
-            <a className="text-primary hover:text-teal-600 font-semibold" href="#">
+            <a
+              className="text-primary hover:text-teal-600 font-semibold"
+              href="#"
+            >
               View All
             </a>
           </div>
