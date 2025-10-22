@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const MedicineCard = () => {
+const MedicineCard = ({ title, brand, imageURL, saved }) => {
   return (
     <>
       <Link to={"/product"}>
@@ -9,19 +9,18 @@ const MedicineCard = () => {
           <img
             alt="Dolo 650 mg"
             className="w-full h-auto object-cover rounded-md mb-4"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBNwIY-Y4GXbwnDDIDQ3XRebYSw9ZPfWkYZlTVu3GWPy0B-wUKRp3q9DIhI6g5hhKriknHpZbV7kUpf-e0uMrYJVuCtRbErVAvI3jravJmUo4328MbCwhHFbY9xw9iGoObx-cBORe8COqr1XM8hwZ9DV334YA_6ApQKeV4zIeKY5I_VEx6lX7LJ6WRviF9cqdgvnH8uTC3j5Y-OycAYi9zHR6QP5v9RphKoCYhV5bxquxjcFabJGeEPBMODu3FDkcLkrb8eIADKHic"
+            src={imageURL}
           />
+
           <div className="text-center">
             <p className="font-semibold text-gray-800 dark:text-white">
-              Dolo 650 mg
+              {title}
             </p>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              Micro Labs Ltd
-            </p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">{brand}</p>
           </div>
           <button className="mt-4 p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
             <span className="material-icons text-teal-500">
-              bookmark_border
+              {saved ? "bookmark" : "bookmark_border"}
             </span>
           </button>
         </div>

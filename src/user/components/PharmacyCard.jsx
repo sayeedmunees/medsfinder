@@ -1,6 +1,6 @@
 import React from "react";
 
-const PharmacyCard = () => {
+const PharmacyCard = ({shopName, location, review, inStock, saved}) => {
   return (
     <>
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 flex items-start">

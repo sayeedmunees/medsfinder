@@ -121,8 +121,6 @@ const SearchPage = () => {
                   </div>
                 </div>
               </div>
-              <PharmacyCard />
-              <PharmacyCard />
             </div>
           </div>
         </section>
