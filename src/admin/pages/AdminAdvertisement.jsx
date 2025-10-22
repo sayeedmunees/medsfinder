@@ -6,9 +6,9 @@ const AdminAdvertisement = () => {
   return (
     <>
       <div className="flex h-screen" id="root">
-        <Sidebar />
+        <Sidebar from="advertisement" />
         <div className="flex-1 flex flex-col overflow-hidden">
-          <Header />
+          <Header from="advertisements"/>
         </div>
       </div>
     </>

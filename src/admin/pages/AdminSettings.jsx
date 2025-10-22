@@ -6,9 +6,9 @@ const AdminSettings = () => {
   return (
     <>
       <div className="flex h-screen" id="root">
-        <Sidebar />
+        <Sidebar from="settings" />
         <div className="flex-1 flex flex-col overflow-hidden">
-          <Header />
+          <Header from="settings" />
         </div>
       </div>
     </>
