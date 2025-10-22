@@ -5,7 +5,7 @@ const ProductCard = ({title, type, price , imageURL}) => {
   return (
     <>
       <Link to={"/product"}>
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden group">
+        <div className="bg-white rounded-lg shadow-lg overflow-hidden group">
           <div className="relative">
             <img
               alt="Moisturizer"
@@ -13,19 +13,19 @@ const ProductCard = ({title, type, price , imageURL}) => {
               src={imageURL}
             />
             <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-              <button className="bg-primary text-white py-2 px-4 rounded-full font-semibold">
+              <button className="bg-teal-600 text-white py-2 px-4 rounded-full font-semibold">
                 Shop Now
               </button>
             </div>
           </div>
           <div className="p-6">
-            <h4 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
+            <h4 className="text-xl font-semibold text-gray-800 mb-2">
               {title}
             </h4>
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="text-gray-600">
               {type}
             </p>
-            <p className="text-primary font-bold text-lg mt-4">${price}</p>
+            <p className="text-teal-600 font-bold text-lg mt-4">${price}</p>
           </div>
         </div>
       </Link>

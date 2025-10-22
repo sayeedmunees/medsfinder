@@ -4,24 +4,24 @@ import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <>
-      <header className="py-4 px-6 md:px-12 flex justify-between items-center bg-background-light dark:bg-background-dark shadow-sm">
+      <header className="py-4 px-6 md:px-12 flex justify-between items-center bg-gray-100 shadow-sm">
         <Link to={"/"}>
           <div className="flex items-center">
-            <span className="material-icons text-primary text-3xl">
+            <span className="material-icons text-teal-600 text-3xl">
               local_pharmacy
             </span>
-            <h1 className="text-2xl font-bold text-primary ml-2">MedsFinder</h1>
+            <h1 className="text-2xl font-bold text-teal-600 ml-2">MedsFinder</h1>
           </div>
         </Link>
         <div className="flex items-center space-x-4">
-          <button className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
-            <span className="material-icons text-gray-600 dark:text-gray-400">
+          <button className="p-2 rounded-full hover:bg-gray-200 ">
+            <span className="material-icons text-gray-600 ">
               bookmark_border
             </span>
           </button>
-          <Link to={'/admin-dashboard'}>
-            <button className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
-              <span className="material-icons text-gray-600 dark:text-gray-400">
+          <Link to={"/admin-dashboard"}>
+            <button className="p-2 rounded-full hover:bg-gray-200 ">
+              <span className="material-icons text-gray-600 ">
                 account_circle
               </span>
             </button>

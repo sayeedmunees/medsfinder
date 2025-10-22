@@ -61,7 +61,7 @@ const Sidebar = ({ from }) => {
             <span className="ml-4">Advertisements</span>
           </Link>
         </nav>
-        <div className="py-4 px-6 space-y-2 border-t border-gray-200 dark:border-gray-700">
+        <div className="py-4 px-6 space-y-2 border-t border-gray-200 ">
           <Link
             to={"/admin-settings"}
             className={

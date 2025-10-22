@@ -33,7 +33,7 @@ const AdminDashboard = () => {
         <Sidebar from="dashboard" />
         <div className="flex-1 flex flex-col overflow-hidden">
           <Header from="Overview" />
-          <main className="flex-1 p-6 md:p-12 bg-background-light  overflow-y-auto">
+          <main className="flex-1 p-6 md:p-12 bg-gray-100  overflow-y-auto">
             <section className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               <TotalCards icon="medication" count="1,250" item="Medicines" />
               <TotalCards icon="local_hospital" count="150" item="Pharmacies" />

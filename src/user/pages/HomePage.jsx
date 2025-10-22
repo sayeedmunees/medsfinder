@@ -48,28 +48,28 @@ const HomePage = () => {
     {
       title: "Hydrating Face Cream",
       type: "For all skin types",
-      price: "$24.99",
+      price: "24.99",
       imageURL:
         "https://lh3.googleusercontent.com/aida-public/AB6AXuBvLeZ2UB_Z7hUGUWiD_SMQmgo5ki0Zs2HAdwJs4OceLFTKFtzFYE5rYREY6DtT0ngzJnvPWr8a1AFlW8uqvDyM1O-H_UBWCJl-jSIlDGlgYyk5gMh3x0GMsfJX0cjWGIa5QA7A-o4gCaz_NVNWSjTJyVNPmnNd4YUVgjAawnvMQd-99vORa2axT7edLac3hKdHQxLzDV_IiZCPArta1ChlSTQrV1-9Nhk_rn3Ik5M6jmVutQePntIRAThCNxO-Dx2B1Hg3BEfVjGI3",
     },
     {
       title: "Vitamin C Serum",
       type: "Brightens & evens skin tone",
-      price: "$32.00",
+      price: "32.00",
       imageURL:
         "https://lh3.googleusercontent.com/aida-public/AB6AXuBx5o5SBXQPYFQDyqlD1WdR07sICg4lx4wvMZWBhNxIxVMduGSfRUveghapewgGruiMGdNuA9AUzGKMtnvARpnWN4AVkM8LNdUMYrdu1iN7VggoPzPwOXXB8hQiR3ciWZcHINuyKXqgSPN8bAVSh7n35vGl7Us5dXRHAWczGR_i34qNRmzvcQtP7nx_Qxsx8p75uvgPE8zDKLwAc7sXNBfz2WUultVlHXwvn89jqrvq3Avnl3gEU_yILYXwS_4HgQwr9YSP8z-AZ6oP",
     },
     {
       title: "SPF 50+ Sunscreen",
       type: "Broad spectrum protection",
-      price: "$18.50",
+      price: "18.50",
       imageURL:
         "https://lh3.googleusercontent.com/aida-public/AB6AXuBnNtQwqldxqgKloNFCWev-xiaooqSMrYM07XfhE1flb3wMhCpWJ1hkIa8K_v3-ZSKoy1Bi2fib13AiKDyGiR4z9L01TfxMLjVJ8C6242Llioa9QLYXdnjf_dDzbnGL2HrFbgNyXwK-2zUBiXqTcybIqsc5G6OYX0hAQuZ_K7dACsEcptZwFW_KzomtDj2P7ySure8bdpP-EdXSR1WO0or2GyyG6UAL3fJN8PgKZ5zJsRCJ4Cl7yLI1y6SbRbxrsWAUw7RGoZ3R_1V1",
     },
     {
       title: "Gentle Skin Cleanser",
       type: "Removes dirt and makeup",
-      price: "$15.99",
+      price: "15.99",
       imageURL:
         "https://lh3.googleusercontent.com/aida-public/AB6AXuBz6umEPlfbAhNMHO4bIymBtEwvzqDqGqHNZKlsKWoXLUSTDbwFZJtn02W-OZKYqkZkGkNIcDB16VwTxuLjG3OTJetLzds1gX6jMo0bxEhlcn4qwgsU8aGUSuAuqV-AzpvHHz-gVG05rF5WbFUnRY6rxCm3wNcB8-8pnFLn4i0KMf0gZLux8AlJDEnXzmmp8HTWNAA6pUnS9UkLsSnvCsUcFeqhgjfGDmMjNmf8ewRbPNE-t6OWi7h-yvao2A0QAuu-eIGsII8DioG7",
     },
@@ -80,19 +80,19 @@ const HomePage = () => {
       <Header />
       <main>
         {/* hero */}
-        <section className="bg-teal-500 dark:bg-teal-700 text-white py-20 px-6 md:px-12 text-center">
+        <section className="bg-teal-500 text-white py-20 px-6 md:px-12 text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-3">
             Find medicines faster nearby you
           </h2>
-          <p className="text-lg md:text-xl text-teal-100 dark:text-teal-200">
+          <p className="text-lg md:text-xl text-white/80 ">
             No more queues to just hear the medicine is out of stock
           </p>
-          <div className="mt-8 max-w-2xl mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-lg p-2 flex items-center space-x-2">
+          <div className="mt-8 max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-2 flex items-center space-x-2">
             <div className="flex items-center">
-              <span className="material-icons text-gray-500 dark:text-gray-400 ml-2">
+              <span className="material-icons text-gray-500  ml-2">
                 location_on
               </span>
-              <select className="form-select border-none bg-transparent text-gray-700 dark:text-gray-300 focus:ring-0">
+              <select className="form-select border-none bg-transparent text-gray-700  focus:ring-0">
                 <option>Location</option>
                 <option>Edapally</option>
                 <option>Kakkanad</option>
@@ -100,14 +100,14 @@ const HomePage = () => {
                 <option>Palarivattam</option>
               </select>
             </div>
-            <div className="h-8 border-l border-gray-300 dark:border-gray-600"></div>
+            <div className="h-8 border-l border-gray-300 "></div>
             <input
-              className="w-full form-input border-none bg-transparent text-gray-700 dark:text-gray-300 placeholder-gray-500 dark:placeholder-gray-400 focus:ring-0"
+              className="w-full form-input border-none bg-transparent text-gray-700 placeholder-gray-500 focus:ring-0"
               placeholder="Search for medicines"
               type="text"
             />
             <Link to={"/search-result"}>
-              <button className="bg-primary hover:bg-teal-600 text-white font-semibold py-3 px-6 rounded-md flex items-center">
+              <button className="bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 px-6 rounded-md flex items-center">
                 Search
                 <span className="material-icons ml-2">search</span>
               </button>
@@ -116,7 +116,7 @@ const HomePage = () => {
         </section>
         {/* Most frequent */}
         <section className="py-16 px-6 md:px-12">
-          <h3 className="text-3xl font-bold mb-8 text-gray-800 dark:text-white">
+          <h3 className="text-3xl font-bold mb-8 text-gray-800 ">
             Most frequent searches
           </h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
@@ -134,9 +134,9 @@ const HomePage = () => {
           </div>
         </section>
         {/* Products */}
-        <section className="py-16 px-6 md:px-12 bg-gray-50 dark:bg-gray-900">
+        <section className="py-16 px-6 md:px-12 bg-gray-50 ">
           <div className="flex justify-between items-center mb-8">
-            <h3 className="text-3xl font-bold text-gray-800 dark:text-white">
+            <h3 className="text-3xl font-bold text-gray-800">
               Beauty &amp; Personal Care
             </h3>
             <a

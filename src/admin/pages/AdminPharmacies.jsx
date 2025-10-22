@@ -9,8 +9,8 @@ const AdminPharmacies = () => {
         <Sidebar from="pharmacy" />
         <div className="flex-1 flex flex-col overflow-hidden">
           <Header from="pharmacies" />
-          <main className="flex-1 p-6 md:p-12 bg-background-light dark:bg-background-dark overflow-y-auto">
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <main className="flex-1 p-6 md:p-12 bg-gray-100  overflow-y-auto">
+            <div className="bg-white rounded-lg shadow p-6">
               <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
                 <div className="flex items-center px-2  py-2 border border-gray-300  rounded-lg bg-white w-full md:w-1/3 mb-4 md:mb-0">
                   <input
@@ -150,7 +150,7 @@ const AdminPharmacies = () => {
                       </td>
                       <td className="p-4 text-gray-600 ">(444) 555-6666</td>
                       <td className="p-4">
-                        <span className="px-3 py-1 text-sm font-medium rounded-full bg-red-100 text-red-800 dark:bg-red-900 ">
+                        <span className="px-3 py-1 text-sm font-medium rounded-full bg-red-100 text-red-800">
                           Inactive
                         </span>
                       </td>
@@ -167,27 +167,27 @@ const AdminPharmacies = () => {
                 </table>
               </div>
               <div className="mt-6 flex justify-between items-center">
-                <p className="text-sm text-gray-500 dark:text-gray-400">
+                <p className="text-sm text-gray-500 ">
                   Showing 1 to 5 of 150 entries
                 </p>
                 <div className="flex items-center space-x-2">
-                  <button className="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-md text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                  <button className="px-3 py-1 border border-gray-300  rounded-md text-gray-600 hover:bg-gray-100 ">
                     Previous
                   </button>
                   <button className="px-3 py-1 border border-teal-500 bg-teal-500 text-white rounded-md">
                     1
                   </button>
-                  <button className="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-md text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                  <button className="px-3 py-1 border border-gray-300  rounded-md text-gray-600  hover:bg-gray-100 ">
                     2
                   </button>
-                  <button className="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-md text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                  <button className="px-3 py-1 border border-gray-300  rounded-md text-gray-600  hover:bg-gray-100 ">
                     3
                   </button>
-                  <span className="text-gray-500 dark:text-gray-400">...</span>
-                  <button className="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-md text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                  <span className="text-gray-500">...</span>
+                  <button className="px-3 py-1 border border-gray-300  rounded-md text-gray-600  hover:bg-gray-100">
                     30
                   </button>
-                  <button className="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-md text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                  <button className="px-3 py-1 border border-gray-300 rounded-md text-gray-600 hover:bg-gray-100 ">
                     Next
                   </button>
                 </div>
