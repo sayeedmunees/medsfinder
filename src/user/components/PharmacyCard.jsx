@@ -13,7 +13,7 @@ const PharmacyCard = ({
     <>
       <div className="bg-white rounded-lg shadow-md p-6 flex items-start">
         <img
-          alt="Wellness Pharmacy"
+          alt={shopName}
           className="w-24 h-24 rounded-lg object-cover mr-6"
           src={imageURL}
         />

@@ -67,14 +67,14 @@ const SearchPage = () => {
         {/* serach */}
         <section className="bg-teal-500 py-8 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden">
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
               <form className="flex flex-col md:flex-row items-center p-2 space-y-2 md:space-y-0 md:space-x-2">
                 <div className="flex flex-row items-center justify-start w-full md:w-1/3">
                   <span className="material-icons text-gray-400">
                     location_on
                   </span>
                   <input
-                    className="w-full bg-gray-50 dark:bg-gray-800 border-0 focus:ring-2 focus:ring-primary focus:outline-none text-gray-800 dark:text-gray-200 rounded-lg"
+                    className="w-full bg-gray-50 border-0 focus:ring-2 focus:ring-teal-500 focus:outline-none text-gray-800 rounded-lg"
                     placeholder="Kakkanad, Kerala"
                     type="text"
                   />
@@ -84,12 +84,12 @@ const SearchPage = () => {
                     medication
                   </span>
                   <input
-                    className="w-full bg-gray-50 dark:bg-gray-800 border-0 focus:ring-2 focus:ring-primary focus:outline-none text-gray-800 dark:text-gray-200 rounded-lg "
+                    className="w-full bg-gray-50 border-0 focus:ring-2 focus:ring-teal-500 focus:outline-none text-gray-800 rounded-lg "
                     placeholder="Dolo 650 Tablet"
                     type="text"
                   />
                 </div>
-                <button className="w-full md:w-auto bg-primary text-white font-semibold py-3 px-8 rounded-lg hover:bg-teal-600 dark:hover:bg-teal-500 transition-colors duration-300 ease-in-out shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+                <button className="w-full md:w-auto bg-teal-500 text-white font-semibold py-3 px-8 rounded-lg hover:bg-teal-600 transition-colors duration-300 ease-in-out shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
                   Search
                 </button>
               </form>

@@ -3,6 +3,39 @@ import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 
 const AdminPharmacies = () => {
+  const pharmacies = [
+    {
+      name: "Wellness Pharmacy",
+      address: "123 Main St, Anytown",
+      phone: "(123) 456-7890",
+      active: true,
+    },
+    {
+      name: "HealthFirst Drugs",
+      address: "456 Oak Ave, Sometown",
+      phone: "(987) 654-3210",
+      active: true,
+    },
+    {
+      name: "CarePlus Pharmacy",
+      address: "789 Pine Ln, Otherville",
+      phone: "(555) 123-4567",
+      active: false,
+    },
+    {
+      name: "City Central Pharmacy",
+      address: "101 Center Plaza, Metropolis",
+      phone: "(111) 222-3333",
+      active: true,
+    },
+    {
+      name: "Suburban Health Mart",
+      address: "222 Suburbia Rd, Greendale",
+      phone: "(444) 555-6666",
+      active: false,
+    },
+  ];
+
   return (
     <>
       <div className="flex h-screen" id="root">
@@ -14,7 +47,7 @@ const AdminPharmacies = () => {
               <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
                 <div className="flex items-center px-2  py-2 border border-gray-300  rounded-lg bg-white w-full md:w-1/3 mb-4 md:mb-0">
                   <input
-                    className="w-full border-0 text-gray-800  rounded focus:outline-none focus:ring-2 focus:ring-teal-500"
+                    className="w-full border-0 text-gray-800 rounded focus:outline-none focus:ring-2 focus:ring-teal-500"
                     placeholder="Search by name, location..."
                     type="text"
                   />
@@ -59,110 +92,40 @@ const AdminPharmacies = () => {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200 ">
-                    <tr>
-                      <td className="p-4 text-gray-800 ">Wellness Pharmacy</td>
-                      <td className="p-4 text-gray-600 ">
-                        123 Main St, Anytown
-                      </td>
-                      <td className="p-4 text-gray-600 ">(123) 456-7890</td>
-                      <td className="p-4">
-                        <span className="px-3 py-1 text-sm font-medium rounded-full bg-green-100 text-green-800 ">
-                          Active
-                        </span>
-                      </td>
-                      <td className="p-4 flex space-x-2">
-                        <button className="p-2 text-gray-500 hover:text-blue-500 rounded-full hover:bg-gray-100 ">
-                          <span className="material-icons">edit</span>
-                        </button>
-                        <button className="p-2 text-gray-500 hover:text-red-500 rounded-full hover:bg-gray-100 ">
-                          <span className="material-icons">delete</span>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="p-4 text-gray-800">HealthFirst Drugs</td>
-                      <td className="p-4 text-gray-600">
-                        456 Oak Ave, Sometown
-                      </td>
-                      <td className="p-4 text-gray-600">(987) 654-3210</td>
-                      <td className="p-4">
-                        <span className="px-3 py-1 text-sm font-medium rounded-full bg-green-100 text-green-800 ">
-                          Active
-                        </span>
-                      </td>
-                      <td className="p-4 flex space-x-2">
-                        <button className="p-2 text-gray-500 hover:text-blue-500 rounded-full hover:bg-gray-100 ">
-                          <span className="material-icons">edit</span>
-                        </button>
-                        <button className="p-2 text-gray-500 hover:text-red-500 rounded-full hover:bg-gray-100 ">
-                          <span className="material-icons">delete</span>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="p-4 text-gray-800 ">CarePlus Pharmacy</td>
-                      <td className="p-4 text-gray-600 ">
-                        789 Pine Ln, Otherville
-                      </td>
-                      <td className="p-4 text-gray-600 ">(555) 123-4567</td>
-                      <td className="p-4">
-                        <span className="px-3 py-1 text-sm font-medium rounded-full bg-yellow-100 text-yellow-800 ">
-                          Pending
-                        </span>
-                      </td>
-                      <td className="p-4 flex space-x-2">
-                        <button className="p-2 text-gray-500 hover:text-blue-500 rounded-full hover:bg-gray-100 ">
-                          <span className="material-icons">edit</span>
-                        </button>
-                        <button className="p-2 text-gray-500 hover:text-red-500 rounded-full hover:bg-gray-100 ">
-                          <span className="material-icons">delete</span>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="p-4 text-gray-800 ">
-                        City Central Pharmacy
-                      </td>
-                      <td className="p-4 text-gray-600 ">
-                        101 Center Plaza, Metropolis
-                      </td>
-                      <td className="p-4 text-gray-600 ">(111) 222-3333</td>
-                      <td className="p-4">
-                        <span className="px-3 py-1 text-sm font-medium rounded-full bg-green-100 text-green-800 ">
-                          Active
-                        </span>
-                      </td>
-                      <td className="p-4 flex space-x-2">
-                        <button className="p-2 text-gray-500 hover:text-blue-500 rounded-full hover:bg-gray-100 ">
-                          <span className="material-icons">edit</span>
-                        </button>
-                        <button className="p-2 text-gray-500 hover:text-red-500 rounded-full hover:bg-gray-100 ">
-                          <span className="material-icons">delete</span>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="p-4 text-gray-800 ">
-                        Suburban Health Mart
-                      </td>
-                      <td className="p-4 text-gray-600 ">
-                        222 Suburbia Rd, Greendale
-                      </td>
-                      <td className="p-4 text-gray-600 ">(444) 555-6666</td>
-                      <td className="p-4">
-                        <span className="px-3 py-1 text-sm font-medium rounded-full bg-red-100 text-red-800">
-                          Inactive
-                        </span>
-                      </td>
-                      <td className="p-4 flex space-x-2">
-                        <button className="p-2 text-gray-500 hover:text-blue-500 rounded-full hover:bg-gray-100 ">
-                          <span className="material-icons">edit</span>
-                        </button>
-                        <button className="p-2 text-gray-500 hover:text-red-500 rounded-full hover:bg-gray-100 ">
-                          <span className="material-icons">delete</span>
-                        </button>
-                      </td>
-                    </tr>
+                    {pharmacies.map((pharmacy) => {
+                      return (
+                        <tr key={pharmacy.name}>
+                          <td className="p-4 text-gray-800 ">
+                            {pharmacy.name}
+                          </td>
+                          <td className="p-4 text-gray-600 ">
+                            {pharmacy.address}
+                          </td>
+                          <td className="p-4 text-gray-600 ">
+                            {pharmacy.phone}
+                          </td>
+                          <td className="p-4">
+                            {pharmacy.active ? (
+                              <span className="px-3 py-1 text-sm font-medium rounded-full bg-green-100 text-green-800 ">
+                                Active
+                              </span>
+                            ) : (
+                              <span className="px-3 py-1 text-sm font-medium rounded-full bg-red-100 text-red-800">
+                                Inactive
+                              </span>
+                            )}
+                          </td>
+                          <td className="p-4 flex space-x-2">
+                            <button className="p-2 text-gray-500 hover:text-blue-500 rounded-full hover:bg-gray-100 ">
+                              <span className="material-icons">edit</span>
+                            </button>
+                            <button className="p-2 text-gray-500 hover:text-red-500 rounded-full hover:bg-gray-100 ">
+                              <span className="material-icons">delete</span>
+                            </button>
+                          </td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
               </div>

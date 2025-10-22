@@ -9,6 +9,163 @@ const AdminSettings = () => {
         <Sidebar from="settings" />
         <div className="flex-1 flex flex-col overflow-hidden">
           <Header from="settings" />
+          <main className="flex-1 p-6 md:p-12 bg-gray-100 overflow-y-auto">
+            <div className="bg-white rounded-lg shadow p-6">
+              <h3 className="text-xl font-semibold mb-6 text-gray-800">
+                Account Security Settings
+              </h3>
+              <div className="border border-gray-200 rounded-lg mb-4">
+                <button
+                  className="w-full flex justify-between items-center p-4 focus:outline-none"
+                  onclick="toggleAccordion('username')"
+                >
+                  <span className="text-lg font-medium text-gray-800">
+                    Username
+                  </span>
+                  <span
+                    className="material-icons text-gray-600 transform transition-transform duration-300"
+                    id="username-arrow"
+                  >
+                    expand_more
+                  </span>
+                </button>
+                <div className="px-4 pb-4 " id="username-content">
+                  <div className="border-t border-gray-200  pt-4">
+                    <div className="mb-4">
+                      <label
+                        className="block text-sm font-medium text-gray-700  mb-1"
+                        for="new-username"
+                      >
+                        New Username
+                      </label>
+                      <input
+                        className="mt-1 block w-full p-2 rounded-md border-gray-300 shadow-sm text-gray-500 focus:border-teal-500 focus:ring focus:ring-teal-500 focus:ring-opacity-50"
+                        id="new-username"
+                        name="new-username"
+                        placeholder="Enter new username"
+                        type="text"
+                      />
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <button className="px-4 py-2 bg-teal-500 text-white rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50">
+                        Update Username
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="border border-gray-200 rounded-lg mb-4">
+                <button
+                  className="w-full flex justify-between items-center p-4 focus:outline-none"
+                  onclick="toggleAccordion('email')"
+                >
+                  <span className="text-lg font-medium text-gray-800 ">
+                    Email Address
+                  </span>
+                  <span
+                    className="material-icons text-gray-600 transform transition-transform duration-300"
+                    id="email-arrow"
+                  >
+                    expand_more
+                  </span>
+                </button>
+                <div className="px-4 pb-4" id="email-content">
+                  <div className="border-t border-gray-200 pt-4">
+                    <div className="mb-4">
+                      <label
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                        for="new-email"
+                      >
+                        New Email
+                      </label>
+                      <input
+                        className="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm text-gray-500 focus:border-teal-500 focus:ring focus:ring-teal-500 focus:ring-opacity-50"
+                        id="new-email"
+                        name="new-email"
+                        placeholder="Enter new email address"
+                        type="email"
+                      />
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <button className="px-4 py-2 bg-teal-500 text-white rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50">
+                        Update Email
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="border border-gray-200 rounded-lg">
+                <button
+                  className="w-full flex justify-between items-center p-4 focus:outline-none"
+                  onclick="toggleAccordion('password')"
+                >
+                  <span className="text-lg font-medium text-gray-800">
+                    Password
+                  </span>
+                  <span
+                    className="material-icons text-gray-600 transform transition-transform duration-300"
+                    id="password-arrow"
+                  >
+                    expand_more
+                  </span>
+                </button>
+                <div className="px-4 pb-4" id="password-content">
+                  <div className="border-t border-gray-200 pt-4">
+                    <div className="mb-4">
+                      <label
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                        for="current-password"
+                      >
+                        Current Password
+                      </label>
+                      <input
+                        className="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring focus:ring-teal-500 text-gray-500 focus:ring-opacity-50"
+                        id="current-password"
+                        name="current-password"
+                        placeholder="Enter current password"
+                        type="password"
+                      />
+                    </div>
+                    <div className="mb-4">
+                      <label
+                        className="block text-sm font-medium text-gray-700  mb-1"
+                        for="new-password"
+                      >
+                        New Password
+                      </label>
+                      <input
+                        className="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring text-gray-500 focus:ring-teal-500 focus:ring-opacity-50 "
+                        id="new-password"
+                        name="new-password"
+                        placeholder="Enter new password"
+                        type="password"
+                      />
+                    </div>
+                    <div className="mb-4">
+                      <label
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                        for="confirm-password"
+                      >
+                        Confirm New Password
+                      </label>
+                      <input
+                        className="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm text-gray-500  focus:border-teal-500 focus:ring focus:ring-teal-500 focus:ring-opacity-50 "
+                        id="confirm-password"
+                        name="confirm-password"
+                        placeholder="Confirm new password"
+                        type="password"
+                      />
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <button className="px-4 py-2 bg-teal-500 text-white rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50">
+                        Change Password
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </main>
         </div>
       </div>
     </>
