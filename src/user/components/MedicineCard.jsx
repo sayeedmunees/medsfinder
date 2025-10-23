@@ -8,7 +8,7 @@ const MedicineCard = ({ title, brand, imageURL, saved }) => {
         <div className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center justify-between transition-transform transform hover:scale-105">
           <img
             alt="Dolo 650 mg"
-            className="w-full h-auto object-cover rounded-md mb-4"
+            className="w-auto h-60 object-cover border-3 border-gray-100 rounded-md mb-4"
             src={imageURL}
           />
 

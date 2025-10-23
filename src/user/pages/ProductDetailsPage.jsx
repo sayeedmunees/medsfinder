@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 
 const ProductDetailsPage = () => {
   const product = {
-    title: "Dolo 650 mg",
-    brand: "Micro Labs Ltd",
+    title: "Panadol Advance",
+    brand: "Sun Pharma Ltd",
     description:
-      "Dolo 650 mg is a paracetamol (acetaminophen) based medication primarily used to relieve mild to moderate pain and reduce fever. It is effective for headaches, muscle aches, arthritis, backache, toothaches, colds, and fevers. Known for its quick action and minimal side effects when taken as directed.",
+      "Panadol Advance is a paracetamol (acetaminophen) based medication primarily used to relieve mild to moderate pain and reduce fever. It is effective for headaches, muscle aches, arthritis, backache, toothaches, colds, and fevers. Known for its quick action and minimal side effects when taken as directed.",
     imageURL:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuC33iN89M3GrWKsEISgEBa7nij9-4jaSVEH5tzvwHyvrUUuRTpdYhBt4dIDkKkGa8D2a--uV9dpZB7tdc-9h-JJOIYhJbjO9dlg2L7L2u3ZSuVHsqBe3sQdkBdhh-80ygj0gw_EL2P_OhIcOpy2jEA84gprW24SkxzblXEZEd6FmY7wbvR8NodR0Nu8lETlUMEQK02k_do6cZCyjyPBaNbNT_jRQTf7jF3QafrgMY3d5To7V4Leiarat_IS6IXfYIcKunuxGEf2oWco",
+      "https://pharmazone.com/cdn/shop/files/20883-PANADOL_ADVANCE_48_TAB_Front_Side.webp?v=1746619875&width=1000",
   };
 
   return (
@@ -29,9 +29,7 @@ const ProductDetailsPage = () => {
             <h1 className="text-4xl font-semibold text-gray-800 mb-4 leading-tight">
               {product.title}
             </h1>
-            <p className="text-2xl text-gray-500 mb-8">
-              {product.brand}
-            </p>
+            <p className="text-2xl text-gray-500 mb-8">{product.brand}</p>
             <div className="mb-10">
               <h2 className="text-2xl font-semibold text-gray-800 mb-4">
                 Description

@@ -2,61 +2,62 @@ import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import PharmacyCard from "../components/PharmacyCard";
+import { Link } from "react-router-dom";
 
 const SearchPage = () => {
   const medicine = {
-    title: "Dolo 650 Tablet",
-    composition: "Paracetamol (650mg)",
+    title: "Panadol Advance",
+    composition: "Paracetamol (500mg)",
     highlights: [
       "Relieves pain and fever.",
       "Can be taken with or without food.",
       "Should be taken as per the doctor's advice.",
     ],
     imageURL:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuC33iN89M3GrWKsEISgEBa7nij9-4jaSVEH5tzvwHyvrUUuRTpdYhBt4dIDkKkGa8D2a--uV9dpZB7tdc-9h-JJOIYhJbjO9dlg2L7L2u3ZSuVHsqBe3sQdkBdhh-80ygj0gw_EL2P_OhIcOpy2jEA84gprW24SkxzblXEZEd6FmY7wbvR8NodR0Nu8lETlUMEQK02k_do6cZCyjyPBaNbNT_jRQTf7jF3QafrgMY3d5To7V4Leiarat_IS6IXfYIcKunuxGEf2oWco",
+      "https://pharmazone.com/cdn/shop/files/20883-PANADOL_ADVANCE_48_TAB_Front_Side.webp?v=1746619875&width=1000",
     saved: true,
   };
 
   const pharmacies = [
     {
-      shopName: "Wellness Pharmacy",
-      location: "SeaPort Airport Road, Kakkanad",
+      shopName: "Aster Pharmacy",
+      location: "Athani, Kakkanad",
       rating: "4.0",
       reviews: "124",
       inStock: true,
       saved: false,
       imageURL:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuAiN5b7Pui1f3AIIHaifJ5y4hHMqwwfMOIDCefJk2YA-VfmgB_Hev4bk66unqbnR4mlVpRnnzKqZ3MyrlsjyLTTAqqhXjVT9tjxkUmsT3g_sA7TZnaYNBdxTOATgmHUhLOKAx4JDRVFqrcD50yzkWLhjUWGmY3018siIycZAczbmX_45x77tqS9DF7T-go1KlUZ31u5IxluDKLSmfG8bPxGAVpLcS2NVsHhPwCZo0D6ZFCncNS67VGrr_wkqx_HaUD2JR--omBxKk9a",
-    },
-    {
-      shopName: "MedPlus Pharmacy",
-      location: "Collectorate Junction, Kakkanad",
-      rating: "3.5",
-      reviews: "88",
-      inStock: true,
-      saved: true,
-      imageURL:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuCtxkRYzhJ13l8qb7XKMrkACykBdgMpomCe3H6KY_aH7MI0fqToIIrJKf5_BHZMNwkq-wo7Cp8zvKn64vBJHGfBpqSL_5V8eGKmXmyemE-0lt9kHkjBU9npi1pKS_A2RPlh1Q0l6xTSBWrwz-XEAHATfLfpQU7asr9vvfyHtssBcc_9V4qkuawIsk6GJsTj_lJhxrHAGvGj4_Zgb4FNuhZstXh3xbJeWLqxdxzRLjnGytw5xm3cVXDtQeMYJ4XsiuhG48D4WDHqXjeD",
+        "https://www.towncentrejumeirah.com/wp-content/uploads/2019/08/aster1.jpg",
     },
     {
       shopName: "Apollo Pharmacy",
-      location: "Infopark Expressway, Kakkanad",
+      location: "Infopark Road, Kakkanad",
       rating: "4.5",
       reviews: "210",
       inStock: false,
       saved: false,
       imageURL:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuBmRvA_BFbMVGmKQBjj_SGRLJlkhZKxfYRhhXYgjEF8xQj1MHB9ydUaZU_CEwB_2STGEEwzWePq-BpIf_2XaCeHbeUEe0eQkG_kCr9ifBcHqJwX3-o04xSWPGArZ7DpCOd767bfqBq75trLzQ3_uWQDwJSeYUVzHnITQgZlJovBIYK4pDqGOnzhxfEVdpkcmz9-AbmXiGuLhpn-JOMnau1sDtXc-7v-Evrwl6VMcvxInLTC2i3iQU-w2AXW40Knfovr8xeXQeQbP2Y9",
+        "https://www.corewebnetworks.in/bestfranchisedealer.com/media/blogs/apollo-pharmacy-franchise-cost-profit-and-how-to-get-started-in-2024.webp",
     },
     {
-      shopName: "Care Pharmacy",
-      location: "Vallathol Junction, Thrikkakara",
+      shopName: "MedPlus Pharmacy",
+      location: "Edachira, Kakkanad",
+      rating: "3.5",
+      reviews: "88",
+      inStock: true,
+      saved: true,
+      imageURL:
+        "https://content.jdmagicbox.com/v2/comp/mumbai/i5/022pxx22.xx22.220422191030.q2i5/catalogue/medplus-kandivali-west-mumbai-61bxkvcbsz.jpg",
+    },
+    {
+      shopName: "V-Care Medicals",
+      location: "Thrikkakara, Kakkanad",
       rating: "3.0",
       reviews: "45",
       inStock: true,
       saved: true,
       imageURL:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuCSF_2JC2VF6_8gHfitDRYJeZ0jXOPaRcr8lFkawQlZ87hBQr1F9FaSXrtfrV8HlVj5z0Hi-a3E5ChtugZVGmsRrnZF-4xBbVbFRZ4xDVpB-DejkShYIVS5YShm-yR0uv9ORST6MaOy8GO39ATPJaRYgHXzmpkt16FC1xYP9GiMDeBMwlWMmMfTVmHtloMZHYtMeSmSGlBjkHqR19LSmhAR9aXGeGiqoXlrbgVJKvmSYU3t1afDiUbYDOtTQTlzDPwHmsykQ8StzFlt",
+        "https://content3.jdmagicbox.com/comp/thrissur/v9/9999px487.x487.210104104711.b6v9/catalogue/v-care-medical-paravattani-thrissur-surgical-equipment-dealers-hrf4p0a84j.jpg",
     },
   ];
 
@@ -66,34 +67,34 @@ const SearchPage = () => {
       <div>
         {/* serach */}
         <section className="bg-teal-500 py-8 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-              <form className="flex flex-col md:flex-row items-center p-2 space-y-2 md:space-y-0 md:space-x-2">
-                <div className="flex flex-row items-center justify-start w-full md:w-1/3">
-                  <span className="material-icons text-gray-400">
-                    location_on
-                  </span>
-                  <input
-                    className="w-full bg-gray-50 border-0 focus:ring-2 focus:ring-teal-500 focus:outline-none text-gray-800 rounded-lg"
-                    placeholder="Kakkanad, Kerala"
-                    type="text"
-                  />
-                </div>
-                <div className="flex flex-row items-center justify-start w-full md:w-2/3">
-                  <span className="material-icons  text-gray-400">
-                    medication
-                  </span>
-                  <input
-                    className="w-full bg-gray-50 border-0 focus:ring-2 focus:ring-teal-500 focus:outline-none text-gray-800 rounded-lg "
-                    placeholder="Dolo 650 Tablet"
-                    type="text"
-                  />
-                </div>
-                <button className="w-full md:w-auto bg-teal-500 text-white font-semibold py-3 px-8 rounded-lg hover:bg-teal-600 transition-colors duration-300 ease-in-out shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
-                  Search
-                </button>
-              </form>
+          <div className="mt-8 max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-2 flex items-center space-x-2">
+            <div className="flex items-center p-2">
+              <span className="material-icons text-gray-500  ml-2">
+                location_on
+              </span>
+
+              <select className="p-2 border-none outline-none rounded-md text-gray-700 bg-white focus:border-teal-500 focus:ring-2 focus:ring-teal-200 cursor-pointer">
+
+                <option className="border-none outline-none" value="Edapally">
+                  Edapally
+                </option>
+                <option selected value="Kakkanad">Kakkanad</option>
+                <option value="Kalamassery">Kalamassery</option>
+                <option value="Palarivattam">Palarivattam</option>
+              </select>
             </div>
+            <div className="h-8 border-l border-gray-300 "></div>
+            <input
+              className="w-full border-none outline-none bg-transparent text-gray-700 placeholder-gray-500 focus:ring-0"
+              defaultValue={medicine.title}
+              type="text"
+            />
+            <Link to={"/search-result"}>
+              <button className="bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 px-6 rounded-md flex items-center">
+                Search
+                <span className="material-icons ml-2">search</span>
+              </button>
+            </Link>
           </div>
         </section>
         {/* Medicine description */}

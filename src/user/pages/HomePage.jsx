@@ -8,70 +8,71 @@ import { Link } from "react-router-dom";
 const HomePage = () => {
   const medicineItems = [
     {
-      title: "Dolo 650 mg",
-      brand: "Micro Labs Ltd",
-      imageURL:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuDBNwIY-Y4GXbwnDDIDQ3XRebYSw9ZPfWkYZlTVu3GWPy0B-wUKRp3q9DIhI6g5hhKriknHpZbV7kUpf-e0uMrYJVuCtRbErVAvI3jravJmUo4328MbCwhHFbY9xw9iGoObx-cBORe8COqr1XM8hwZ9DV334YA_6ApQKeV4zIeKY5I_VEx6lX7LJ6WRviF9cqdgvnH8uTC3j5Y-OycAYi9zHR6QP5v9RphKoCYhV5bxquxjcFabJGeEPBMODu3FDkcLkrb8eIADKHic",
-      saved: false,
-    },
-    {
-      title: "Dolo 500 mg",
-      brand: "Cipla Ltd",
-      imageURL:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuBlespYj6T17ErYt_OfuwZQH_PHw6QnrvRuSeyBnAm4Iw9XG_RmBd08OiRCOTUNVu6XIjUXt7xyb7VWt3dsIQ25B1izCFOi6F1PL82AJM8JITSX3Hww7yy2trEN69ETej-yxOSacYM_COpXkLkbmOT3zVc9D-CKEu7vo3yUtBRiA8a83TvsgVCJ8vhE8_xGt-Eog9qwRME6v5vviaHxQ2Khl3H7Ci87sJOWTvuQG2DgiCEguLGYvpAVEVNAMDjtRLjkWDZVv7qzuDi8",
-      saved: true,
-    },
-    {
-      title: "Dolo 250 mg",
+      title: "Panadol Advance",
       brand: "Sun Pharma Ltd",
       imageURL:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuDEN4A1OhPMsWaqE-kHhXsKjAG9RumLLkeY6tMqsv1mT7SQcRi0cwP9s98ltvSfy_K-a83v5VTN89AsEipN8S05VM5yfhLf4kMm0d3LVTun4Cyo0xkgSxjnSTQze6_fdPDxMCCUDnOwQRI3dRxDF8GcS1LT33JxPDOSyH7f1s6hwqp3cE5XXkwxMLST_i8ZBl031-R4Xg9IsuMf5TiQRjEKiUkDtLjoxnK9_DPb8nBtM9pRdzkvt1ykOhctO48RRT0IO1nGjbf5wDqZ",
+        "https://pharmazone.com/cdn/shop/files/20883-PANADOL_ADVANCE_48_TAB_Front_Side.webp?v=1746619875&width=1000",
       saved: false,
     },
     {
-      title: "Dolo 100 mg",
+      title: "Meftal Forte",
       brand: "Micro Labs Ltd",
       imageURL:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuBgjL6tAIFoApwAiwnNUBmDONN1lcpqMzQE4jCgkDglz0q65f9ZN3jcvo68zRbQXakBCU2rygsD6jyP3NILM6KqCF5qij1eA5dj6xz-ceo_JuaRXecs-qAVzgb-ujXF3tdfMecy0ouERajYs7QlZ2if9bEHOpmvWR_cV1ZPZ9Mv_phIuJKFR_T2B-2labLSwKjDlVZrUE4a1-IPN5MsQpl3TXkfHef-Tifdk8pEjVAfI3-NBvl8VVGWQ2rXXdgrRP4kbwcM2AhT5qaa",
-      saved: false,
-    },
-    {
-      title: "Dolo 150 mg",
-      brand: "Micro Labs Ltd",
-      imageURL:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuC33iN89M3GrWKsEISgEBa7nij9-4jaSVEH5tzvwHyvrUUuRTpdYhBt4dIDkKkGa8D2a--uV9dpZB7tdc-9h-JJOIYhJbjO9dlg2L7L2u3ZSuVHsqBe3sQdkBdhh-80ygj0gw_EL2P_OhIcOpy2jEA84gprW24SkxzblXEZEd6FmY7wbvR8NodR0Nu8lETlUMEQK02k_do6cZCyjyPBaNbNT_jRQTf7jF3QafrgMY3d5To7V4Leiarat_IS6IXfYIcKunuxGEf2oWco",
+        "https://mockuphunt.co/cdn/shop/products/Box_Mockups_OK_3_241036b2-175b-484e-960d-3c632a6e0f48_800x.jpg?v=1524830968",
       saved: true,
+    },
+    {
+      title: "Ascoril Cough Syrup",
+      brand: "Cipla Ltd",
+      imageURL:
+        "https://www.graphicsfuel.com/wp-content/uploads/2022/12/medicine-syrup-bottle-mockup1.jpg",
+      saved: true,
+    },
+    {
+      title: "Panadol Extra",
+      brand: "Sun Pharma Ltd",
+      imageURL:
+        "https://i-cf65.ch-static.com/content/dam/cf-consumer-healthcare/health-professionals/en_PK/pain-relief/packshots/Extra_25_970x416.png?auto=format",
+      saved: false,
+    },
+    {
+      title: "Multi Vitamin Tablet",
+      brand: "Micro Labs Ltd",
+      imageURL:
+        "https://keysupplements.in/wp-content/uploads/2023/05/Multi-Vitamin-Mockup-min-1.png",
+      saved: false,
     },
   ];
 
   const productItems = [
     {
+      title: "SPF 50+ Sunscreen",
+      type: "Broad spectrum protection",
+      price: "18.50",
+      imageURL:
+        "https://unblast.com/wp-content/uploads/2019/01/Tube-Mockup-1600x1226.jpg",
+    },
+    {
       title: "Hydrating Face Cream",
       type: "For all skin types",
       price: "24.99",
       imageURL:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuBvLeZ2UB_Z7hUGUWiD_SMQmgo5ki0Zs2HAdwJs4OceLFTKFtzFYE5rYREY6DtT0ngzJnvPWr8a1AFlW8uqvDyM1O-H_UBWCJl-jSIlDGlgYyk5gMh3x0GMsfJX0cjWGIa5QA7A-o4gCaz_NVNWSjTJyVNPmnNd4YUVgjAawnvMQd-99vORa2axT7edLac3hKdHQxLzDV_IiZCPArta1ChlSTQrV1-9Nhk_rn3Ik5M6jmVutQePntIRAThCNxO-Dx2B1Hg3BEfVjGI3",
+        "https://unblast.com/wp-content/uploads/2022/02/Mini-Spray-Bottle-Packaging-Mockup-1536x1152.jpg",
     },
     {
       title: "Vitamin C Serum",
       type: "Brightens & evens skin tone",
       price: "32.00",
       imageURL:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuBx5o5SBXQPYFQDyqlD1WdR07sICg4lx4wvMZWBhNxIxVMduGSfRUveghapewgGruiMGdNuA9AUzGKMtnvARpnWN4AVkM8LNdUMYrdu1iN7VggoPzPwOXXB8hQiR3ciWZcHINuyKXqgSPN8bAVSh7n35vGl7Us5dXRHAWczGR_i34qNRmzvcQtP7nx_Qxsx8p75uvgPE8zDKLwAc7sXNBfz2WUultVlHXwvn89jqrvq3Avnl3gEU_yILYXwS_4HgQwr9YSP8z-AZ6oP",
+        "https://unblast.com/wp-content/uploads/2020/10/Dropper-Packaging-Mockup--1536x1152.jpg",
     },
+
     {
-      title: "SPF 50+ Sunscreen",
-      type: "Broad spectrum protection",
-      price: "18.50",
-      imageURL:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuBnNtQwqldxqgKloNFCWev-xiaooqSMrYM07XfhE1flb3wMhCpWJ1hkIa8K_v3-ZSKoy1Bi2fib13AiKDyGiR4z9L01TfxMLjVJ8C6242Llioa9QLYXdnjf_dDzbnGL2HrFbgNyXwK-2zUBiXqTcybIqsc5G6OYX0hAQuZ_K7dACsEcptZwFW_KzomtDj2P7ySure8bdpP-EdXSR1WO0or2GyyG6UAL3fJN8PgKZ5zJsRCJ4Cl7yLI1y6SbRbxrsWAUw7RGoZ3R_1V1",
-    },
-    {
-      title: "Gentle Skin Cleanser",
-      type: "Removes dirt and makeup",
+      title: "Hand Sanitizer",
+      type: "Removes dirt and kills germs",
       price: "15.99",
       imageURL:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuBz6umEPlfbAhNMHO4bIymBtEwvzqDqGqHNZKlsKWoXLUSTDbwFZJtn02W-OZKYqkZkGkNIcDB16VwTxuLjG3OTJetLzds1gX6jMo0bxEhlcn4qwgsU8aGUSuAuqV-AzpvHHz-gVG05rF5WbFUnRY6rxCm3wNcB8-8pnFLn4i0KMf0gZLux8AlJDEnXzmmp8HTWNAA6pUnS9UkLsSnvCsUcFeqhgjfGDmMjNmf8ewRbPNE-t6OWi7h-yvao2A0QAuu-eIGsII8DioG7",
+        "https://unblast.com/wp-content/uploads/2020/11/Matt-Hand-Sanitizer-Mockup-1-1-1536x1024.jpg",
     },
   ];
 
@@ -88,21 +89,26 @@ const HomePage = () => {
             No more queues to just hear the medicine is out of stock
           </p>
           <div className="mt-8 max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-2 flex items-center space-x-2">
-            <div className="flex items-center">
+            <div className="flex items-center p-2">
               <span className="material-icons text-gray-500  ml-2">
                 location_on
               </span>
-              <select className="form-select border-none bg-transparent text-gray-700  focus:ring-0">
-                <option>Location</option>
-                <option>Edapally</option>
-                <option>Kakkanad</option>
-                <option>Kalamassery</option>
-                <option>Palarivattam</option>
+
+              <select className="p-2 border-none outline-none rounded-md text-gray-700 bg-white focus:border-teal-500 focus:ring-2 focus:ring-teal-200 cursor-pointer">
+                <option value="" selected disabled hidden>
+                  Select Location
+                </option>
+                <option className="border-none outline-none" value="Edapally">
+                  Edapally
+                </option>
+                <option value="Kakkanad">Kakkanad</option>
+                <option value="Kalamassery">Kalamassery</option>
+                <option value="Palarivattam">Palarivattam</option>
               </select>
             </div>
             <div className="h-8 border-l border-gray-300 "></div>
             <input
-              className="w-full form-input border-none bg-transparent text-gray-700 placeholder-gray-500 focus:ring-0"
+              className="w-full border-none outline-none bg-transparent text-gray-700 placeholder-gray-500 focus:ring-0"
               placeholder="Search for medicines"
               type="text"
             />

@@ -7,10 +7,9 @@ const Header = () => {
       <header className="py-4 px-6 md:px-12 flex justify-between items-center bg-gray-100 shadow-sm">
         <Link to={"/"}>
           <div className="flex items-center">
-            <span className="material-icons text-teal-600 text-3xl">
-              local_pharmacy
-            </span>
-            <h1 className="text-2xl font-bold text-teal-600 ml-2">MedsFinder</h1>
+            <h1 className="text-2xl font-bold text-teal-600 ml-2">
+              Meds<span className="text-blue-500">Finder</span>
+            </h1>
           </div>
         </Link>
         <div className="flex items-center space-x-4">
