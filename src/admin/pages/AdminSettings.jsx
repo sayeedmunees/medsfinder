@@ -5,6 +5,7 @@ import Header from "../components/Header";
 const AdminSettings = () => {
   const [openUsername, setOpenUsername] = useState(false);
   const [openEmail, setOpenEmail] = useState(false);
+  const [openPassword, setOpenPassword] = useState(false);
   return (
     <>
       <div className="flex h-screen" id="root">
@@ -47,7 +48,7 @@ const AdminSettings = () => {
                         New Username
                       </label>
                       <input
-                        className="mt-1 block w-full p-2 rounded-md outline-none border border-gray-300 shadow-sm text-gray-800 focus:border-teal-500 focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
+                        className="mt-1 block w-full p-2 rounded-md outline-none border-gray-300 shadow-sm border text-gray-700 placeholder:text-gray-400  focus:border-teal-500 focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
                         id="new-username"
                         name="new-username"
                         placeholder="Enter new username"
@@ -93,14 +94,14 @@ const AdminSettings = () => {
                         New Email
                       </label>
                       <input
-                        className="mt-1 p-2 block w-full rounded-md outline-none border-gray-300 shadow-sm text-gray-500 focus:border-teal-500 focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
+                        className="mt-1 p-2 block w-full rounded-md outline-none border-gray-300 shadow-sm border text-gray-700 placeholder:text-gray-400  focus:border-teal-500 focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
                         id="new-email"
                         name="new-email"
                         placeholder="Enter new email address"
                         type="email"
                       />
                     </div>
-                    <div className="flex justify-between items-center">
+                    <div className="flex justify-between items-center pb-4">
                       <button className="px-4 py-2 bg-teal-500 text-white rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50">
                         Update Email
                       </button>
@@ -108,22 +109,25 @@ const AdminSettings = () => {
                   </div>
                 </div>
               </div>
-              <div className="border border-gray-200 rounded-lg">
+              <div className="border-2 border-gray-200 rounded-lg">
                 <button
                   className="w-full flex justify-between items-center p-4 focus:outline-none"
-                  onclick="toggleAccordion('password')"
+                  onClick={()=> setOpenPassword(!openPassword)}
                 >
                   <span className="text-lg font-medium text-gray-800">
                     Password
                   </span>
                   <span
-                    className="material-icons text-gray-600 transform transition-transform duration-300"
-                    id="password-arrow"
+                    className={`material-icons text-gray-600 transform transition-transform duration-300 ${
+                      openPassword && "rotate-180"
+                    }`}
                   >
                     expand_more
                   </span>
                 </button>
-                <div className="px-4 pb-4" id="password-content">
+                <div className={`px-4 overflow-hidden transition-all duration-400 ease-in-out  ${
+                    openPassword ? "max-h-[1000px]" : "max-h-0"
+                  }`} >
                   <div className="border-t border-gray-200 pt-4">
                     <div className="mb-4">
                       <label
@@ -133,7 +137,7 @@ const AdminSettings = () => {
                         Current Password
                       </label>
                       <input
-                        className="mt-1 p-2 block w-full outline-none rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-2 focus:ring-teal-500 text-gray-500 focus:ring-opacity-50"
+                        className="mt-1 p-2 block w-full outline-none rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-2 focus:ring-teal-500 border text-gray-700 placeholder:text-gray-400  focus:ring-opacity-50"
                         id="current-password"
                         name="current-password"
                         placeholder="Enter current password"
@@ -142,13 +146,13 @@ const AdminSettings = () => {
                     </div>
                     <div className="mb-4">
                       <label
-                        className="block text-sm font-medium text-gray-700  mb-1"
+                        className="block text-sm font-medium text-gray-700 mb-1"
                         for="new-password"
                       >
                         New Password
                       </label>
                       <input
-                        className="mt-1 p-2 block w-full outline-none rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-2 text-gray-500 focus:ring-teal-500 focus:ring-opacity-50 "
+                        className="mt-1 p-2 block w-full outline-none rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-2 border text-gray-700 placeholder:text-gray-400  focus:ring-teal-500 focus:ring-opacity-50 "
                         id="new-password"
                         name="new-password"
                         placeholder="Enter new password"
@@ -163,14 +167,14 @@ const AdminSettings = () => {
                         Confirm New Password
                       </label>
                       <input
-                        className="mt-1 p-2 block w-full outline-none rounded-md border-gray-300 shadow-sm text-gray-500  focus:border-teal-500 focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50 "
+                        className="mt-1 p-2 block w-full outline-none rounded-md border-gray-300 shadow-sm border text-gray-700 placeholder:text-gray-400  focus:border-teal-500 focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50 "
                         id="confirm-password"
                         name="confirm-password"
-                        placeholder="Confirm new password"
+                        placeholder="Re-enter new password"
                         type="password"
                       />
                     </div>
-                    <div className="flex justify-between items-center">
+                    <div className="flex justify-between items-center pb-4">
                       <button className="px-4 py-2 bg-teal-500 text-white rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50">
                         Change Password
                       </button>

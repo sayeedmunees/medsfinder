@@ -73,13 +73,13 @@ const Sidebar = ({ from }) => {
             <span className="material-icons">settings</span>
             <span className="ml-4">Settings</span>
           </Link>
-          <a
+          <Link
+            to={"/"}
             className="flex items-center py-3 px-6 font-bold rounded text-red-600  hover:bg-red-100"
-            href="#"
           >
             <span className="material-icons">logout</span>
             <span className="ml-4">Logout</span>
-          </a>
+          </Link>
         </div>
       </aside>
     </>

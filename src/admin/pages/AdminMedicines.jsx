@@ -59,13 +59,13 @@ const AdminMedicines = () => {
           <main className="flex-1 p-6 md:p-12 bg-gray-100  overflow-y-auto">
             <div className="bg-white rounded-lg shadow p-6">
               <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
-                <div className="flex items-center px-2  py-2 border border-gray-300  rounded-lg bg-white w-full md:w-1/3 mb-4 md:mb-0">
+                <div className="relative w-full md:w-1/3 mb-4 md:mb-0">
                   <input
-                    className="w-full border-0 text-gray-800  rounded focus:outline-none focus:ring-2 focus:ring-teal-500"
-                    placeholder="Search by name, location..."
+                    className="w-full pl-2 pr-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-500"
+                    placeholder="Search by name, brand, generic..."
                     type="text"
                   />
-                  <span className="material-icons px-2 text-gray-400">
+                  <span className="material-icons absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
                     search
                   </span>
                 </div>
@@ -118,8 +118,10 @@ const AdminMedicines = () => {
                           <td className="p-4 text-gray-600 ">
                             {medicine.generic}
                           </td>
-                          <td className="p-4 text-gray-600">
-                            {medicine.description}
+                          <td className="p-4">
+                            <div className="max-w-sm max-h-12 overflow-y-auto wrap-break-word   text-gray-600">
+                              {medicine.description}
+                            </div>
                           </td>
 
                           <td className="p-4 flex space-x-2">
@@ -138,7 +140,7 @@ const AdminMedicines = () => {
               </div>
               <div className="mt-6 flex justify-between items-center">
                 <p className="text-sm text-gray-500 ">
-                  Showing 1 to 5 of 150 entries
+                  Showing 1 to 5 of 1250 entries
                 </p>
                 <div className="flex items-center space-x-2">
                   <button className="px-3 py-1 border border-gray-300  rounded-md text-gray-600 hover:bg-gray-100 ">
