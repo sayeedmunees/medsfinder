@@ -146,7 +146,7 @@ const HomePage = () => {
               Beauty &amp; Personal Care
             </h3>
             <a
-              className="text-primary hover:text-teal-600 font-semibold"
+              className="text-teal-500 hover:text-teal-600 hover:underline underline-offset-5 font-semibold transition ease-in-out"
               href="#"
             >
               View All

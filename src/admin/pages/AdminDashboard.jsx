@@ -84,8 +84,8 @@ const AdminDashboard = () => {
                 <OverviewCard
                   location="Pharmacy"
                   addSubtitle="Onboard a new pharmacy to the network."
-                  editSubtitle="Edit details or update status."
-                  deleteSubtitle="Remove a pharmacy from the platform."
+                  editSubtitle="Edit or manage details or update status."
+                  path='admin-pharmacies'
                 />
               )}
 
@@ -94,7 +94,7 @@ const AdminDashboard = () => {
                   location="Medicine"
                   addSubtitle="Add a new medicine to the database."
                   editSubtitle=" Update medicine information and stock."
-                  deleteSubtitle="Remove a medicine from the database."
+                  path="admin-medicines"
                 />
               )}
 
@@ -103,7 +103,7 @@ const AdminDashboard = () => {
                   location="Ad"
                   addSubtitle="Create a new ad product listing."
                   editSubtitle=" Edit existing advertisement details."
-                  deleteSubtitle="Remove an advertisement from the list."
+                  path="admin-advertisement"
                 />
               )}
             </div>
