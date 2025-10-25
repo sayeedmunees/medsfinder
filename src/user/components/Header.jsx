@@ -24,9 +24,11 @@ const Header = () => {
           </div>
         </Link>
         <div className="flex items-center space-x-4">
-          <button className="p-2 rounded-full text-2xl text-teal-600  hover:text-teal-700">
-            <FaBookmark />
-          </button>
+          <Link to={"/saved"}>
+            <button className="p-2 rounded-full text-2xl text-teal-600  hover:text-teal-700">
+              <FaBookmark />
+            </button>
+          </Link>
 
           <button
             onClick={() => setDropDownStatus(!dropDownStatus)}

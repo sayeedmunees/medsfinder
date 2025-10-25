@@ -42,7 +42,7 @@ const HomePage = () => {
       brand: "Micro Labs Ltd",
       imageURL:
         "https://keysupplements.in/wp-content/uploads/2023/05/Multi-Vitamin-Mockup-min-1.png",
-      saved: false,
+      saved: true,
     },
   ];
 
