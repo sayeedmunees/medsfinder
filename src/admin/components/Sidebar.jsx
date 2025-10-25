@@ -7,11 +7,8 @@ const Sidebar = ({ from }) => {
       <aside className="w-64 bg-white shadow-md shrink-0 flex flex-col">
         <Link to={"/"}>
           <div className="py-6 px-6 flex items-center border-b border-gray-200 ">
-            <span className="material-icons text-teal-500 text-3xl">
-              local_pharmacy
-            </span>
-            <h1 className="text-2xl font-bold text-teal-500 ml-2">
-              MedsFinder
+            <h1 className="text-2xl font-bold text-teal-600 ml-2">
+              Meds<span className="text-blue-500">Finder</span>
             </h1>
           </div>
         </Link>

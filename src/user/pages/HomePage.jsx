@@ -94,7 +94,7 @@ const HomePage = () => {
                 location_on
               </span>
 
-              <select className="p-2 border-none outline-none rounded-md text-gray-700 bg-white focus:border-teal-500 focus:ring-2 focus:ring-teal-200 cursor-pointer">
+              <select className="p-2 appearance-none border-none outline-none rounded-md text-gray-700 bg-white focus:border-teal-500 focus:ring-2 focus:ring-teal-200 cursor-pointer">
                 <option value="" selected disabled hidden>
                   Select Location
                 </option>
