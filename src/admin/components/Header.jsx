@@ -8,14 +8,11 @@ const Header = ({ from }) => {
           {from}
         </h2>
         <div className="flex items-center space-x-4">
-          <button className="p-2 rounded-full hover:bg-gray-200 ">
-            <span className="material-icons text-gray-600 ">notifications</span>
-          </button>
           <div className="flex items-center">
             <img
-              alt="Admin Avatar"
+              alt="Admin Icon"
               className="h-10 w-10 rounded-full object-cover"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBz6umEPlfbAhNMHO4bIymBtEwvzqDqGqHNZKlsKWoXLUSTDbwFZJtn02W-OZKYqkZkGkNIcDB16VwTxuLjG3OTJetLzds1gX6jMo0bxEhlcn4qwgsU8aGUSuAuqV-AzpvHHz-gVG05rF5WbFUnRY6rxCm3wNcB8-8pnFLn4i0KMf0gZLux8AlJDEnXzmmp8HTWNAA6pUnS9UkLsSnvCsUcFeqhgjfGDmMjNmf8ewRbPNE-t6OWi7h-yvao2A0QAuu-eIGsII8DioG7"
+              src="https://cdn-icons-png.freepik.com/512/3177/3177440.png"
             />
             <div className="ml-3">
               <p className="text-sm font-semibold text-gray-800 ">Admin User</p>

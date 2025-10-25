@@ -2,7 +2,8 @@ import React from "react";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import { FaPlus } from "react-icons/fa";
-import { MdDelete, MdEdit } from "react-icons/md";
+import { MdDelete, MdEdit, MdOutlineUnfoldMore } from "react-icons/md";
+import { FaMagnifyingGlass } from "react-icons/fa6";
 
 const AdminMedicines = () => {
   const medicineItems = [
@@ -67,9 +68,7 @@ const AdminMedicines = () => {
                     placeholder="Search by name, brand, generic..."
                     type="text"
                   />
-                  <span className="material-icons absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
-                    search
-                  </span>
+                  <FaMagnifyingGlass className="text-xl absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" />
                 </div>
                 <button className="flex items-center font-semibold justify-center px-4 py-2 bg-teal-500 text-white rounded-lg shadow-md hover:bg-teal-600 transition-colors">
                   <FaPlus className=" mr-2" />
@@ -81,19 +80,15 @@ const AdminMedicines = () => {
                   <thead>
                     <tr className="bg-gray-50 ">
                       <th className="p-4 font-semibold text-gray-600">
-                        <button className="flex items-center">
+                        <button className="flex items-center gap-1">
                           Name
-                          <span className="material-icons text-sm ml-1">
-                            unfold_more
-                          </span>
+                          <MdOutlineUnfoldMore className="text-2xl" />
                         </button>
                       </th>
                       <th className="p-4 font-semibold text-gray-600 ">
-                        <button className="flex items-center">
+                        <button className="flex items-center gap-1">
                           Brand
-                          <span className="material-icons text-sm ml-1">
-                            unfold_more
-                          </span>
+                          <MdOutlineUnfoldMore className="text-2xl" />
                         </button>
                       </th>
                       <th className="p-4 font-semibold text-gray-600 ">
