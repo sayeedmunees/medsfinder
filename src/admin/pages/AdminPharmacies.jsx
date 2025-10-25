@@ -1,6 +1,8 @@
 import React from "react";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
+import { FaPlus } from "react-icons/fa";
+import { MdDelete, MdEdit } from "react-icons/md";
 
 const AdminPharmacies = () => {
   const pharmacies = [
@@ -55,8 +57,8 @@ const AdminPharmacies = () => {
                     search
                   </span>
                 </div>
-                <button className="flex items-center justify-center px-4 py-2 bg-teal-500 text-white rounded-lg shadow-md hover:bg-teal-600 transition-colors">
-                  <span className="material-icons mr-2">add</span>
+                <button className="flex items-center font-semibold justify-center px-4 py-2 bg-teal-500 text-white rounded-lg shadow-md hover:bg-teal-600 transition-colors">
+                  <FaPlus className=" mr-2" />
                   Add New Pharmacy
                 </button>
               </div>
@@ -117,10 +119,10 @@ const AdminPharmacies = () => {
                           </td>
                           <td className="p-4 flex space-x-2">
                             <button className="p-2 text-gray-500 hover:text-blue-500 rounded-full hover:bg-gray-100 ">
-                              <span className="material-icons">edit</span>
+                              <MdEdit className="text-2xl" />
                             </button>
                             <button className="p-2 text-gray-500 hover:text-red-500 rounded-full hover:bg-gray-100 ">
-                              <span className="material-icons">delete</span>
+                              <MdDelete className="text-2xl" />
                             </button>
                           </td>
                         </tr>

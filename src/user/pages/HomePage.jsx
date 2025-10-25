@@ -4,6 +4,8 @@ import Footer from "../components/Footer";
 import ProductCard from "../components/ProductCard";
 import MedicineCard from "../components/MedicineCard";
 import { Link } from "react-router-dom";
+import { LuMapPin } from "react-icons/lu";
+import { FaMagnifyingGlass } from "react-icons/fa6";
 
 const HomePage = () => {
   const medicineItems = [
@@ -90,10 +92,7 @@ const HomePage = () => {
           </p>
           <div className="mt-8 max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-2 flex items-center space-x-2">
             <div className="flex items-center p-2">
-              <span className="material-icons text-gray-500  ml-2">
-                location_on
-              </span>
-
+              <LuMapPin className="text-2xl text-gray-500" />
               <select className="p-2 appearance-none border-none outline-none rounded-md text-gray-700 bg-white focus:border-teal-500 focus:ring-2 focus:ring-teal-200 cursor-pointer">
                 <option value="" selected disabled hidden>
                   Select Location
@@ -113,9 +112,9 @@ const HomePage = () => {
               type="text"
             />
             <Link to={"/search-result"}>
-              <button className="bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 px-6 rounded-md flex items-center">
+              <button className="bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 px-6 rounded-md flex justify-center items-center gap-2">
                 Search
-                <span className="material-icons ml-2">search</span>
+                <FaMagnifyingGlass className="text-xl" />
               </button>
             </Link>
           </div>
@@ -143,7 +142,7 @@ const HomePage = () => {
         <section className="py-16 px-6 md:px-12 bg-gray-50 ">
           <div className="flex justify-between items-center mb-8">
             <h3 className="text-3xl font-bold text-gray-800">
-              Beauty &amp; Personal Care
+              Beauty & Personal Care
             </h3>
             <a
               className="text-teal-500 hover:text-teal-600 hover:underline underline-offset-5 font-semibold transition ease-in-out"

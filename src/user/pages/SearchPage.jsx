@@ -3,6 +3,9 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import PharmacyCard from "../components/PharmacyCard";
 import { Link } from "react-router-dom";
+import { FaMagnifyingGlass } from "react-icons/fa6";
+import { LuMapPin } from "react-icons/lu";
+import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 
 const SearchPage = () => {
   const medicine = {
@@ -67,18 +70,17 @@ const SearchPage = () => {
       <div>
         {/* serach */}
         <section className="bg-teal-500 py-8 px-4 sm:px-6 lg:px-8">
-          <div className="mt-8 max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-2 flex items-center space-x-2">
+          <div className="mt-8 max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-2 flex items-center space-x-2 gap-2">
             <div className="flex items-center p-2">
-              <span className="material-icons text-gray-500  ml-2">
-                location_on
-              </span>
+              <LuMapPin className="text-2xl text-gray-500" />
 
               <select className="p-2 border-none outline-none rounded-md text-gray-700 bg-white focus:border-teal-500 focus:ring-2 focus:ring-teal-200 cursor-pointer">
-
                 <option className="border-none outline-none" value="Edapally">
                   Edapally
                 </option>
-                <option selected value="Kakkanad">Kakkanad</option>
+                <option selected value="Kakkanad">
+                  Kakkanad
+                </option>
                 <option value="Kalamassery">Kalamassery</option>
                 <option value="Palarivattam">Palarivattam</option>
               </select>
@@ -90,9 +92,9 @@ const SearchPage = () => {
               type="text"
             />
             <Link to={"/search-result"}>
-              <button className="bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 px-6 rounded-md flex items-center">
+              <button className="bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 px-6 rounded-md flex items-center gap-2">
                 Search
-                <span className="material-icons ml-2">search</span>
+                <FaMagnifyingGlass className="text-xl" />
               </button>
             </Link>
           </div>
@@ -120,10 +122,8 @@ const SearchPage = () => {
                   </ul>
                 </div>
               </div>
-              <button className="ml-auto mt-4 md:mt-0 p-2 rounded-full self-start hover:bg-gray-200 ">
-                <span className="material-icons text-teal-500">
-                  {medicine.saved ? "bookmark" : "bookmark_border"}
-                </span>
+              <button className="ml-auto mt-4 md:mt-0 p-2 rounded-full self-start text-teal-500 text-xl hover:bg-gray-200 ">
+                {medicine.saved ? <FaBookmark /> : <FaRegBookmark />}
               </button>
             </div>
           </div>

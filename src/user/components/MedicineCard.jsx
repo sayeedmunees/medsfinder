@@ -1,4 +1,5 @@
 import React from "react";
+import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const MedicineCard = ({ title, brand, imageURL, saved }) => {
@@ -13,15 +14,11 @@ const MedicineCard = ({ title, brand, imageURL, saved }) => {
           />
 
           <div className="text-center">
-            <p className="font-semibold text-gray-800">
-              {title}
-            </p>
+            <p className="font-semibold text-gray-800">{title}</p>
             <p className="text-sm text-gray-500 ">{brand}</p>
           </div>
-          <button className="mt-4 p-2 rounded-full hover:bg-gray-200 ">
-            <span className="material-icons text-teal-500">
-              {saved ? "bookmark" : "bookmark_border"}
-            </span>
+          <button className="mt-4 p-2 rounded-full hover:bg-gray-200 text-teal-500 text-xl">
+            {saved ? <FaBookmark /> : <FaRegBookmark />}
           </button>
         </div>
       </Link>

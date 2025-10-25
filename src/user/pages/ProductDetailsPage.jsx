@@ -26,7 +26,7 @@ const ProductDetailsPage = () => {
             />
           </div>
           <div className="lg:w-1/2 pt-4 lg:pt-0">
-            <h1 className="text-4xl font-semibold text-gray-800 mb-4 leading-tight">
+            <h1 className="text-4xl font-semibold text-gray-800 mb-4">
               {product.title}
             </h1>
             <p className="text-2xl text-gray-500 mb-8">{product.brand}</p>

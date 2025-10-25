@@ -1,4 +1,5 @@
 import React from "react";
+import { MdDelete, MdEdit } from "react-icons/md";
 
 const AdProductCard = ({ title, type, price, imageURL }) => {
   return (
@@ -15,10 +16,11 @@ const AdProductCard = ({ title, type, price, imageURL }) => {
       </div>
       <div class="flex flex-col space-y-2">
         <button class="flex items-center justify-center px-4 py-2 bg-teal-500 text-white rounded-lg shadow hover:bg-teal-600 transition-colors">
-          <span class="material-icons text-lg mr-2">edit</span> Edit Details
+          <MdEdit className="text-xl mr-2" />
+          Edit Details
         </button>
         <button class="flex items-center justify-center px-4 py-2 bg-red-500 text-white rounded-lg shadow hover:bg-red-600 transition-colors">
-          <span class="material-icons text-lg mr-2">delete</span>
+          <MdDelete className="text-xl mr-2" />
           Remove
         </button>
       </div>

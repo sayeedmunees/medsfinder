@@ -3,6 +3,9 @@ import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import OverviewCard from "../components/OverviewCard";
 import TotalCards from "../components/TotalCards";
+import { FaClinicMedical } from "react-icons/fa";
+import { GiMedicines } from "react-icons/gi";
+import { MdCampaign } from "react-icons/md";
 
 const AdminDashboard = () => {
   const [pharmacies, setPharmacies] = useState(true);
@@ -35,9 +38,9 @@ const AdminDashboard = () => {
           <Header from="Overview" />
           <main className="flex-1 p-6 md:p-12 bg-gray-100  overflow-y-auto">
             <section className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <TotalCards icon="medication" count="1,250" item="Medicines" />
-              <TotalCards icon="local_hospital" count="150" item="Pharmacies" />
-              <TotalCards icon="campaign" count="50" item="Ad Products" />
+              <TotalCards icon="medicine" count="1,250" item="Medicines" />
+              <TotalCards icon="pharmacy" count="150" item="Pharmacies" />
+              <TotalCards icon="ad" count="50" item="Ad Products" />
             </section>
 
             <div className="bg-white rounded-lg shadow p-6">
@@ -52,7 +55,7 @@ const AdminDashboard = () => {
                         : "tab-btn group inline-flex items-center py-4 px-1 border-b-2 border-transparent font-medium text-gray-500 hover:text-teal-500 hover:border-teal-500/30 "
                     }
                   >
-                    <span className="material-icons mr-2">local_hospital</span>
+                    <FaClinicMedical className="text-xl mr-2" />
                     <span>Pharmacies</span>
                   </button>
                   <button
@@ -63,7 +66,7 @@ const AdminDashboard = () => {
                         : "tab-btn group inline-flex items-center py-4 px-1 border-b-2 border-transparent font-medium text-gray-500 hover:text-teal-500 hover:border-teal-500/30 "
                     }
                   >
-                    <span className="material-icons mr-2">medication</span>
+                    <GiMedicines className="text-xl mr-2" />
                     <span>Medicines</span>
                   </button>
                   <button
@@ -74,7 +77,7 @@ const AdminDashboard = () => {
                         : "tab-btn group inline-flex items-center py-4 px-1 border-b-2 border-transparent font-medium text-gray-500 hover:text-teal-500 hover:border-teal-500/30 "
                     }
                   >
-                    <span className="material-icons mr-2">campaign</span>
+                    <MdCampaign className="text-xl mr-2" />
                     <span>Advertisements</span>
                   </button>
                 </nav>
@@ -85,7 +88,7 @@ const AdminDashboard = () => {
                   location="Pharmacy"
                   addSubtitle="Onboard a new pharmacy to the network."
                   editSubtitle="Edit or manage details or update status."
-                  path='admin-pharmacies'
+                  path="admin-pharmacies"
                 />
               )}
 
