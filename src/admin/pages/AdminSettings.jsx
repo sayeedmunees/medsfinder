@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
+import { MdExpandMore } from "react-icons/md";
 
 const AdminSettings = () => {
   const [openUsername, setOpenUsername] = useState(false);
@@ -25,13 +26,11 @@ const AdminSettings = () => {
                   <span className="text-lg font-medium text-gray-800">
                     Username
                   </span>
-                  <span
-                    className={`material-icons text-gray-600 transform transition-transform duration-300 ${
+                  <MdExpandMore
+                    className={` text-2xl text-gray-600 transform transition-transform duration-300 ${
                       openUsername && "rotate-180"
                     }`}
-                  >
-                    expand_more
-                  </span>
+                  />
                 </button>
 
                 <div
@@ -72,13 +71,11 @@ const AdminSettings = () => {
                   <span className="text-lg font-medium text-gray-800 ">
                     Email Address
                   </span>
-                  <span
-                    className={`material-icons text-gray-600 transform transition-transform duration-300 ${
+                  <MdExpandMore
+                    className={` text-2xl text-gray-600 transform transition-transform duration-300 ${
                       openEmail && "rotate-180"
                     }`}
-                  >
-                    expand_more
-                  </span>
+                  />
                 </button>
                 <div
                   className={`px-4 overflow-hidden transition-all duration-400 ease-in-out  ${
@@ -112,22 +109,22 @@ const AdminSettings = () => {
               <div className="border-2 border-gray-200 rounded-lg">
                 <button
                   className="w-full flex justify-between items-center p-4 focus:outline-none"
-                  onClick={()=> setOpenPassword(!openPassword)}
+                  onClick={() => setOpenPassword(!openPassword)}
                 >
                   <span className="text-lg font-medium text-gray-800">
                     Password
                   </span>
-                  <span
-                    className={`material-icons text-gray-600 transform transition-transform duration-300 ${
+                  <MdExpandMore
+                    className={` text-2xl text-gray-600 transform transition-transform duration-300 ${
                       openPassword && "rotate-180"
                     }`}
-                  >
-                    expand_more
-                  </span>
+                  />
                 </button>
-                <div className={`px-4 overflow-hidden transition-all duration-400 ease-in-out  ${
+                <div
+                  className={`px-4 overflow-hidden transition-all duration-400 ease-in-out  ${
                     openPassword ? "max-h-[1000px]" : "max-h-0"
-                  }`} >
+                  }`}
+                >
                   <div className="border-t border-gray-200 pt-4">
                     <div className="mb-4">
                       <label

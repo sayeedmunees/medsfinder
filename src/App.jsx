@@ -8,6 +8,7 @@ import AdminMedicines from "./admin/pages/AdminMedicines";
 import AdminAdvertisement from "./admin/pages/AdminAdvertisement";
 import AdminSettings from "./admin/pages/AdminSettings";
 import SavedPage from "./user/pages/SavedPage";
+import ProfilePage from "./user/pages/ProfilePage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/search-result" element={<SearchPage />} />
         <Route path="/product" element={<ProductDetailsPage />} />
         <Route path="/saved" element={<SavedPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
 
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/admin-pharmacies" element={<AdminPharmacies />} />

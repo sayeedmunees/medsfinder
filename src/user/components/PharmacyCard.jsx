@@ -14,7 +14,7 @@ const PharmacyCard = ({
 }) => {
   return (
     <>
-      <div className="bg-white rounded-lg shadow-md p-6 flex items-start">
+      <div className="bg-white rounded-lg shadow-md p-6 flex items-start hover:shadow-xl transition duration-300 ease-in-out">
         <img
           alt={shopName}
           className="w-24 h-24 rounded-lg object-cover mr-6"

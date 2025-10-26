@@ -120,7 +120,7 @@ const HomePage = () => {
           </div>
         </section>
         {/* Most frequent */}
-        <section className="py-16 px-6 md:px-12">
+        <section className="py-16 px-6 md:px-12 bg-gray-100">
           <h3 className="text-3xl font-bold mb-8 text-gray-800 ">
             Most frequent searches
           </h3>
@@ -142,7 +142,7 @@ const HomePage = () => {
         <section className="py-16 px-6 md:px-12 bg-gray-50 ">
           <div className="flex justify-between items-center mb-8">
             <h3 className="text-3xl font-bold text-gray-800">
-              Beauty & Personal Care
+              Personal Care & Hygiene
             </h3>
             <a
               className="text-teal-500 hover:text-teal-600 hover:underline underline-offset-5 font-semibold transition ease-in-out"

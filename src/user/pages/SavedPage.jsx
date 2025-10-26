@@ -102,7 +102,7 @@ const SavedPage = () => {
   return (
     <>
       <Header />
-      <main className="min-h-screen px-6 md:px-12 py-8 bg-gray-50">
+      <main className="min-h-screen px-6 md:px-12 py-8 bg-gray-200">
         <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-800 ">
           Your Saved List
         </h2>

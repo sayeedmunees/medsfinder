@@ -16,8 +16,8 @@ const ProductDetailsPage = () => {
   return (
     <>
       <Header />
-      <div className="py-16 px-6 md:px-12">
-        <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-start lg:space-x-16">
+      <div className="py-16 px-6 md:px-12 bg-gray-100">
+        <div className="max-w-6xl h-auto mx-auto flex flex-col lg:flex-row items-start lg:space-x-16">
           <div className="lg:w-1/2 flex justify-center mb-12 lg:mb-0">
             <img
               alt={product.title}
@@ -25,7 +25,7 @@ const ProductDetailsPage = () => {
               src={product.imageURL}
             />
           </div>
-          <div className="lg:w-1/2 pt-4 lg:pt-0">
+          <div className="lg:w-1/2 pt-4 lg:pt-16">
             <h1 className="text-4xl font-semibold text-gray-800 mb-4">
               {product.title}
             </h1>

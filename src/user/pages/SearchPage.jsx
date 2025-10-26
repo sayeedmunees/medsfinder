@@ -68,7 +68,7 @@ const SearchPage = () => {
     <>
       <Header />
       <div>
-        {/* serach */}
+        {/* serach and description */}
         <section className="bg-teal-500 py-8 px-4 sm:px-6 lg:px-8">
           <div className="mt-8 max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-2 flex items-center space-x-2 gap-2">
             <div className="flex items-center p-2">
@@ -98,38 +98,39 @@ const SearchPage = () => {
               </button>
             </Link>
           </div>
-        </section>
-        {/* Medicine description */}
-        <section className="bg-teal-500 d text-white py-12 px-6 md:px-12">
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-white rounded-lg shadow-lg p-6 flex flex-col md:flex-row items-start md:items-center">
-              <img
-                alt={medicine.title}
-                className="w-32 h-32 object-contain rounded-md mb-4 md:mb-0 md:mr-6"
-                src={medicine.imageURL}
-              />
-              <div className="text-gray-800 ">
-                <h2 className="text-3xl font-bold">{medicine.title}</h2>
-                <p className="text-md text-gray-600 ">
-                  Composition: {medicine.composition}
-                </p>
-                <div className="mt-4">
-                  <h4 className="font-semibold mb-2">Product Highlights</h4>
-                  <ul className="list-disc list-inside space-y-1 text-sm text-gray-700 ">
-                    {medicine.highlights.map((highlight, index) => {
-                      return <li key={index}>{highlight}</li>;
-                    })}
-                  </ul>
+
+          <div className="py-12 max-w-4xl mx-auto">
+            <Link to={"/product"}>
+              <div className="bg-white rounded-lg shadow-lg p-6 flex flex-col md:flex-row items-start md:items-center hover:shadow-2xl transition duration-300 ease-in-out">
+                <img
+                  alt={medicine.title}
+                  className="w-32 h-32 object-contain rounded-md mb-4 md:mb-0 md:mr-6"
+                  src={medicine.imageURL}
+                />
+                <div className="text-gray-800 ">
+                  <h2 className="text-3xl font-bold">{medicine.title}</h2>
+                  <p className="text-md text-gray-600 ">
+                    Composition: {medicine.composition}
+                  </p>
+                  <div className="mt-4">
+                    <h4 className="font-semibold mb-2">Product Highlights</h4>
+                    <ul className="list-disc list-inside space-y-1 text-sm text-gray-700 ">
+                      {medicine.highlights.map((highlight, index) => {
+                        return <li key={index}>{highlight}</li>;
+                      })}
+                    </ul>
+                  </div>
                 </div>
+                <button className="ml-auto mt-4 md:mt-0 p-2 rounded-full self-start text-teal-500 text-xl hover:bg-gray-200 ">
+                  {medicine.saved ? <FaBookmark /> : <FaRegBookmark />}
+                </button>
               </div>
-              <button className="ml-auto mt-4 md:mt-0 p-2 rounded-full self-start text-teal-500 text-xl hover:bg-gray-200 ">
-                {medicine.saved ? <FaBookmark /> : <FaRegBookmark />}
-              </button>
-            </div>
+            </Link>
           </div>
         </section>
+
         {/* Pharmacies */}
-        <section className="py-16 px-6 md:px-12">
+        <section className="py-16 px-6 md:px-12 bg-gray-100">
           <div className="max-w-4xl mx-auto">
             <h3 className="text-2xl font-bold mb-6 text-gray-800 ">
               Pharmacies near Kakkanad

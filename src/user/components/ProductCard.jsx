@@ -8,7 +8,7 @@ const ProductCard = ({title, type, price , imageURL}) => {
         <div className="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-2xl">
           <div className="relative">
             <img
-              alt="Moisturizer"
+              alt={title}
               className="w-full h-56 object-cover"
               src={imageURL}
             />
