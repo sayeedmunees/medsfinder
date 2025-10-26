@@ -86,7 +86,7 @@ const AdminSettings = () => {
                     <div className="mb-4">
                       <label
                         className="block text-sm font-medium text-gray-700 mb-1"
-                        for="new-email"
+                        htmlFor="new-email"
                       >
                         New Email
                       </label>
@@ -129,7 +129,7 @@ const AdminSettings = () => {
                     <div className="mb-4">
                       <label
                         className="block text-sm font-medium text-gray-700 mb-1"
-                        for="current-password"
+                        htmlFor="current-password"
                       >
                         Current Password
                       </label>
@@ -144,7 +144,7 @@ const AdminSettings = () => {
                     <div className="mb-4">
                       <label
                         className="block text-sm font-medium text-gray-700 mb-1"
-                        for="new-password"
+                        htmlFor="new-password"
                       >
                         New Password
                       </label>
@@ -159,7 +159,7 @@ const AdminSettings = () => {
                     <div className="mb-4">
                       <label
                         className="block text-sm font-medium text-gray-700 mb-1"
-                        for="confirm-password"
+                        htmlFor="confirm-password"
                       >
                         Confirm New Password
                       </label>

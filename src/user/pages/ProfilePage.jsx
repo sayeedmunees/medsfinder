@@ -18,69 +18,69 @@ const ProfilePage = () => {
             <h2 className="text-3xl font-bold text-gray-800  mb-2">John Doe</h2>
             <p className="text-gray-500  text-lg">johndoe@example.com</p>
           </div>
-          <div class="space-y-6">
-            <h3 class="text-2xl font-semibold text-gray-800">Edit Profile</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div class="relative">
+          <div className="space-y-6">
+            <h3 className="text-2xl font-semibold text-gray-800">Edit Profile</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="relative">
                 <label
-                  class="block text-sm font-medium text-gray-700 mb-1"
-                  for="name"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                  htmlFor="name"
                 >
                   Name
                 </label>
                 <input
-                  class="block w-full px-4 py-2 bg-gray-100  border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-300 ease-in-out"
+                  className="block w-full px-4 py-2 bg-gray-100  border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-300 ease-in-out"
                   id="name"
                   type="text"
                   defaultValue="John Doe"
                 />
               </div>
-              <div class="relative">
+              <div className="relative">
                 <label
-                  class="block text-sm font-medium text-gray-700  mb-1"
-                  for="email"
+                  className="block text-sm font-medium text-gray-700  mb-1"
+                  htmlFor="email"
                 >
                   Email
                 </label>
                 <input
-                  class="block w-full px-4 py-2 bg-gray-100  border border-gray-200  rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-300 ease-in-out"
+                  className="block w-full px-4 py-2 bg-gray-100  border border-gray-200  rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-300 ease-in-out"
                   id="email"
                   type="email"
                   defaultValue="johndoe@example.com"
                 />
               </div>
-              <div class="relative">
+              <div className="relative">
                 <label
-                  class="block text-sm font-medium text-gray-700  mb-1"
-                  for="phone"
+                  className="block text-sm font-medium text-gray-700  mb-1"
+                  htmlFor="phone"
                 >
                   Phone
                 </label>
                 <input
-                  class="block w-full px-4 py-2 bg-gray-100  border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-300 ease-in-out"
+                  className="block w-full px-4 py-2 bg-gray-100  border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-300 ease-in-out"
                   id="phone"
                   type="tel"
                   defaultValue="+1 (555) 123-4567"
                 />
               </div>
-              <div class="relative">
+              <div className="relative">
                 <label
-                  class="block text-sm font-medium text-gray-700 mb-1"
-                  for="address"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                  htmlFor="address"
                 >
                   Address
                 </label>
                 <input
-                  class="block w-full px-4 py-2 bg-gray-100  border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-300 ease-in-out"
+                  className="block w-full px-4 py-2 bg-gray-100  border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-300 ease-in-out"
                   id="address"
                   type="text"
                   defaultValue="123 Main St, Anytown"
                 />
               </div>
             </div>
-            <div class="flex justify-end pt-4">
+            <div className="flex justify-end pt-4">
               <Link to={"/"}>
-                <button class="px-6 py-3 bg-teal-600 text-white rounded-md font-semibold hover:bg-teal-700 transition-colors duration-300 ease-in-out shadow-md">
+                <button className="px-6 py-3 bg-teal-600 text-white rounded-md font-semibold hover:bg-teal-700 transition-colors duration-300 ease-in-out shadow-md">
                   Save Changes
                 </button>
               </Link>

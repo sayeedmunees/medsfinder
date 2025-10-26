@@ -103,7 +103,7 @@ const SavedPage = () => {
     <>
       <Header />
       <main className="min-h-screen px-6 md:px-12 py-8 bg-gray-200">
-        <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-800 ">
+        <h2 className="text-xl md:text-4xl font-bold mb-8 text-gray-800 ">
           Your Saved List
         </h2>
         <div className="mb-8">
@@ -112,8 +112,8 @@ const SavedPage = () => {
               onClick={handlemedicineTab}
               className={
                 medicineTab
-                  ? "px-4 py-2 text-lg font-semibold text-teal-600 border-b-2 border-teal-500"
-                  : "px-4 py-2 text-lg font-semibold text-gray-600  hover:text-teal-500"
+                  ? "px-4 py-2 text-base md:text-lg font-semibold text-teal-600 border-b-2 border-teal-500"
+                  : "px-4 py-2 text-base md:text-lg font-semibold text-gray-600  hover:text-teal-500"
               }
             >
               Saved Medicines
@@ -122,8 +122,8 @@ const SavedPage = () => {
               onClick={handlePharmacyTab}
               className={
                 pharmacyTab
-                  ? "px-4 py-2 text-lg font-semibold text-teal-600 border-b-2 border-teal-500"
-                  : "px-4 py-2 text-lg font-semibold text-gray-600  hover:text-teal-500"
+                  ? "px-4 py-2 text-base md:text-lg font-semibold text-teal-600 border-b-2 border-teal-500"
+                  : "px-4 py-2 text-base md:text-lg font-semibold text-gray-600  hover:text-teal-500"
               }
             >
               Saved Pharmacies
@@ -132,7 +132,7 @@ const SavedPage = () => {
         </div>
 
         {medicineTab && (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {medicineItems
               .filter((item) => item.saved)
               .map((item) => {

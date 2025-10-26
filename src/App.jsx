@@ -9,6 +9,7 @@ import AdminAdvertisement from "./admin/pages/AdminAdvertisement";
 import AdminSettings from "./admin/pages/AdminSettings";
 import SavedPage from "./user/pages/SavedPage";
 import ProfilePage from "./user/pages/ProfilePage";
+import Login from "./user/components/Login";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/product" element={<ProductDetailsPage />} />
         <Route path="/saved" element={<SavedPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/login" element={<Login />} />
 
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/admin-pharmacies" element={<AdminPharmacies />} />

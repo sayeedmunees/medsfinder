@@ -54,9 +54,9 @@ const AdminAdvertisement = () => {
                 item="Ad Products"
               />
             </section>
-            <div class="mb-8">
+            <div className="mb-8">
               <div className="flex flex-row justify-between py-2 mb-6">
-                <h3 class="text-3xl font-bold text-gray-800">
+                <h3 className="text-3xl font-bold text-gray-800">
                   Current Products
                 </h3>
                 <button
@@ -68,7 +68,7 @@ const AdminAdvertisement = () => {
                 </button>
               </div>
               <div
-                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
                 id="product-grid"
               >
                 {productItems.map((item) => {

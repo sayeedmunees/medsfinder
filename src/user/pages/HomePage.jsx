@@ -84,17 +84,17 @@ const HomePage = () => {
       <main>
         {/* hero */}
         <section className="bg-teal-500 text-white py-20 px-6 md:px-12 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-3">
+          <h2 className="text-2xl md:text-5xl font-bold mb-3">
             Find medicines faster nearby you
           </h2>
-          <p className="text-lg md:text-xl text-white/80 ">
+          <p className="text-base md:text-xl text-white/80 ">
             No more queues to just hear the medicine is out of stock
           </p>
-          <div className="mt-8 max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-2 flex items-center space-x-2">
-            <div className="flex items-center p-2">
+          <div className="mt-8 max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-2 flex flex-col md:flex-row items-center space-x-2">
+            <div className="flex items-center p-2 w-[90%]">
               <LuMapPin className="text-2xl text-gray-500" />
-              <select className="p-2 appearance-none border-none outline-none rounded-md text-gray-700 bg-white focus:border-teal-500 focus:ring-2 focus:ring-teal-200 cursor-pointer">
-                <option value="" selected disabled hidden>
+              <select className="p-2 appearance-none border-none outline-none rounded-md text-gray-700 bg-white focus:border-teal-500 focus:ring-2 focus:ring-teal-200 cursor-pointer w-full">
+                <option value="" defaultValue disabled hidden>
                   Select Location
                 </option>
                 <option className="border-none outline-none" value="Edapally">
@@ -105,14 +105,14 @@ const HomePage = () => {
                 <option value="Palarivattam">Palarivattam</option>
               </select>
             </div>
-            <div className="h-8 border-l border-gray-300 "></div>
+            <div className="w-[90%] md:h-8 border-b md:w-auto md:border-0 md:border-l border-gray-300 "></div>
             <input
-              className="w-full border-none outline-none bg-transparent text-gray-700 placeholder-gray-500 focus:ring-0"
+              className="w-full border-none pl-8 md:pl-1 outline-none bg-transparent text-gray-700 placeholder-gray-500 focus:ring-0 my-5 md:my-0"
               placeholder="Search for medicines"
               type="text"
             />
-            <Link to={"/search-result"}>
-              <button className="bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 px-6 rounded-md flex justify-center items-center gap-2">
+            <Link to={"/search-result"} className="w-full md:w-fit">
+              <button className="bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 px-6 rounded-md flex justify-center items-center gap-2 w-full ">
                 Search
                 <FaMagnifyingGlass className="text-xl" />
               </button>
@@ -121,10 +121,10 @@ const HomePage = () => {
         </section>
         {/* Most frequent */}
         <section className="py-16 px-6 md:px-12 bg-gray-100">
-          <h3 className="text-3xl font-bold mb-8 text-gray-800 ">
+          <h3 className="text-xl md:text-3xl font-bold mb-8 text-gray-800 ">
             Most frequent searches
           </h3>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
             {medicineItems.map((item) => {
               return (
                 <MedicineCard
@@ -140,8 +140,8 @@ const HomePage = () => {
         </section>
         {/* Products */}
         <section className="py-16 px-6 md:px-12 bg-gray-50 ">
-          <div className="flex justify-between items-center mb-8">
-            <h3 className="text-3xl font-bold text-gray-800">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-2">
+            <h3 className="text-xl md:text-3xl font-bold text-gray-800">
               Personal Care & Hygiene
             </h3>
             <a
