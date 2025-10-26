@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { LuMapPin } from "react-icons/lu";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
+import { MdExpandMore } from "react-icons/md";
 
 const SearchPage = () => {
   const medicine = {
@@ -74,11 +75,11 @@ const SearchPage = () => {
             <div className="flex items-center p-2 w-[90%]">
               <LuMapPin className="text-2xl text-gray-500" />
 
-              <select className="p-2 border-none outline-none rounded-md text-gray-700 bg-white focus:border-teal-500 focus:ring-2 focus:ring-teal-200 cursor-pointer w-full">
+              <select className="p-2 border-none outline-none rounded-md text-gray-700 bg-white focus:border-teal-500 focus:ring-2 focus:ring-teal-200 cursor-pointer w-full" defaultValue="Kakkanad" >
                 <option className="border-none outline-none" value="Edapally">
                   Edapally
                 </option>
-                <option defaultValue value="Kakkanad">
+                <option value="Kakkanad">
                   Kakkanad
                 </option>
                 <option value="Kalamassery">Kalamassery</option>
@@ -108,12 +109,16 @@ const SearchPage = () => {
                   src={medicine.imageURL}
                 />
                 <div className="text-gray-800 ">
-                  <h2 className="text-xl md:text-3xl font-bold">{medicine.title}</h2>
+                  <h2 className="text-xl md:text-3xl font-bold">
+                    {medicine.title}
+                  </h2>
                   <p className="text-xs md:text-lg text-gray-600 ">
                     Composition: {medicine.composition}
                   </p>
                   <div className="mt-4">
-                    <h4 className="text-sm md:text-lg font-semibold mb-2">Product Highlights</h4>
+                    <h4 className="text-sm md:text-lg font-semibold mb-2">
+                      Product Highlights
+                    </h4>
                     <ul className="list-disc list-inside space-y-1 text-xs  md:text-base text-gray-700 ">
                       {medicine.highlights.map((highlight, index) => {
                         return <li key={index}>{highlight}</li>;

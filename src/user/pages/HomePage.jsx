@@ -6,6 +6,7 @@ import MedicineCard from "../components/MedicineCard";
 import { Link } from "react-router-dom";
 import { LuMapPin } from "react-icons/lu";
 import { FaMagnifyingGlass } from "react-icons/fa6";
+import { MdExpandMore } from "react-icons/md";
 
 const HomePage = () => {
   const medicineItems = [
@@ -94,7 +95,7 @@ const HomePage = () => {
             <div className="flex items-center p-2 w-[90%]">
               <LuMapPin className="text-2xl text-gray-500" />
               <select className="p-2 appearance-none border-none outline-none rounded-md text-gray-700 bg-white focus:border-teal-500 focus:ring-2 focus:ring-teal-200 cursor-pointer w-full">
-                <option value="" defaultValue disabled hidden>
+                <option defaultValue hidden>
                   Select Location
                 </option>
                 <option className="border-none outline-none" value="Edapally">
@@ -104,6 +105,7 @@ const HomePage = () => {
                 <option value="Kalamassery">Kalamassery</option>
                 <option value="Palarivattam">Palarivattam</option>
               </select>
+              <MdExpandMore className="text-2xl text-gray-500" />
             </div>
             <div className="w-[90%] md:h-8 border-b md:w-auto md:border-0 md:border-l border-gray-300 "></div>
             <input
