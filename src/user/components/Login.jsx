@@ -30,7 +30,15 @@ const Login = ({ onLoginClick }) => {
               </div>
             </div>
             <div className="col-span-1 p-8 md:p-12 flex flex-col justify-center">
-              <h3 className="text-xl md:text-3xl font-bold text-gray-800 mb-6 text-center">
+              <div className="absolute top-0 right-0">
+                <button
+                  onClick={onLoginClick}
+                  className=" md:hidden relative top-3 right-4 text-xs text-gray-500 font-semibold hover:text-gray-700"
+                >
+                  Close
+                </button>
+              </div>
+              <h3 className="text-xl md:text-3xl font-bold text-gray-800 my-6 text-center">
                 Join MedsFinder
               </h3>
               <form className="space-y-6">
@@ -120,7 +128,15 @@ const Login = ({ onLoginClick }) => {
         {login && (
           <div className="grid grid-cols-1 md:grid-cols-2 bg-white rounded-lg shadow-xl overflow-hidden max-w-4xl w-full min-h-80 md:min-h-150">
             <div className="col-span-1 p-8 md:p-12 flex flex-col justify-center">
-              <h3 className="text-xl md:text-3xl font-bold text-gray-800 mb-6 text-center">
+              <div className="absolute top-0 right-0">
+                <button
+                  onClick={onLoginClick}
+                  className=" md:hidden relative top-3 right-4 text-xs text-gray-500 font-semibold hover:text-gray-700"
+                >
+                  Close
+                </button>
+              </div>
+              <h3 className="text-xl md:text-3xl font-bold text-gray-800 my-6 text-center">
                 Welcome Back
               </h3>
               <form className="space-y-6">
