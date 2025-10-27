@@ -143,7 +143,7 @@ const AdminMedicines = () => {
                   <button className="px-3 py-1 border border-gray-300  rounded-md text-gray-600 hover:bg-gray-100 ">
                     Previous
                   </button>
-                  <button className="px-3 py-1 border border-teal-500 bg-teal-500 text-white rounded-md">
+                  <button className="px-3 py-1 border border-teal-600 bg-teal-500 text-white rounded-md">
                     1
                   </button>
                   <button className="px-3 py-1 border border-gray-300  rounded-md text-gray-600  hover:bg-gray-100 ">

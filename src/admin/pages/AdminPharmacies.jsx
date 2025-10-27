@@ -56,7 +56,7 @@ const AdminPharmacies = () => {
                   />
                   <FaMagnifyingGlass className="text-xl absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" />
                 </div>
-                <button className="flex items-center font-semibold justify-center px-4 py-2 bg-teal-500 text-white rounded-lg shadow-md hover:bg-teal-600 transition-colors">
+                <button className="flex items-center font-semibold justify-center px-4 py-2 bg-teal-600 text-white rounded-lg shadow-md hover:bg-teal-700 transition-colors">
                   <FaPlus className=" mr-2" />
                   Add New Pharmacy
                 </button>
@@ -134,7 +134,7 @@ const AdminPharmacies = () => {
                   <button className="px-3 py-1 border border-gray-300  rounded-md text-gray-600 hover:bg-gray-100 ">
                     Previous
                   </button>
-                  <button className="px-3 py-1 border border-teal-500 bg-teal-500 text-white rounded-md">
+                  <button className="px-3 py-1 border border-teal-600 bg-teal-700 text-white rounded-md">
                     1
                   </button>
                   <button className="px-3 py-1 border border-gray-300  rounded-md text-gray-600  hover:bg-gray-100 ">

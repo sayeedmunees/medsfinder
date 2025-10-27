@@ -22,7 +22,7 @@ const PharmacyCard = ({
           src={imageURL}
         />
         <div className="grow">
-          <div className="flex flex-col h-full md:flex-row gap-2 justify-between items-center">
+          <div className="flex flex-col h-full md:flex-row gap-2 justify-between items-start">
             <div>
               <h4 className="text-lg md:text-xl font-semibold text-gray-800 ">
                 {shopName}

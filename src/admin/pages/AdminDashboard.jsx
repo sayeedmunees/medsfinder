@@ -51,8 +51,8 @@ const AdminDashboard = () => {
                     onClick={handlePharmacies}
                     className={
                       pharmacies
-                        ? "tab-btn group inline-flex items-center py-4 px-1 border-b-2 border-teal-500 font-semibold text-teal-500"
-                        : "tab-btn group inline-flex items-center py-4 px-1 border-b-2 border-transparent font-medium text-gray-500 hover:text-teal-500 hover:border-teal-500/30 "
+                        ? "tab-btn group inline-flex items-center py-4 px-1 border-b-2 border-teal-600 font-semibold text-teal-600"
+                        : "tab-btn group inline-flex items-center py-4 px-1 border-b-2 border-transparent font-medium text-gray-500 hover:text-teal-600 hover:border-teal-500/30 "
                     }
                   >
                     <FaClinicMedical className="text-xl mr-2" />
@@ -62,8 +62,8 @@ const AdminDashboard = () => {
                     onClick={handleMedicines}
                     className={
                       medicines
-                        ? "tab-btn group inline-flex items-center py-4 px-1 border-b-2 border-teal-500 font-semibold text-teal-500"
-                        : "tab-btn group inline-flex items-center py-4 px-1 border-b-2 border-transparent font-medium text-gray-500 hover:text-teal-500 hover:border-teal-500/30 "
+                        ? "tab-btn group inline-flex items-center py-4 px-1 border-b-2 border-teal-600 font-semibold text-teal-600"
+                        : "tab-btn group inline-flex items-center py-4 px-1 border-b-2 border-transparent font-medium text-gray-500 hover:text-teal-600 hover:border-teal-600/30 "
                     }
                   >
                     <GiMedicines className="text-xl mr-2" />
@@ -73,8 +73,8 @@ const AdminDashboard = () => {
                     onClick={handleAdvertisements}
                     className={
                       advertisements
-                        ? "tab-btn group inline-flex items-center py-4 px-1 border-b-2 border-teal-500 font-semibold text-teal-600"
-                        : "tab-btn group inline-flex items-center py-4 px-1 border-b-2 border-transparent font-medium text-gray-500 hover:text-teal-500 hover:border-teal-500/30 "
+                        ? "tab-btn group inline-flex items-center py-4 px-1 border-b-2 border-teal-600 font-semibold text-teal-600"
+                        : "tab-btn group inline-flex items-center py-4 px-1 border-b-2 border-transparent font-medium text-gray-500 hover:text-teal-500 hover:border-teal-600/30 "
                     }
                   >
                     <MdCampaign className="text-xl mr-2" />
