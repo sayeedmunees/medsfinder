@@ -70,18 +70,19 @@ const SearchPage = () => {
       <Header />
       <div>
         {/* serach and description */}
-        <section className="bg-teal-500 py-8 px-4 sm:px-6 lg:px-8">
+        <section className="bg-teal-600 py-8 px-4 sm:px-6 lg:px-8">
           <div className="mt-8 max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-2 flex flex-col md:flex-row items-center space-x-2 gap-2">
             <div className="flex items-center p-2 w-[90%]">
               <LuMapPin className="text-2xl text-gray-500" />
 
-              <select className="p-2 border-none outline-none rounded-md text-gray-700 bg-white focus:border-teal-500 focus:ring-2 focus:ring-teal-200 cursor-pointer w-full" defaultValue="Kakkanad" >
+              <select
+                className="p-2 border-none outline-none rounded-md text-gray-700 bg-white focus:border-teal-600 focus:ring-2 focus:ring-teal-200 cursor-pointer w-full"
+                defaultValue="Kakkanad"
+              >
                 <option className="border-none outline-none" value="Edapally">
                   Edapally
                 </option>
-                <option value="Kakkanad">
-                  Kakkanad
-                </option>
+                <option value="Kakkanad">Kakkanad</option>
                 <option value="Kalamassery">Kalamassery</option>
                 <option value="Palarivattam">Palarivattam</option>
               </select>
@@ -93,7 +94,7 @@ const SearchPage = () => {
               type="text"
             />
             <Link to={"/search-result"} className="w-full md:w-fit">
-              <button className="bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 px-6 rounded-md flex justify-center items-center gap-2 w-full">
+              <button className="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-6 rounded-md flex justify-center items-center gap-2 w-full">
                 Search
                 <FaMagnifyingGlass className="text-xl" />
               </button>
@@ -152,6 +153,7 @@ const SearchPage = () => {
                     inStock={pharmacy.inStock}
                     saved={pharmacy.saved}
                     imageURL={pharmacy.imageURL}
+                    from="SearchPage"
                   />
                 );
               })}

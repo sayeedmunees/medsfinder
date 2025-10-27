@@ -20,7 +20,6 @@ function App() {
         <Route path="/product" element={<ProductDetailsPage />} />
         <Route path="/saved" element={<SavedPage />} />
         <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/login" element={<Login />} />
 
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/admin-pharmacies" element={<AdminPharmacies />} />

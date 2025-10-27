@@ -1,16 +1,25 @@
 import React, { useState } from "react";
+import { IoMdClose } from "react-icons/io";
 import { PiPillFill } from "react-icons/pi";
 
-const Login = () => {
+const Login = ({ onLoginClick }) => {
   const [login, setLogin] = useState(true);
 
   return (
     <>
-      <main className="grow flex items-center justify-center p-4 md:p-8 bg-gray-200 ">
+      <main className="w-auto lg:w-200">
         {/* signup */}
         {!login && (
           <div className="grid grid-cols-1 md:grid-cols-2 bg-white rounded-lg shadow-xl overflow-hidden max-w-4xl w-full min-h-80 md:min-h-150">
-            <div className="hidden md:flex col-span-1 bg-teal-500 items-center justify-center p-8 lg:p-0">
+            <div className="hidden md:flex col-span-1 bg-teal-600 items-center justify-center p-8 lg:p-0">
+              <div className="absolute top-0 left-0">
+                <button
+                  onClick={onLoginClick}
+                  className="relative left-5 top-5 text-3xl text-white font-semibold hover:transition-transform hover:scale-105 duration-300 hover:font-bold"
+                >
+                  <IoMdClose />
+                </button>
+              </div>
               <div className="z-10 text-white text-center p-4">
                 <h2 className="flex items-center gap-2 text-3xl md:text-4xl font-bold mb-4 drop-shadow-md">
                   Find medicines faster nearby you
@@ -33,7 +42,7 @@ const Login = () => {
                     Full Name
                   </label>
                   <input
-                    className="mt-1 text-sm md:text-base block w-full rounded-md border-gray-300 shadow-sm px-4 py-2 placeholder:text-gray-400 focus:outline-teal-500 bg-gray-100"
+                    className="mt-1 text-sm md:text-base block w-full rounded-md border-gray-300 shadow-sm px-4 py-2 placeholder:text-gray-500 focus:outline-teal-500 bg-gray-200"
                     id="name"
                     name="name"
                     placeholder="John Doe"
@@ -43,12 +52,12 @@ const Login = () => {
                 <div>
                   <label
                     className="block text-xs md:text-sm font-medium text-gray-700"
-                    for="email"
+                    htmlFor="email"
                   >
                     Email Address
                   </label>
                   <input
-                    className="mt-1 text-sm md:text-base block w-full rounded-md border-gray-300 shadow-sm px-4 py-2 placeholder:text-gray-400 focus:outline-teal-500 bg-gray-100"
+                    className="mt-1 text-sm md:text-base block w-full rounded-md border-gray-300 shadow-sm px-4 py-2 placeholder:text-gray-500 focus:outline-teal-500 bg-gray-200"
                     id="email"
                     name="email"
                     placeholder="you@example.com"
@@ -63,7 +72,7 @@ const Login = () => {
                     Password
                   </label>
                   <input
-                    className="mt-1 text-sm md:text-base block w-full rounded-md border-gray-300 shadow-sm px-4 py-2 placeholder:text-gray-400 focus:outline-teal-500 bg-gray-100 "
+                    className="mt-1 text-sm md:text-base block w-full rounded-md border-gray-300 shadow-sm px-4 py-2 placeholder:text-gray-500 focus:outline-teal-500 bg-gray-200 "
                     id="password"
                     name="password"
                     placeholder="••••••••"
@@ -73,12 +82,12 @@ const Login = () => {
                 <div>
                   <label
                     className="block text-sm font-medium text-gray-700"
-                    for="confirm-password"
+                    htmlFor="confirm-password"
                   >
                     Confirm Password
                   </label>
                   <input
-                    className="mt-1 text-sm md:text-base block w-full rounded-md border-gray-300 shadow-sm px-4 py-2 placeholder:text-gray-400 focus:outline-teal-500 bg-gray-100"
+                    className="mt-1 text-sm md:text-base block w-full rounded-md border-gray-300 shadow-sm px-4 py-2 placeholder:text-gray-500 focus:outline-teal-500 bg-gray-200"
                     id="confirm-password"
                     name="confirm-password"
                     placeholder="••••••••"
@@ -123,7 +132,7 @@ const Login = () => {
                     Email Address
                   </label>
                   <input
-                    className="mt-1 text-sm md:text-base block w-full rounded-md border-gray-300 shadow-sm px-4 py-2 placeholder:text-gray-400 focus:outline-teal-500 bg-gray-100"
+                    className="mt-1 text-sm md:text-base block w-full rounded-md border-gray-300 shadow-sm px-4 py-2 placeholder:text-gray-500 focus:outline-teal-500 bg-gray-200"
                     id="email"
                     name="email"
                     placeholder="you@example.com"
@@ -138,7 +147,7 @@ const Login = () => {
                     Password
                   </label>
                   <input
-                    className="mt-1 text-sm md:text-base block w-full rounded-md border-gray-300 shadow-sm px-4 py-2 placeholder:text-gray-400 focus:outline-teal-500 bg-gray-100 "
+                    className="mt-1 text-sm md:text-base block w-full rounded-md border-gray-300 shadow-sm px-4 py-2 placeholder:text-gray-500 focus:outline-teal-500 bg-gray-200 "
                     id="password"
                     name="password"
                     placeholder="••••••••"
@@ -165,7 +174,15 @@ const Login = () => {
                 </a>
               </p>
             </div>
-            <div className="hidden md:flex col-span-1 bg-teal-500 items-center justify-center p-8 lg:p-0">
+            <div className="hidden md:flex col-span-1 bg-teal-600 items-center justify-center p-8 lg:p-0">
+              <div className="absolute top-0 right-0 hover:transition-transform hover:scale-105 duration-300 hover:font-bold">
+                <button
+                  onClick={onLoginClick}
+                  className="relative top-5 right-5 text-3xl text-white font-semibold"
+                >
+                  <IoMdClose />
+                </button>
+              </div>
               <div className="z-10 text-white text-center p-4">
                 <h2 className="flex items-center gap-2 text-3xl md:text-4xl font-bold mb-4 drop-shadow-md">
                   <PiPillFill />

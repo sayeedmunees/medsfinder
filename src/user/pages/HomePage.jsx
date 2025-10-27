@@ -1,4 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+import {
+  Dialog,
+  DialogBackdrop,
+  DialogPanel,
+  DialogTitle,
+} from "@headlessui/react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ProductCard from "../components/ProductCard";
@@ -7,6 +13,7 @@ import { Link } from "react-router-dom";
 import { LuMapPin } from "react-icons/lu";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { MdExpandMore } from "react-icons/md";
+import Login from "../components/Login";
 
 const HomePage = () => {
   const medicineItems = [
@@ -79,12 +86,14 @@ const HomePage = () => {
     },
   ];
 
+  const [showLogin, setShowLogin] = useState(false);
+
   return (
     <>
-      <Header />
+      <Header onLoginClick={() => setShowLogin(true)} />
       <main>
         {/* hero */}
-        <section className="bg-teal-500 text-white py-20 px-6 md:px-12 text-center">
+        <section className="bg-teal-600 text-white py-20 px-6 md:px-12 text-center">
           <h2 className="text-2xl md:text-5xl font-bold mb-3">
             Find medicines faster nearby you
           </h2>
@@ -114,7 +123,7 @@ const HomePage = () => {
               type="text"
             />
             <Link to={"/search-result"} className="w-full md:w-fit">
-              <button className="bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 px-6 rounded-md flex justify-center items-center gap-2 w-full ">
+              <button className="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-6 rounded-md flex justify-center items-center gap-2 w-full ">
                 Search
                 <FaMagnifyingGlass className="text-xl" />
               </button>
@@ -147,7 +156,7 @@ const HomePage = () => {
               Personal Care & Hygiene
             </h3>
             <a
-              className="text-teal-500 hover:text-teal-600 hover:underline underline-offset-5 font-semibold transition ease-in-out"
+              className="text-teal-600 hover:text-teal-700 hover:underline underline-offset-5 font-semibold transition ease-in-out"
               href="#"
             >
               View All
@@ -167,8 +176,26 @@ const HomePage = () => {
             })}
           </div>
         </section>
+
+        <Dialog open={showLogin} onClose={setShowLogin} className="relative z-10">
+          <DialogBackdrop
+            transition
+            className="fixed inset-0 bg-gray-900/50 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in"
+          />
+
+          <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0">
+              <DialogPanel
+                transition
+                className="relative transform overflow-hidden rounded-lg bg-gray-800 text-left shadow-xl outline -outline-offset-1 outline-white/10 transition-all data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in sm:my-8 min-w-fit data-closed:sm:translate-y-0 data-closed:sm:scale-95"
+              >
+                <Login onLoginClick={() => setShowLogin(false)} />
+              </DialogPanel>
+            </div>
+          </div>
+        </Dialog>
       </main>
-      <Footer />
+      <Footer className="overflow-x-clip" />
     </>
   );
 };

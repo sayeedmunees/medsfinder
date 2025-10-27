@@ -112,7 +112,7 @@ const SavedPage = () => {
               onClick={handlemedicineTab}
               className={
                 medicineTab
-                  ? "px-4 py-2 text-base md:text-lg font-semibold text-teal-600 border-b-2 border-teal-500"
+                  ? "px-4 py-2 text-base md:text-lg font-semibold text-teal-600 border-b-2 border-teal-600 hover:text-teal-500"
                   : "px-4 py-2 text-base md:text-lg font-semibold text-gray-600  hover:text-teal-500"
               }
             >
@@ -122,7 +122,7 @@ const SavedPage = () => {
               onClick={handlePharmacyTab}
               className={
                 pharmacyTab
-                  ? "px-4 py-2 text-base md:text-lg font-semibold text-teal-600 border-b-2 border-teal-500"
+                  ? "px-4 py-2 text-base md:text-lg font-semibold text-teal-600 border-b-2 border-teal-500 hover:text-teal-500"
                   : "px-4 py-2 text-base md:text-lg font-semibold text-gray-600  hover:text-teal-500"
               }
             >

@@ -6,7 +6,7 @@ import { FaXTwitter } from "react-icons/fa6";
 const Footer = () => {
   return (
     <>
-      <footer className="bg-teal-500 text-white py-12 px-6 md:px-12">
+      <footer className="bg-teal-600 text-white py-12 px-6 md:px-12">
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <h4 className="text-lg font-semibold mb-4">About</h4>
@@ -65,7 +65,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="mt-8 pt-8 border-t border-teal-400  text-center text-teal-100">
+        <div className="mt-8 pt-8 border-t border-teal-500  text-center text-teal-100">
           &#169; 2025 MedsFinder. All rights reserved.
         </div>
       </footer>

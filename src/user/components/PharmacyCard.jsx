@@ -11,6 +11,7 @@ const PharmacyCard = ({
   inStock,
   saved,
   imageURL,
+  from,
 }) => {
   return (
     <>
@@ -21,7 +22,7 @@ const PharmacyCard = ({
           src={imageURL}
         />
         <div className="grow">
-          <div className="flex flex-col md:flex-row gap-2 justify-between items-start">
+          <div className="flex flex-col h-full md:flex-row gap-2 justify-between items-center">
             <div>
               <h4 className="text-lg md:text-xl font-semibold text-gray-800 ">
                 {shopName}
@@ -74,28 +75,44 @@ const PharmacyCard = ({
                 </span>
               </div>
             </div>
-            <div className="flex flex-col gap-2 items-start md:items-end">
-              <div className="flex items-center space-x-4">
-                {inStock ? (
-                  <div className="flex items-center space-x-2 text-green-500 font-semibold">
-                    <FaCircleCheck className="text-2xl" />
-                    <span>In Stock</span>
-                  </div>
-                ) : (
-                  <div className="flex items-center space-x-2 text-red-500 font-semibold">
-                    <FaCircleXmark className="text-2xl" />
-                    <span>Out of Stock</span>
-                  </div>
-                )}
+            <div>
+              {from ? (
+                <div className="flex flex-col gap-2 items-start md:items-end">
+                  <div className="flex items-center space-x-4">
+                    <div>
+                      {inStock ? (
+                        <div className="flex items-center space-x-2 text-green-500 font-semibold">
+                          <FaCircleCheck className="text-2xl" />
+                          <span>In Stock</span>
+                        </div>
+                      ) : (
+                        <div className="flex items-center space-x-2 text-red-500 font-semibold">
+                          <FaCircleXmark className="text-2xl" />
+                          <span>Out of Stock</span>
+                        </div>
+                      )}
+                    </div>
 
-                <button className="p-2 rounded-full hover:bg-gray-200 text-teal-500 text-xl">
-                  {saved ? <FaBookmark /> : <FaRegBookmark />}
-                </button>
-              </div>
+                    <button className="p-2 rounded-full hover:bg-gray-200 text-teal-600 text-xl">
+                      {saved ? <FaBookmark /> : <FaRegBookmark />}
+                    </button>
+                  </div>
 
-              <button className="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-6 rounded-md flex justify-center items-center gap-2 ">
-                Get Directions
-              </button>
+                  <button className="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-4 w-full rounded-md flex justify-center items-center gap-2 mr-1">
+                    Get Directions
+                  </button>
+                </div>
+              ) : (
+                <div className="flex flex-row gap-3 items-center justify-center">
+                  <button className="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-6 rounded-md flex justify-center items-center gap-2 ">
+                    Get Directions
+                  </button>
+
+                  <button className="p-2 rounded-full hover:bg-gray-200 text-teal-500 text-2xl">
+                    <FaBookmark />
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>

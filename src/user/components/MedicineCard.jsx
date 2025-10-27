@@ -17,7 +17,7 @@ const MedicineCard = ({ title, brand, imageURL, saved }) => {
             <p className="font-semibold text-gray-800">{title}</p>
             <p className="text-sm text-gray-500 ">{brand}</p>
           </div>
-          <button className="mt-4 p-2 rounded-full hover:bg-gray-200 text-teal-500 text-xl">
+          <button className="mt-4 p-2 rounded-full hover:bg-gray-200 text-teal-600 text-xl">
             {saved ? <FaBookmark /> : <FaRegBookmark />}
           </button>
         </div>
