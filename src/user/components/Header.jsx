@@ -71,6 +71,17 @@ const Header = () => {
 
               <button
                 type="submit"
+                className="flex gap-2 w-full px-4 py-2 my-1 text-sm rounded-md  hover:bg-gray-200 text-gray-700"
+                role="menuItem"
+                tabIndex="-1"
+                id="menu-item-1"
+              >
+                <ImUser className="text-xl" />
+                Login
+              </button>
+
+              <button
+                type="submit"
                 className="flex gap-2 w-full rounded-md px-4 py-2 text-left text-sm text-red-600 hover:bg-red-200"
                 role="menuItem"
                 tabIndex="-1"
