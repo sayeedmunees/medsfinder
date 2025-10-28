@@ -18,12 +18,12 @@ const PharmacyCard = ({
       <div className="bg-white rounded-lg shadow-md p-6 flex flex-col md:flex-row items-start hover:shadow-xl transition duration-300 ease-in-out">
         <img
           alt={shopName}
-          className="w-24 h-24 rounded-lg object-cover mr-6 mb-6"
+          className="w-24 h-24 rounded-lg object-cover mr-6 mb-6 md:mb-0"
           src={imageURL}
         />
         <div className="grow">
-          <div className="flex flex-col h-full md:flex-row gap-2 justify-between items-start">
-            <div>
+          <div className="flex flex-col h-full md:flex-row gap-2 justify-between items-start md:items-center">
+            <div className="flex flex-col">
               <h4 className="text-lg md:text-xl font-semibold text-gray-800 ">
                 {shopName}
               </h4>
