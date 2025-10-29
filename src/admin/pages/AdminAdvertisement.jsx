@@ -46,22 +46,28 @@ const AdminAdvertisement = () => {
         <div className="flex-1 flex flex-col overflow-hidden">
           <Header from="advertisements" />
           <main className="flex-1 p-6 md:p-12 bg-gray-100  overflow-y-auto">
-            <section className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div className="md:hidden bg-white rounded-lg shadow p-6 mb-2">
+              <h3 className="text-sm font-medium text-red-500 ">
+                Use a bigger screen for better experience.
+              </h3>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-6 mb-8">
               <TotalCards icon="click" count="1532" item="Clicks" />
               <TotalCards
                 icon="ad"
                 count={productItems.length}
                 item="Ad Products"
               />
-            </section>
+            </div>
             <div className="mb-8">
-              <div className="flex flex-row justify-between py-2 mb-6">
-                <h3 className="text-3xl font-bold text-gray-800">
+              <div className="flex flex-col md:flex-row justify-between py-2 mb-3 md:mb-6 gap-2">
+                <h3 className="text-xl md:text-3xl font-bold text-gray-800">
                   Current Products
                 </h3>
                 <button
                   onClick={() => setAddProduct(true)}
-                  className="flex items-center justify-center font-semibold px-4 py-3 bg-teal-500 text-white rounded-lg shadow-md hover:bg-teal-600 transition-colors"
+                  className="flex items-center justify-center font-semibold  w-fit  px-4 py-3 bg-teal-600 text-sm md:text-base text-white rounded-lg shadow-md hover:bg-teal-700 transition-colors"
                 >
                   <FaPlus className=" mr-2" />
                   Add New Product

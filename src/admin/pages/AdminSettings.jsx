@@ -15,7 +15,7 @@ const AdminSettings = () => {
           <Header from="settings" />
           <main className="flex-1 p-6 md:p-12 bg-gray-100 overflow-y-auto">
             <div className="bg-white rounded-lg shadow p-6">
-              <h3 className="text-xl font-semibold mb-6 text-gray-800">
+              <h3 className="text-base md:text-xl font-semibold mb-6 text-gray-800">
                 Account Security Settings
               </h3>
               <div className="border-2 border-gray-200 rounded-lg mb-4">
@@ -23,7 +23,7 @@ const AdminSettings = () => {
                   onClick={() => setOpenUsername(!openUsername)}
                   className="w-full flex justify-between items-center p-4 focus:outline-none"
                 >
-                  <span className="text-lg font-medium text-gray-800">
+                  <span className="text-sm md:text-lg font-medium text-gray-800">
                     Username
                   </span>
                   <MdExpandMore
@@ -41,13 +41,13 @@ const AdminSettings = () => {
                   <div className="border-t border-gray-200 pt-4">
                     <div className="mb-4">
                       <label
-                        className="block text-sm font-medium text-gray-700 mb-1"
+                        className="block text-xs md:text-sm font-medium text-gray-700 mb-1"
                         htmlFor="new-username"
                       >
                         New Username
                       </label>
                       <input
-                        className="mt-1 block w-full p-2 rounded-md outline-none border-gray-300 shadow-sm border text-gray-700 placeholder:text-gray-400  focus:border-teal-500 focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
+                        className="mt-1 block w-full p-2 rounded-md outline-none border-gray-300 shadow-sm border text-gray-700 placeholder:text-gray-400  focus:border-teal-500 focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50 text-xs md:text-base"
                         id="new-username"
                         name="new-username"
                         placeholder="Enter new username"
@@ -56,7 +56,7 @@ const AdminSettings = () => {
                     </div>
 
                     <div className="flex justify-between items-center pb-4">
-                      <button className="px-4 py-2 bg-teal-500 text-white rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50">
+                      <button className="px-4 py-2 bg-teal-500 text-white rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50 text-xs md:text-base">
                         Update Username
                       </button>
                     </div>
@@ -68,7 +68,7 @@ const AdminSettings = () => {
                   className="w-full flex justify-between items-center p-4 focus:outline-none"
                   onClick={() => setOpenEmail(!openEmail)}
                 >
-                  <span className="text-lg font-medium text-gray-800 ">
+                  <span className="text-sm md:text-lg font-medium text-gray-800 ">
                     Email Address
                   </span>
                   <MdExpandMore
@@ -85,13 +85,13 @@ const AdminSettings = () => {
                   <div className="border-t border-gray-200 pt-4">
                     <div className="mb-4">
                       <label
-                        className="block text-sm font-medium text-gray-700 mb-1"
+                        className="block text-xs md:text-sm font-medium text-gray-700 mb-1"
                         htmlFor="new-email"
                       >
                         New Email
                       </label>
                       <input
-                        className="mt-1 p-2 block w-full rounded-md outline-none border-gray-300 shadow-sm border text-gray-700 placeholder:text-gray-400  focus:border-teal-500 focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
+                        className="mt-1 p-2 block w-full rounded-md outline-none border-gray-300 shadow-sm border text-gray-700 placeholder:text-gray-400  focus:border-teal-500 focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50 text-xs md:text-base"
                         id="new-email"
                         name="new-email"
                         placeholder="Enter new email address"
@@ -99,7 +99,7 @@ const AdminSettings = () => {
                       />
                     </div>
                     <div className="flex justify-between items-center pb-4">
-                      <button className="px-4 py-2 bg-teal-500 text-white rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50">
+                      <button className="px-4 py-2 bg-teal-500 text-white rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50 text-xs md:text-base">
                         Update Email
                       </button>
                     </div>
@@ -111,7 +111,7 @@ const AdminSettings = () => {
                   className="w-full flex justify-between items-center p-4 focus:outline-none"
                   onClick={() => setOpenPassword(!openPassword)}
                 >
-                  <span className="text-lg font-medium text-gray-800">
+                  <span className="text-sm md:text-lg font-medium text-gray-800">
                     Password
                   </span>
                   <MdExpandMore
@@ -128,13 +128,13 @@ const AdminSettings = () => {
                   <div className="border-t border-gray-200 pt-4">
                     <div className="mb-4">
                       <label
-                        className="block text-sm font-medium text-gray-700 mb-1"
+                        className="block font-medium text-gray-700 mb-1 text-xs md:text-sm"
                         htmlFor="current-password"
                       >
                         Current Password
                       </label>
                       <input
-                        className="mt-1 p-2 block w-full outline-none rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-2 focus:ring-teal-500 border text-gray-700 placeholder:text-gray-400  focus:ring-opacity-50"
+                        className="mt-1 p-2 block w-full outline-none rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-2 focus:ring-teal-500 border text-gray-700 placeholder:text-gray-400 focus:ring-opacity-50 text-xs md:text-base"
                         id="current-password"
                         name="current-password"
                         placeholder="Enter current password"
@@ -143,13 +143,13 @@ const AdminSettings = () => {
                     </div>
                     <div className="mb-4">
                       <label
-                        className="block text-sm font-medium text-gray-700 mb-1"
+                        className="block text-xs md:text-sm font-medium text-gray-700 mb-1"
                         htmlFor="new-password"
                       >
                         New Password
                       </label>
                       <input
-                        className="mt-1 p-2 block w-full outline-none rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-2 border text-gray-700 placeholder:text-gray-400  focus:ring-teal-500 focus:ring-opacity-50 "
+                        className="mt-1 p-2 block w-full outline-none rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-2 border text-gray-700 placeholder:text-gray-400  focus:ring-teal-500 focus:ring-opacity-50 text-xs md:text-base"
                         id="new-password"
                         name="new-password"
                         placeholder="Enter new password"
@@ -158,13 +158,13 @@ const AdminSettings = () => {
                     </div>
                     <div className="mb-4">
                       <label
-                        className="block text-sm font-medium text-gray-700 mb-1"
+                        className="block text-xs md:text-sm font-medium text-gray-700 mb-1"
                         htmlFor="confirm-password"
                       >
                         Confirm New Password
                       </label>
                       <input
-                        className="mt-1 p-2 block w-full outline-none rounded-md border-gray-300 shadow-sm border text-gray-700 placeholder:text-gray-400  focus:border-teal-500 focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50 "
+                        className="mt-1 p-2 block w-full outline-none rounded-md border-gray-300 shadow-sm border text-gray-700 placeholder:text-gray-400  focus:border-teal-500 focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50 text-xs md:text-base"
                         id="confirm-password"
                         name="confirm-password"
                         placeholder="Re-enter new password"
@@ -172,7 +172,7 @@ const AdminSettings = () => {
                       />
                     </div>
                     <div className="flex justify-between items-center pb-4">
-                      <button className="px-4 py-2 bg-teal-500 text-white rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50">
+                      <button className="px-4 py-2 bg-teal-500 text-white rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50 text-xs md:text-base">
                         Change Password
                       </button>
                     </div>

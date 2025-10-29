@@ -37,11 +37,17 @@ const AdminDashboard = () => {
         <div className="flex-1 flex flex-col overflow-hidden">
           <Header from="Overview" />
           <main className="flex-1 p-6 md:p-12 bg-gray-100  overflow-y-auto">
-            <section className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div className="md:hidden bg-white rounded-lg shadow p-6 mb-2">
+              <h3 className="text-sm font-medium text-red-500 ">
+                Use a bigger screen for better experience.
+              </h3>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-6 mb-2 md:mb-8">
               <TotalCards icon="medicine" count="1,250" item="Medicines" />
               <TotalCards icon="pharmacy" count="150" item="Pharmacies" />
               <TotalCards icon="ad" count="50" item="Ad Products" />
-            </section>
+            </div>
 
             <div className="bg-white rounded-lg shadow p-6">
               {/* tabs */}
@@ -56,7 +62,7 @@ const AdminDashboard = () => {
                     }
                   >
                     <FaClinicMedical className="text-xl mr-2" />
-                    <span>Pharmacies</span>
+                    <span className="hidden md:block">Pharmacies</span>
                   </button>
                   <button
                     onClick={handleMedicines}
@@ -67,7 +73,7 @@ const AdminDashboard = () => {
                     }
                   >
                     <GiMedicines className="text-xl mr-2" />
-                    <span>Medicines</span>
+                    <span className="hidden md:block">Medicines</span>
                   </button>
                   <button
                     onClick={handleAdvertisements}
@@ -78,7 +84,7 @@ const AdminDashboard = () => {
                     }
                   >
                     <MdCampaign className="text-xl mr-2" />
-                    <span>Advertisements</span>
+                    <span className="hidden md:block">Advertisements</span>
                   </button>
                 </nav>
               </div>
