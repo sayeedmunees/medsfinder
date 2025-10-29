@@ -15,17 +15,17 @@ const ProfilePage = () => {
             <div className="w-32 h-32 rounded-full bg-gray-200 mx-auto mb-6 flex items-center justify-center overflow-hidden">
               <FaRegCircleUser className="text-8xl text-gray-700" />
             </div>
-            <h2 className="text-3xl font-bold text-gray-800  mb-2">John Doe</h2>
-            <p className="text-gray-500  text-lg">johndoe@example.com</p>
+            <h2 className="text-xl md:text-3xl font-bold text-gray-800  mb-2">John Doe</h2>
+            <p className="text-gray-500 text-base md:text-lg">johndoe@example.com</p>
           </div>
           <div className="space-y-6">
-            <h3 className="text-2xl font-semibold text-gray-800">
+            <h3 className="text-lg md:text-2xl font-semibold text-gray-800">
               Edit Profile
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="relative">
                 <label
-                  className="block text-sm font-medium text-gray-700 mb-1"
+                  className="block text-xs md:text-sm font-medium text-gray-700 mb-1"
                   htmlFor="name"
                 >
                   Name
@@ -39,7 +39,7 @@ const ProfilePage = () => {
               </div>
               <div className="relative">
                 <label
-                  className="block text-sm font-medium text-gray-700  mb-1"
+                  className="block text-xs md:text-sm font-medium text-gray-700  mb-1"
                   htmlFor="email"
                 >
                   Email
@@ -53,7 +53,7 @@ const ProfilePage = () => {
               </div>
               <div className="relative">
                 <label
-                  className="block text-sm font-medium text-gray-700  mb-1"
+                  className="block text-xs md:text-sm font-medium text-gray-700  mb-1"
                   htmlFor="phone"
                 >
                   Phone
