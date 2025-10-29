@@ -93,14 +93,14 @@ const HomePage = () => {
       <Header from="home" onLoginClick={() => setShowLogin(true)} />
       <main>
         {/* hero */}
-        <section className="bg-teal-600 text-white py-20 px-6 md:px-12 text-center">
+        <section className="bg-teal-600 text-white pt-25 md:pt-20 py-20 px-6 md:px-12 text-center">
           <h2 className="text-2xl md:text-5xl font-bold mb-3">
             Find medicines faster nearby you
           </h2>
           <p className="text-base md:text-xl text-white/80 ">
             No more queues to just hear the medicine is out of stock
           </p>
-          <div className="mt-8 max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-2 flex flex-col md:flex-row items-center space-x-2">
+          <div className="mt-16 md:mt-8 max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-2 flex flex-col md:flex-row items-center space-x-2">
             <div className="flex items-center p-2 w-[90%]">
               <LuMapPin className="text-2xl text-gray-500" />
               <select className="p-2 appearance-none border-none outline-none rounded-md text-gray-700 bg-white focus:border-teal-500 focus:ring-2 focus:ring-teal-200 cursor-pointer w-full">
