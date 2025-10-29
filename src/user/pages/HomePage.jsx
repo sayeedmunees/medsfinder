@@ -58,21 +58,21 @@ const HomePage = () => {
     {
       title: "SPF 50+ Sunscreen",
       type: "Broad spectrum protection",
-      price: "18.50",
+      price: "299",
       imageURL:
         "https://unblast.com/wp-content/uploads/2019/01/Tube-Mockup-1600x1226.jpg",
     },
     {
       title: "Hydrating Face Cream",
       type: "For all skin types",
-      price: "24.99",
+      price: "249",
       imageURL:
         "https://unblast.com/wp-content/uploads/2022/02/Mini-Spray-Bottle-Packaging-Mockup-1536x1152.jpg",
     },
     {
       title: "Vitamin C Serum",
       type: "Brightens & evens skin tone",
-      price: "32.00",
+      price: "329",
       imageURL:
         "https://unblast.com/wp-content/uploads/2020/10/Dropper-Packaging-Mockup--1536x1152.jpg",
     },
@@ -80,7 +80,7 @@ const HomePage = () => {
     {
       title: "Hand Sanitizer",
       type: "Removes dirt and kills germs",
-      price: "15.99",
+      price: "149",
       imageURL:
         "https://unblast.com/wp-content/uploads/2020/11/Matt-Hand-Sanitizer-Mockup-1-1-1536x1024.jpg",
     },
@@ -90,7 +90,7 @@ const HomePage = () => {
 
   return (
     <>
-      <Header onLoginClick={() => setShowLogin(true)} />
+      <Header from="home" onLoginClick={() => setShowLogin(true)} />
       <main>
         {/* hero */}
         <section className="bg-teal-600 text-white py-20 px-6 md:px-12 text-center">
@@ -155,12 +155,12 @@ const HomePage = () => {
             <h3 className="text-xl md:text-3xl font-bold text-gray-800">
               Personal Care & Hygiene
             </h3>
-            <a
+            <Link to={"/all-products"}
               className="text-teal-600 hover:text-teal-700 hover:underline underline-offset-5 font-semibold transition ease-in-out"
-              href="#"
+              
             >
               View All
-            </a>
+            </Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {productItems.map((item) => {

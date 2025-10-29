@@ -10,6 +10,7 @@ import AdminSettings from "./admin/pages/AdminSettings";
 import SavedPage from "./user/pages/SavedPage";
 import ProfilePage from "./user/pages/ProfilePage";
 import Login from "./user/components/Login";
+import ProductsPage from "./user/pages/ProductsPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/product" element={<ProductDetailsPage />} />
         <Route path="/saved" element={<SavedPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/all-products" element={<ProductsPage />} />
 
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/admin-pharmacies" element={<AdminPharmacies />} />

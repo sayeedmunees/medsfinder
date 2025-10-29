@@ -86,12 +86,12 @@ const ProfilePage = () => {
             </div>
             <div className="flex flex-col md:flex-row items-end gap-2 justify-end pt-4">
               <Link to={"/"}>
-                <button className="px-6 py-3 bg-gray-600 text-white rounded-md font-semibold hover:bg-gray-700 transition-colors duration-300 ease-in-out shadow-md">
+                <button className="px-6 py-3 bg-gray-600 text-white text-sm md:text-base rounded-md font-semibold hover:bg-gray-700 transition-colors duration-300 ease-in-out shadow-md">
                   Cancel
                 </button>
               </Link>
               <Link to={"/"}>
-                <button className="px-6 py-3 bg-teal-600 text-white rounded-md font-semibold hover:bg-teal-700 transition-colors duration-300 ease-in-out shadow-md">
+                <button className="px-6 py-3 bg-teal-600 text-white text-sm md:text-base rounded-md font-semibold hover:bg-teal-700 transition-colors duration-300 ease-in-out shadow-md">
                   Save Changes
                 </button>
               </Link>

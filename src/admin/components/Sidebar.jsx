@@ -33,17 +33,6 @@ const Sidebar = ({ from }) => {
             <span className="ml-4 font-semibold">Dashboard</span>
           </Link>
           <Link
-            to={"/admin-pharmacies"}
-            className={
-              from == "pharmacy"
-                ? "flex items-center py-3 px-6 text-white bg-teal-600"
-                : "flex items-center py-3 px-6 text-gray-600 bg-white hover:bg-gray-100 "
-            }
-          >
-            <FaClinicMedical className="text-2xl" />
-            <span className="ml-4">Pharmacies</span>
-          </Link>
-          <Link
             to={"/admin-medicines"}
             className={
               from == "medicine"
@@ -53,6 +42,17 @@ const Sidebar = ({ from }) => {
           >
             <GiMedicines className="text-2xl" />
             <span className="ml-4">Medicines</span>
+          </Link>
+          <Link
+            to={"/admin-pharmacies"}
+            className={
+              from == "pharmacy"
+                ? "flex items-center py-3 px-6 text-white bg-teal-600"
+                : "flex items-center py-3 px-6 text-gray-600 bg-white hover:bg-gray-100 "
+            }
+          >
+            <FaClinicMedical className="text-2xl" />
+            <span className="ml-4">Pharmacies</span>
           </Link>
           <Link
             to={"/admin-advertisement"}

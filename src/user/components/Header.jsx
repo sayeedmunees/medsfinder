@@ -7,8 +7,9 @@ import { ImUser } from "react-icons/im";
 import { PiPillFill } from "react-icons/pi";
 import { RiAdminFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import { AiFillHome } from "react-icons/ai";
 
-const Header = ({ onLoginClick }) => {
+const Header = ({ onLoginClick, from }) => {
   const [dropDownStatus, setDropDownStatus] = useState(false);
 
   return (
@@ -25,6 +26,11 @@ const Header = ({ onLoginClick }) => {
           </div>
         </Link>
         <div className="flex items-center md:gap-4">
+          {from != "home" && <Link to={"/"}>
+            <button className="p-2 rounded-full text-xl md:text-2xl text-teal-600  hover:text-teal-700">
+              <AiFillHome />
+            </button>
+          </Link>}
           <Link to={"/saved"}>
             <button className="p-2 rounded-full text-xl md:text-2xl text-teal-600  hover:text-teal-700">
               <FaBookmark />

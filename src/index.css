@@ -2,9 +2,10 @@
 
 * {
   font-family: "Poppins", "sans-serif";
+  scroll-behavior: smooth;
 }
 
-.material-icons {
+/* .material-icons {
   font-family: "Material Icons";
   font-weight: normal;
   font-style: normal;
@@ -18,11 +19,5 @@
   direction: ltr;
   -webkit-font-feature-settings: "liga";
   -webkit-font-smoothing: antialiased;
-}
+} */
 
-/* .tab-content {
-  display: none;
-} */
-/* .tab-content.active {
-  display: block;
-} */
