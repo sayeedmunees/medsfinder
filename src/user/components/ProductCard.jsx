@@ -25,7 +25,7 @@ const ProductCard = ({title, type, price , imageURL}) => {
             <p className="text-gray-600">
               {type}
             </p>
-            <p className="text-teal-600 font-bold text-lg mt-4">${price}</p>
+            <p className="text-teal-600 font-bold text-lg mt-4">₹{price}</p>
           </div>
         </div>
       </Link>
