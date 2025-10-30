@@ -11,10 +11,12 @@ import SavedPage from "./user/pages/SavedPage";
 import ProfilePage from "./user/pages/ProfilePage";
 import Login from "./user/components/Login";
 import ProductsPage from "./user/pages/ProductsPage";
+import ScrollToTop from "./user/components/ScrollToTop";
 
 function App() {
   return (
     <>
+     <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/search-result" element={<SearchPage />} />
