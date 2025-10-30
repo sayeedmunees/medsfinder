@@ -1,9 +1,20 @@
 import React, { useState } from "react";
+import { FaGoogle } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import { PiPillFill } from "react-icons/pi";
+import { useGoogleOneTapLogin } from "@react-oauth/google";
 
 const Login = ({ onLoginClick }) => {
   const [login, setLogin] = useState(true);
+
+  useGoogleOneTapLogin({
+    onSuccess: (credentialResponse) => {
+      console.log(credentialResponse);
+    },
+    onError: () => {
+      console.log("Login Failed");
+    },
+  });
 
   return (
     <>
@@ -176,6 +187,15 @@ const Login = ({ onLoginClick }) => {
                   type="submit"
                 >
                   Sign In
+                </button>
+
+                <button
+                  className="flex items-center justify-center gap-4 w-full py-3 px-4 border border-transparent rounded-md shadow-sm text-xs md:text-sm font-medium text-white bg-teal-600 hover:bg-teal-700 transition-colors cursor-pointer"
+                  type="submit"
+                  onClick={useGoogleOneTapLogin}
+                >
+                  <FaGoogle className="text-xl" />
+                  Sign In with Google
                 </button>
               </form>
               <p className="mt-6 text-center text-xs md:text-sm text-gray-600 cursor-default">
