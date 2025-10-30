@@ -141,7 +141,7 @@ const Login = ({ onLoginClick }) => {
           </div>
         )}
 
-        {/* login */}
+        {/* signin */}
         {login && (
           <div className="grid grid-cols-1 md:grid-cols-2 bg-white rounded-lg shadow-xl overflow-hidden max-w-4xl w-full min-h-80 md:min-h-150">
             <div className="col-span-1 p-8 md:p-12 flex flex-col justify-center">
@@ -186,6 +186,9 @@ const Login = ({ onLoginClick }) => {
                     placeholder="••••••••"
                     type="password"
                   />
+                  <a className="block text-teal-700 text-sm pt-4 text-right underline hover:cursor-pointer hover:text-teal-600">
+                    Forgot Password
+                  </a>
                 </div>
 
                 <button

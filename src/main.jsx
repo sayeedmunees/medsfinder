@@ -8,7 +8,7 @@ import App from "./App.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
-      <GoogleOAuthProvider clientId="123">
+      <GoogleOAuthProvider clientId="230848631845-cktb2jh7d23823qoank9einl38lf4m18.apps.googleusercontent.com">
         <App />
       </GoogleOAuthProvider>
     </BrowserRouter>
