@@ -62,7 +62,7 @@ const AdminMedicines = () => {
           <main className="flex-1 p-6 md:p-12 bg-gray-100  overflow-y-auto">
             <div className="md:hidden bg-white rounded-lg shadow p-6 mb-2">
               <h3 className="text-sm font-medium text-red-500 ">
-                Use a bigger screen for better experience.
+               Use a bigger screen for better experience.
               </h3>
             </div>
 
