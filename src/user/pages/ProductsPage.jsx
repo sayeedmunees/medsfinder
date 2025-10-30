@@ -105,10 +105,11 @@ const ProductsPage = () => {
         </p>
         <div className="mt-16 md:mt-8 max-w-md mx-auto bg-white rounded-lg shadow-lg p-2 flex flex-col md:flex-row items-center space-x-2 group focus-within:outline-2 focus-within:outline-teal-300 focus-within:shadow-2xl">
           <input
-            className="w-full border-none pl-8 md:pl-1 outline-none bg-transparent text-gray-700 placeholder-gray-500 my-5 md:my-0"
+            className="w-full border-none pl-8 md:pl-1 outline-none bg-transparent text-gray-700 placeholder-gray-500 mt-5 md:my-0"
             placeholder="Search for a product"
             type="text"
           />
+          <div className="w-[90%] md:hidden border-t my-3 border-gray-300 "></div>
           <Link to={"/all-products"} className="w-full md:w-fit">
             <button className="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-6 rounded-md flex justify-center items-center gap-2 w-full">
               Search
