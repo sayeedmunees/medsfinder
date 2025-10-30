@@ -26,16 +26,19 @@ const SearchPage = () => {
     {
       shopName: "Aster Pharmacy",
       location: "Athani, Kakkanad",
+      direction: "#",
       rating: "4.0",
       reviews: "124",
       inStock: true,
       saved: false,
+
       imageURL:
         "https://www.towncentrejumeirah.com/wp-content/uploads/2019/08/aster1.jpg",
     },
     {
       shopName: "Apollo Pharmacy",
       location: "Infopark Road, Kakkanad",
+      direction: "#",
       rating: "4.5",
       reviews: "210",
       inStock: false,
@@ -46,6 +49,7 @@ const SearchPage = () => {
     {
       shopName: "MedPlus Pharmacy",
       location: "Edachira, Kakkanad",
+      direction: "#",
       rating: "3.5",
       reviews: "88",
       inStock: true,
@@ -56,6 +60,7 @@ const SearchPage = () => {
     {
       shopName: "V-Care Medicals",
       location: "Thrikkakara, Kakkanad",
+      direction: "#",
       rating: "3.0",
       reviews: "45",
       inStock: true,
@@ -71,7 +76,7 @@ const SearchPage = () => {
       <div>
         {/* serach and description */}
         <section className="bg-teal-600 py-8 px-4 sm:px-6 lg:px-8">
-          <div className="mt-8 max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-2 flex flex-col md:flex-row items-center space-x-2 gap-2">
+          <div className="mt-8 max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-2 flex flex-col md:flex-row items-center space-x-2 gap-2 group focus-within:outline-2 focus-within:outline-teal-300 focus-within:shadow-2xl">
             <div className="flex items-center p-2 w-[90%]">
               <LuMapPin className="text-2xl text-gray-500" />
 
@@ -148,6 +153,7 @@ const SearchPage = () => {
                     key={pharmacy.shopName}
                     shopName={pharmacy.shopName}
                     location={pharmacy.location}
+                    direction={pharmacy.direction}
                     rating={pharmacy.rating}
                     reviews={pharmacy.reviews}
                     inStock={pharmacy.inStock}

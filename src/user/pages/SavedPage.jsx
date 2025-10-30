@@ -50,16 +50,19 @@ const SavedPage = () => {
     {
       shopName: "Aster Pharmacy",
       location: "Athani, Kakkanad",
+      direction: "#",
       rating: "4.0",
       reviews: "124",
       inStock: true,
       saved: false,
+
       imageURL:
         "https://www.towncentrejumeirah.com/wp-content/uploads/2019/08/aster1.jpg",
     },
     {
       shopName: "Apollo Pharmacy",
       location: "Infopark Road, Kakkanad",
+      direction: "#",
       rating: "4.5",
       reviews: "210",
       inStock: false,
@@ -70,6 +73,7 @@ const SavedPage = () => {
     {
       shopName: "MedPlus Pharmacy",
       location: "Edachira, Kakkanad",
+      direction: "#",
       rating: "3.5",
       reviews: "88",
       inStock: true,
@@ -80,6 +84,7 @@ const SavedPage = () => {
     {
       shopName: "V-Care Medicals",
       location: "Thrikkakara, Kakkanad",
+      direction: "#",
       rating: "3.0",
       reviews: "45",
       inStock: true,
@@ -102,11 +107,11 @@ const SavedPage = () => {
   return (
     <>
       <Header />
-      <main className="min-h-screen px-6 md:px-12 py-8 bg-gray-200">
+      <div className="min-h-screen px-6 md:px-12 py-8 bg-gray-200">
         <h2 className="text-xl md:text-4xl font-bold mb-8 text-gray-800 ">
           Your Saved List
         </h2>
-        <div className="mb-8">
+        <section className="mb-8">
           <div className="flex border-b border-gray-200 ">
             <button
               onClick={handlemedicineTab}
@@ -129,10 +134,10 @@ const SavedPage = () => {
               Saved Pharmacies
             </button>
           </div>
-        </div>
+        </section>
 
         {medicineTab && (
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          <section className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {medicineItems
               .filter((item) => item.saved)
               .map((item) => {
@@ -146,11 +151,11 @@ const SavedPage = () => {
                   />
                 );
               })}
-          </div>
+          </section>
         )}
 
         {pharmacyTab && (
-          <div className="space-y-6">
+          <section className="space-y-6">
             {pharmacies
               .filter((item) => item.saved)
               .map((pharmacy) => {
@@ -159,6 +164,7 @@ const SavedPage = () => {
                     key={pharmacy.shopName}
                     shopName={pharmacy.shopName}
                     location={pharmacy.location}
+                    direction={pharmacy.direction}
                     rating={pharmacy.rating}
                     reviews={pharmacy.reviews}
                     inStock={pharmacy.inStock}
@@ -167,9 +173,9 @@ const SavedPage = () => {
                   />
                 );
               })}
-          </div>
+          </section>
         )}
-      </main>
+      </div>
       <Footer />
     </>
   );

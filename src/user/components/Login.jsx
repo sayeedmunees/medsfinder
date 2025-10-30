@@ -2,12 +2,23 @@ import React, { useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import { PiPillFill } from "react-icons/pi";
-import { useGoogleOneTapLogin } from "@react-oauth/google";
+import { useGoogleLogin } from "@react-oauth/google";
+import { useNavigate } from "react-router-dom";
 
 const Login = ({ onLoginClick }) => {
   const [login, setLogin] = useState(true);
 
-  useGoogleOneTapLogin({
+  const [userDetails, setUserDetails] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+
+  const navigate = useNavigate();
+
+  console.log(userDetails);
+
+  const googleLogin = useGoogleLogin({
     onSuccess: (credentialResponse) => {
       console.log(credentialResponse);
     },
@@ -88,7 +99,7 @@ const Login = ({ onLoginClick }) => {
                     className="block text-xs md:text-sm font-medium text-gray-700"
                     htmlFor="password"
                   >
-                    Password
+                    Set a Password
                   </label>
                   <input
                     className="mt-1 text-sm md:text-base block w-full rounded-md border-gray-300 shadow-sm px-4 py-2 placeholder:text-gray-500 focus:outline-teal-500 bg-gray-200 "
@@ -98,26 +109,21 @@ const Login = ({ onLoginClick }) => {
                     type="password"
                   />
                 </div>
-                <div>
-                  <label
-                    className="block text-sm font-medium text-gray-700"
-                    htmlFor="confirm-password"
-                  >
-                    Confirm Password
-                  </label>
-                  <input
-                    className="mt-1 text-sm md:text-base block w-full rounded-md border-gray-300 shadow-sm px-4 py-2 placeholder:text-gray-500 focus:outline-teal-500 bg-gray-200"
-                    id="confirm-password"
-                    name="confirm-password"
-                    placeholder="••••••••"
-                    type="password"
-                  />
-                </div>
+
                 <button
                   className="w-full py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-teal-600 hover:bg-teal-700 transition-colors cursor-pointer"
                   type="submit"
                 >
                   Sign Up
+                </button>
+
+                <button
+                  onClick={() => googleLogin}
+                  className="flex items-center justify-center gap-4 w-full py-3 px-4 border border-transparent rounded-md shadow-sm text-xs md:text-sm font-medium text-white bg-teal-600 hover:bg-teal-700 transition-colors cursor-pointer"
+                  type="button"
+                >
+                  <FaGoogle className="text-xl" />
+                  Sign Up with Google
                 </button>
               </form>
               <p className="mt-6 text-center text-xs md:text-sm text-gray-600 cursor-default">
@@ -184,15 +190,15 @@ const Login = ({ onLoginClick }) => {
 
                 <button
                   className="w-full py-3 px-4 border border-transparent rounded-md shadow-sm text-xs md:text-sm font-medium text-white bg-teal-600 hover:bg-teal-700 transition-colors cursor-pointer"
-                  type="submit"
+                  type="button"
                 >
                   Sign In
                 </button>
 
                 <button
+                  onClick={() => googleLogin}
                   className="flex items-center justify-center gap-4 w-full py-3 px-4 border border-transparent rounded-md shadow-sm text-xs md:text-sm font-medium text-white bg-teal-600 hover:bg-teal-700 transition-colors cursor-pointer"
-                  type="submit"
-                  onClick={useGoogleOneTapLogin}
+                  type="button"
                 >
                   <FaGoogle className="text-xl" />
                   Sign In with Google

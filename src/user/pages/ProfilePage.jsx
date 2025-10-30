@@ -9,7 +9,7 @@ const ProfilePage = () => {
   return (
     <>
       <Header />
-      <main className="min-h-[80vh] py-16 px-6 md:px-12 bg-gray-200 ">
+      <section className="min-h-[80vh] py-16 px-6 md:px-12 bg-gray-200 ">
         <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-xl p-8 space-y-12">
           <div className="text-center">
             <div className="w-32 h-32 rounded-full bg-gray-200 mx-auto mb-6 flex items-center justify-center overflow-hidden">
@@ -98,7 +98,7 @@ const ProfilePage = () => {
             </div>
           </div>
         </div>
-      </main>
+      </section>
       <Footer />
     </>
   );

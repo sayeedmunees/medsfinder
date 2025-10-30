@@ -12,6 +12,7 @@ const PharmacyCard = ({
   saved,
   imageURL,
   from,
+  direction,
 }) => {
   return (
     <>
@@ -98,15 +99,21 @@ const PharmacyCard = ({
                     </button>
                   </div>
 
-                  <button className="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-4 w-full rounded-md flex justify-center items-center gap-2 mr-1">
+                  <a
+                    href={direction}
+                    className="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-4 w-full rounded-md flex justify-center items-center gap-2 mr-1"
+                  >
                     Get Directions
-                  </button>
+                  </a>
                 </div>
               ) : (
                 <div className="flex flex-row gap-3 items-center justify-center">
-                  <button className="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-6 rounded-md flex justify-center items-center gap-2 ">
+                  <a
+                    href={direction}
+                    className="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-6 rounded-md flex justify-center items-center gap-2 "
+                  >
                     Get Directions
-                  </button>
+                  </a>
 
                   <button className="p-2 rounded-full hover:bg-gray-200 text-teal-500 text-2xl">
                     <FaBookmark />

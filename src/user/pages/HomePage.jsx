@@ -88,9 +88,12 @@ const HomePage = () => {
 
   const [showLogin, setShowLogin] = useState(false);
 
+  // setTimeout(()=>{setShowLogin(true)}, 3000)
+
   return (
     <>
       <Header from="home" onLoginClick={() => setShowLogin(true)} />
+
       <main>
         {/* hero */}
         <section className="bg-teal-600 text-white pt-30 md:pt-20 py-30 md:py-20 px-6 md:px-12 text-center">
@@ -100,7 +103,7 @@ const HomePage = () => {
           <p className="text-base md:text-xl text-white/80 ">
             No more queues to just hear the medicine is out of stock
           </p>
-          <div className="mt-16 md:mt-8 max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-2 flex flex-col md:flex-row items-center space-x-2">
+          <div className="mt-16 md:mt-8 max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-2 flex flex-col md:flex-row items-center space-x-2 group focus-within:outline-2 focus-within:outline-teal-300 focus-within:shadow-2xl">
             <div className="flex items-center p-2 w-[90%]">
               <LuMapPin className="text-2xl text-gray-500" />
               <select className="p-2 appearance-none border-none outline-none rounded-md text-gray-700 bg-white focus:border-teal-500 focus:ring-2 focus:ring-teal-200 cursor-pointer w-full">
@@ -155,9 +158,9 @@ const HomePage = () => {
             <h3 className="text-xl md:text-3xl font-bold text-gray-800">
               Personal Care & Hygiene
             </h3>
-            <Link to={"/all-products"}
+            <Link
+              to={"/all-products"}
               className="text-teal-600 hover:text-teal-700 hover:underline underline-offset-5 font-semibold transition ease-in-out"
-              
             >
               View All
             </Link>
@@ -177,7 +180,11 @@ const HomePage = () => {
           </div>
         </section>
 
-        <Dialog open={showLogin} onClose={setShowLogin} className="relative z-10">
+        <Dialog
+          open={showLogin}
+          onClose={setShowLogin}
+          className="relative z-10"
+        >
           <DialogBackdrop
             transition
             className="fixed inset-0 bg-gray-900/50 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in"

@@ -18,7 +18,7 @@ const ProductDetailsPage = () => {
   return (
     <>
       <Header />
-      <div className="py-16 px-6 md:px-12 bg-gray-100">
+      <section className="py-16 px-6 md:px-12 bg-gray-100">
         <div className="max-w-6xl h-auto mx-auto flex flex-col lg:flex-row items-start lg:space-x-16">
           <div className="lg:w-1/2 flex justify-center mb-12 lg:mb-0">
             <img
@@ -62,7 +62,7 @@ const ProductDetailsPage = () => {
             </div>
           </div>
         </div>
-      </div>
+      </section>
       <Footer />
     </>
   );
