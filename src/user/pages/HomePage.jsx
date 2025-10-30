@@ -93,7 +93,7 @@ const HomePage = () => {
       <Header from="home" onLoginClick={() => setShowLogin(true)} />
       <main>
         {/* hero */}
-        <section className="bg-teal-600 text-white pt-30 md:pt-20 py-20 px-6 md:px-12 text-center">
+        <section className="bg-teal-600 text-white pt-30 md:pt-20 py-30 md:py-20 px-6 md:px-12 text-center">
           <h2 className="text-2xl md:text-5xl font-bold mb-3">
             Find medicines faster nearby you
           </h2>
