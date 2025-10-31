@@ -12,11 +12,12 @@ import ProfilePage from "./user/pages/ProfilePage";
 import Login from "./user/components/Login";
 import ProductsPage from "./user/pages/ProductsPage";
 import ScrollToTop from "./user/components/ScrollToTop";
+import PageNotFound from "./user/pages/PageNotFound";
 
 function App() {
   return (
     <>
-     <ScrollToTop />
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/search-result" element={<SearchPage />} />
@@ -31,6 +32,8 @@ function App() {
         <Route path="/admin-medicines" element={<AdminMedicines />} />
         <Route path="/admin-advertisement" element={<AdminAdvertisement />} />
         <Route path="/admin-settings" element={<AdminSettings />} />
+
+        <Route path="/*" element={<PageNotFound />} />
       </Routes>
     </>
   );
