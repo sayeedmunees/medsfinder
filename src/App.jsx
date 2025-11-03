@@ -12,7 +12,7 @@ import ProfilePage from "./user/pages/ProfilePage";
 import Login from "./user/components/Login";
 import ProductsPage from "./user/pages/ProductsPage";
 import ScrollToTop from "./user/components/ScrollToTop";
-import PageNotFound from "./user/pages/PageNotFound";
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
   return (
