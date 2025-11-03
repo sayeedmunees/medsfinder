@@ -13,6 +13,12 @@ export const signupAPI = async (reqBody) => {
   return commonAPI(`POST`, `${serverURL}/signup`, reqBody);
 };
 
+// google signin
+export const googleSigninAPI = async (reqBody) => {
+  return await commonAPI(`POST`, `${serverURL}/google-signin`, reqBody);
+};
+
+
 
 // USER PAGE//
 
