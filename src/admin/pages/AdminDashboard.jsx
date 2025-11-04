@@ -6,11 +6,17 @@ import TotalCards from "../components/TotalCards";
 import { FaClinicMedical } from "react-icons/fa";
 import { GiMedicines } from "react-icons/gi";
 import { MdCampaign } from "react-icons/md";
+import AddProductForm from "../components/AddProductForm";
+import AddPharmacyForm from "../components/AddPharmacyForm";
+import AddMedicineForm from "../components/AddMedicineForm";
 
 const AdminDashboard = () => {
   const [pharmacies, setPharmacies] = useState(true);
   const [medicines, setMedicines] = useState(false);
   const [advertisements, setAdvertisements] = useState(false);
+  const [showAddPharmacy, setShowAddPharmacy] = useState(false);
+  const [showAddMedicine, setShowAddMedicine] = useState(false);
+  const [showAddProduct, setShowAddProduct] = useState(false);
 
   const handlePharmacies = () => {
     setPharmacies(true);
@@ -95,6 +101,7 @@ const AdminDashboard = () => {
                   addSubtitle="Onboard a new pharmacy to the network."
                   editSubtitle="Edit or manage details or update status."
                   path="admin-pharmacies"
+                  showAddForm={() => setShowAddPharmacy(true)}
                 />
               )}
 
@@ -104,6 +111,7 @@ const AdminDashboard = () => {
                   addSubtitle="Add a new medicine to the database."
                   editSubtitle=" Update medicine information and stock."
                   path="admin-medicines"
+                  showAddForm={() => setShowAddMedicine(true)}
                 />
               )}
 
@@ -113,12 +121,22 @@ const AdminDashboard = () => {
                   addSubtitle="Create a new ad product listing."
                   editSubtitle=" Edit existing advertisement details."
                   path="admin-advertisement"
+                  showAddForm={() => setShowAddProduct(true)}
                 />
               )}
             </div>
           </main>
         </div>
       </div>
+      {showAddPharmacy && (
+        <AddPharmacyForm showAddPharmacy={() => setShowAddPharmacy(false)} />
+      )}
+      {showAddMedicine && (
+        <AddMedicineForm showAddMedicine={() => setShowAddMedicine(false)} />
+      )}
+      {showAddProduct && (
+        <AddProductForm showAddProduct={() => setShowAddProduct(false)} />
+      )}
     </>
   );
 };

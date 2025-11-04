@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import { FaPlus } from "react-icons/fa";
 import { MdDelete, MdEdit, MdOutlineUnfoldMore } from "react-icons/md";
 import { FaMagnifyingGlass } from "react-icons/fa6";
+import AddPharmacyForm from "../components/AddPharmacyForm";
 
 const AdminPharmacies = () => {
+  const [showAddPharmacy, setShowAddPharmacy] = useState(false);
   const pharmacies = [
     {
       name: "Wellness Pharmacy",
@@ -48,7 +50,7 @@ const AdminPharmacies = () => {
           <main className="flex-1 p-6 md:p-12 bg-gray-100  overflow-y-auto">
             <div className="md:hidden bg-white rounded-lg shadow p-6 mb-2">
               <h3 className="text-sm font-medium text-red-500 ">
-               Use a bigger screen for better experience.
+                Use a bigger screen for better experience.
               </h3>
             </div>
 
@@ -62,13 +64,16 @@ const AdminPharmacies = () => {
                   />
                   <FaMagnifyingGlass className="text-xl absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" />
                 </div>
-                <button className="flex items-center font-semibold justify-center px-4 py-2 bg-teal-600 text-sm md:text-base text-white rounded-lg shadow-md hover:bg-teal-700 transition-colors">
+                <button
+                  className="flex items-center font-semibold justify-center px-4 py-2 bg-teal-600 text-sm md:text-base text-white rounded-lg shadow-md hover:bg-teal-700 transition-colors"
+                  onClick={() => setShowAddPharmacy(true)}
+                >
                   <FaPlus className=" mr-2" />
                   Add New Pharmacy
                 </button>
               </div>
               <div className="overflow-x-auto">
-                <table className="w-full text-left">
+                <table className="w-full text-left text-xs md:text-sm lg:text-base">
                   <thead>
                     <tr className="bg-gray-50 ">
                       <th className="p-4 font-semibold text-gray-600">
@@ -132,27 +137,29 @@ const AdminPharmacies = () => {
                   </tbody>
                 </table>
               </div>
-              <div className="mt-6 flex justify-between items-center">
-                <p className="text-sm text-gray-500 ">
+              <div className="mt-6 flex flex-col lg:flex-row justify-between items-center">
+                <p className="text-xs md:text-sm text-gray-500 ">
                   Showing 1 to 5 of 150 entries
                 </p>
-                <div className="flex items-center space-x-2">
+                <div className="flex flex-col lg:flex-row mt-4 lg:mt-0 items-center gap-2 text-xs md:text-sm">
                   <button className="px-3 py-1 border border-gray-300  rounded-md text-gray-600 hover:bg-gray-100 ">
                     Previous
                   </button>
-                  <button className="px-3 py-1 border border-teal-600 bg-teal-700 text-white rounded-md">
-                    1
-                  </button>
-                  <button className="px-3 py-1 border border-gray-300  rounded-md text-gray-600  hover:bg-gray-100 ">
-                    2
-                  </button>
-                  <button className="px-3 py-1 border border-gray-300  rounded-md text-gray-600  hover:bg-gray-100 ">
-                    3
-                  </button>
-                  <span className="text-gray-500">...</span>
-                  <button className="px-3 py-1 border border-gray-300  rounded-md text-gray-600  hover:bg-gray-100">
-                    30
-                  </button>
+                  <div className="flex gap-2">
+                    <button className="px-3 py-1 border border-teal-600 bg-teal-500 text-white rounded-md">
+                      1
+                    </button>
+                    <button className="px-3 py-1 border border-gray-300  rounded-md text-gray-600  hover:bg-gray-100 ">
+                      2
+                    </button>
+                    <button className="px-3 py-1 border border-gray-300  rounded-md text-gray-600  hover:bg-gray-100 ">
+                      3
+                    </button>
+                    <span className="text-gray-500">...</span>
+                    <button className="px-3 py-1 border border-gray-300  rounded-md text-gray-600  hover:bg-gray-100">
+                      30
+                    </button>
+                  </div>
                   <button className="px-3 py-1 border border-gray-300 rounded-md text-gray-600 hover:bg-gray-100 ">
                     Next
                   </button>
@@ -161,6 +168,9 @@ const AdminPharmacies = () => {
             </div>
           </main>
         </div>
+        {showAddPharmacy && (
+          <AddPharmacyForm showAddPharmacy={() => setShowAddPharmacy(false)} />
+        )}
       </div>
     </>
   );

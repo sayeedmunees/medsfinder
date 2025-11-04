@@ -2,11 +2,20 @@ import React from "react";
 import { FaPen, FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const OverviewCard = ({ location, addSubtitle, editSubtitle, path }) => {
+const OverviewCard = ({
+  location,
+  addSubtitle,
+  editSubtitle,
+  path,
+  showAddForm,
+}) => {
   return (
     <>
       <div className="mt-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div
+          className="grid grid-cols-1 lg:grid-cols-2 gap-6"
+          onClick={showAddForm}
+        >
           <div className="bg-gray-50 p-3 md:p-6 border-4 border-gray-100 rounded-lg flex flex-col md:flex-row items-start space-x-4 hover:shadow-lg transition-shadow cursor-pointer gap-2">
             <div className="bg-teal-200 text-teal-700 text-lg md:text-2xl p-4 rounded-lg">
               <FaPlus />
@@ -15,7 +24,9 @@ const OverviewCard = ({ location, addSubtitle, editSubtitle, path }) => {
               <h4 className="text-sm md:text-lg font-semibold text-gray-800 ">
                 Add {location}
               </h4>
-              <p className="text-gray-600 mt-1 text-xs md:text-sm">{addSubtitle}</p>
+              <p className="text-gray-600 mt-1 text-xs md:text-sm">
+                {addSubtitle}
+              </p>
             </div>
           </div>
           <Link to={`/${path}`}>
@@ -27,7 +38,9 @@ const OverviewCard = ({ location, addSubtitle, editSubtitle, path }) => {
                 <h4 className="text-sm md:text-lg font-semibold text-gray-800 ">
                   Manage {location}
                 </h4>
-                <p className="text-gray-600  mt-1 text-xs md:text-sm">{editSubtitle}</p>
+                <p className="text-gray-600  mt-1 text-xs md:text-sm">
+                  {editSubtitle}
+                </p>
               </div>
             </div>
           </Link>
