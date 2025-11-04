@@ -10,7 +10,15 @@ import { Link } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 
 const Header = ({ onLoginClick, from }) => {
-  const [dropDownStatus, setDropDownStatus] = useState(false);
+  // const [dropDownStatus, setDropDownStatus] = useState(false);
+
+  const hasToken = !!sessionStorage.getItem("token");
+  // true if a token string exists, false otherwise
+
+  const handleLogout = () => {
+    sessionStorage.removeItem("existingUser");
+    sessionStorage.removeItem("token");
+  };
 
   return (
     <>
@@ -26,16 +34,27 @@ const Header = ({ onLoginClick, from }) => {
           </div>
         </Link>
         <div className="flex items-center md:gap-4">
-          {from != "home" && <Link to={"/"}>
-            <button className="p-2 rounded-full text-xl md:text-2xl text-teal-600  hover:text-teal-700">
-              <AiFillHome />
-            </button>
-          </Link>}
-          <Link to={"/saved"}>
-            <button className="p-2 rounded-full text-xl md:text-2xl text-teal-600  hover:text-teal-700">
+          {from != "home" && (
+            <Link to={"/"}>
+              <button className="p-2 rounded-full text-xl md:text-2xl text-teal-600  hover:text-teal-700">
+                <AiFillHome />
+              </button>
+            </Link>
+          )}
+          {hasToken ? (
+            <Link to={"/saved"}>
+              <button className="p-2 rounded-full text-xl md:text-2xl text-teal-600  hover:text-teal-700">
+                <FaBookmark />
+              </button>
+            </Link>
+          ) : (
+            <button
+              onClick={onLoginClick}
+              className="p-2 rounded-full text-xl md:text-2xl text-teal-600  hover:text-teal-700"
+            >
               <FaBookmark />
             </button>
-          </Link>
+          )}
 
           {/* <button
             onClick={() => setDropDownStatus(!dropDownStatus)}
@@ -43,71 +62,85 @@ const Header = ({ onLoginClick, from }) => {
           >
             <FaRegCircleUser />
           </button> */}
-          <div className="text-right">
-            <Menu>
-              <MenuButton className="inline-flex items-center gap-2 rounded-full p-2 text-sm/6 font-semibold text-gray-800 shadow-inner shadow-white/10 focus:not-data-focus:outline-none data-focus:outline data-focus:outline-white data-hover:bg-gray-200 data-open:bg-gray-100">
-                <FaRegCircleUser className="text-xl md:text-2xl" />
-              </MenuButton>
 
-              <MenuItems
-                transition
-                anchor="bottom end"
-                className="w-52 origin-top-right mt-5 rounded-xl border border-white/5 bg-white p-2 text-sm/6 text-black transition duration-100 ease-out [--anchor-gap:--spacing(1)] focus:outline-none data-closed:scale-95 data-closed:opacity-0 "
-              >
-                <MenuItem>
-                  <Link to={"/profile"}>
-                    <p
-                      className="flex justify-start gap-2 px-4 py-2 mb-1 text-sm rounded-md  hover:bg-gray-200 text-gray-700"
+          <div className="text-right">
+            {hasToken ? (
+              <Menu>
+                <MenuButton className="inline-flex items-center gap-2 rounded-full p-2 text-sm/6 font-semibold text-gray-800 shadow-inner shadow-white/10 focus:not-data-focus:outline-none data-focus:outline data-focus:outline-white data-hover:bg-gray-200 data-open:bg-gray-100">
+                  <FaRegCircleUser className="text-xl md:text-2xl" />
+                </MenuButton>
+
+                <MenuItems
+                  transition
+                  anchor="bottom end"
+                  className="w-52 origin-top-right mt-5 rounded-xl border border-teal-600 bg-white p-2 text-sm/6 text-black transition duration-100 ease-out [--anchor-gap:--spacing(1)] focus:outline-none data-closed:scale-95 data-closed:opacity-0 "
+                >
+                  <MenuItem>
+                    <Link to={"/profile"}>
+                      <p
+                        className="flex justify-start gap-2 px-4 py-2 mb-1 text-sm rounded-md  hover:bg-gray-200 text-gray-700"
+                        role="menuItem"
+                        tabIndex="-1"
+                        id="menu-item-0"
+                      >
+                        <ImUser className="text-xl" />
+                        Profile
+                      </p>
+                    </Link>
+                  </MenuItem>
+
+                  {/* Admin and Login */}
+                  {/* <MenuItem>
+                    <Link to={"/admin-dashboard"}>
+                      <p
+                        className="flex gap-2 px-4 py-2 my-1 text-sm rounded-md  hover:bg-gray-200 text-gray-700"
+                        role="menuItem"
+                        tabIndex="-1"
+                        id="menu-item-0"
+                      >
+                        <RiAdminFill className="text-xl" />
+                        Admin
+                      </p>
+                    </Link>
+                  </MenuItem>
+                  <MenuItem>
+                    <button
+                      type="submit"
+                      className="flex gap-2 w-full px-4 py-2 my-1 text-sm rounded-md  hover:bg-gray-200 text-gray-700"
                       role="menuItem"
                       tabIndex="-1"
-                      id="menu-item-0"
+                      id="menu-item-1"
+                      onClick={onLoginClick}
                     >
                       <ImUser className="text-xl" />
-                      Profile
-                    </p>
-                  </Link>
-                </MenuItem>
-                <MenuItem>
-                  <Link to={"/admin-dashboard"}>
-                    <p
-                      className="flex gap-2 px-4 py-2 my-1 text-sm rounded-md  hover:bg-gray-200 text-gray-700"
+                      Login
+                    </button>
+                  </MenuItem> */}
+
+                  <div className="m-1 h-px bg-black/20" />
+                  <MenuItem>
+                    <button
+                      onClick={handleLogout}
+                      type="submit"
+                      className="flex gap-2 w-full rounded-md px-4 py-2 text-left text-sm text-red-600 hover:bg-red-200"
                       role="menuItem"
                       tabIndex="-1"
-                      id="menu-item-0"
+                      id="menu-item-1"
                     >
-                      <RiAdminFill className="text-xl" />
-                      Admin
-                    </p>
-                  </Link>
-                </MenuItem>
-                <MenuItem>
-                  <button
-                    type="submit"
-                    className="flex gap-2 w-full px-4 py-2 my-1 text-sm rounded-md  hover:bg-gray-200 text-gray-700"
-                    role="menuItem"
-                    tabIndex="-1"
-                    id="menu-item-1"
-                    onClick={onLoginClick}
-                  >
-                    <ImUser className="text-xl" />
-                    Login
-                  </button>
-                </MenuItem>
-                <div className="m-1 h-px bg-black/20" />
-                <MenuItem>
-                  <button
-                    type="submit"
-                    className="flex gap-2 w-full rounded-md px-4 py-2 text-left text-sm text-red-600 hover:bg-red-200"
-                    role="menuItem"
-                    tabIndex="-1"
-                    id="menu-item-1"
-                  >
-                    <FiLogOut className="text-xl" />
-                    Logout
-                  </button>
-                </MenuItem>
-              </MenuItems>
-            </Menu>
+                      <FiLogOut className="text-xl" />
+                      Logout
+                    </button>
+                  </MenuItem>
+                </MenuItems>
+              </Menu>
+            ) : (
+              <button
+                onClick={onLoginClick}
+                className="p-2 rounded-full text-xl md:text-2xl text-gray-800 hover:bg-gray-200 "
+              >
+                <FaRegCircleUser />
+              </button>
+            )}
           </div>
         </div>
         {/* {dropDownStatus && (

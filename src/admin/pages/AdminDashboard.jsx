@@ -43,7 +43,7 @@ const AdminDashboard = () => {
               </h3>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-6 mb-2 md:mb-8">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-6 mb-2 md:mb-8">
               <TotalCards icon="medicine" count="1,250" item="Medicines" />
               <TotalCards icon="pharmacy" count="150" item="Pharmacies" />
               <TotalCards icon="ad" count="50" item="Ad Products" />
@@ -62,7 +62,7 @@ const AdminDashboard = () => {
                     }
                   >
                     <FaClinicMedical className="text-xl mr-2" />
-                    <span className="hidden md:block">Pharmacies</span>
+                    <span className="hidden lg:block">Pharmacies</span>
                   </button>
                   <button
                     onClick={handleMedicines}
@@ -73,7 +73,7 @@ const AdminDashboard = () => {
                     }
                   >
                     <GiMedicines className="text-xl mr-2" />
-                    <span className="hidden md:block">Medicines</span>
+                    <span className="hidden lg:block">Medicines</span>
                   </button>
                   <button
                     onClick={handleAdvertisements}
@@ -84,7 +84,7 @@ const AdminDashboard = () => {
                     }
                   >
                     <MdCampaign className="text-xl mr-2" />
-                    <span className="hidden md:block">Advertisements</span>
+                    <span className="hidden lg:block">Advertisements</span>
                   </button>
                 </nav>
               </div>

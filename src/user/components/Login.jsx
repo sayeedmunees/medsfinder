@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import { PiPillFill } from "react-icons/pi";
-import { useGoogleLogin } from "@react-oauth/google";
+import { GoogleLogin, useGoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 
 import { useNavigate } from "react-router-dom";
@@ -22,15 +22,15 @@ const Login = ({ onLoginClick }) => {
 
   console.log(userDetails);
 
-  const googleSignin = useGoogleLogin({
-    onSuccess: (credentialResponse) => {
-      console.log(credentialResponse);
-      handleGoogleLogin(credentialResponse);
-    },
-    onError: () => {
-      console.log("Login Failed");
-    },
-  });
+  // const googleSignin = useGoogleLogin({
+  //   onSuccess: (credentialResponse) => {
+  //     console.log(credentialResponse);
+  //     handleGoogleLogin(credentialResponse);
+  //   },
+  //   onError: () => {
+  //     console.log("Login Failed");
+  //   },
+  // });
 
   const handleSignup = async () => {
     const { username, email, password } = userDetails;
@@ -133,10 +133,10 @@ const Login = ({ onLoginClick }) => {
       );
       sessionStorage.setItem("token", result.data.token);
       setTimeout(() => {
-        if (result.data.existingUser.email == "bookAdmin@gmail.com") {
-          navigate("/admin-home");
+        if (result.data.existingUser.email == "admin@medsfinder.com") {
+          navigate("/admin-dashboard");
         } else {
-          navigate("/");
+          onLoginClick();
         }
       }, 2500);
     } else {
@@ -256,14 +256,37 @@ const Login = ({ onLoginClick }) => {
                   Sign Up
                 </button>
 
-                <button
+                {/* Google Signup */}
+                <div className="flex flex-col items-center justify-center w-full">
+                  <p className="text-center text-xs md:text-sm text-gray-600 mb-3 -mt-3 cursor-default">
+                    or
+                  </p>
+                  <div className="bg-teal-600 p-0.5 rounded-full flex items-center justify-center">
+                    <GoogleLogin
+                      onSuccess={(credentialResponse) => {
+                        console.log(credentialResponse);
+                        handleGoogleLogin(credentialResponse);
+                      }}
+                      onError={() => {
+                        console.log("Login Failed");
+                      }}
+                      theme="outline"
+                      text="signup_with"
+                      size="large"
+                      shape="circle"
+                    />
+                  </div>
+                </div>
+
+                {/* Custom Google button */}
+                {/* <button
                   onClick={() => googleSignin()}
                   className="flex items-center justify-center gap-4 w-full py-3 px-4 border border-transparent rounded-md shadow-sm text-xs md:text-sm font-medium text-white bg-teal-600 hover:bg-teal-700 transition-colors cursor-pointer"
                   type="button"
                 >
                   <FaGoogle className="text-xl" />
                   Sign Up with Google
-                </button>
+                </button> */}
               </div>
               <p className="mt-6 text-center text-xs md:text-sm text-gray-600 cursor-default">
                 Already have an account?
@@ -352,14 +375,37 @@ const Login = ({ onLoginClick }) => {
                   Sign In
                 </button>
 
-                <button
+                {/* Google Signin */}
+                <div className="flex flex-col items-center justify-center w-full">
+                  <p className="text-center text-xs md:text-sm text-gray-600 mb-3 -mt-3 cursor-default">
+                    or
+                  </p>
+                  <div className="bg-teal-600 p-0.5 rounded-full flex items-center justify-center">
+                    <GoogleLogin
+                      onSuccess={(credentialResponse) => {
+                        console.log(credentialResponse);
+                        handleGoogleLogin(credentialResponse);
+                      }}
+                      onError={() => {
+                        console.log("Login Failed");
+                      }}
+                      theme="outline"
+                      size="large"
+                      text="signin_with"
+                      shape="pill"
+                    />
+                  </div>
+                </div>
+
+                {/* Custom Google Signin */}
+                {/* <button
                   onClick={() => googleSignin()}
                   className="flex items-center justify-center gap-4 w-full py-3 px-4 border border-transparent rounded-md shadow-sm text-xs md:text-sm font-medium text-white bg-teal-600 hover:bg-teal-700 transition-colors cursor-pointer"
                   type="button"
                 >
                   <FaGoogle className="text-xl" />
                   Sign In with Google
-                </button>
+                </button> */}
               </div>
               <p className="mt-6 text-center text-xs md:text-sm text-gray-600 cursor-default">
                 Don't have an account?

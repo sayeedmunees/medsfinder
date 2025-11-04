@@ -6,7 +6,7 @@ const OverviewCard = ({ location, addSubtitle, editSubtitle, path }) => {
   return (
     <>
       <div className="mt-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="bg-gray-50 p-3 md:p-6 border-4 border-gray-100 rounded-lg flex flex-col md:flex-row items-start space-x-4 hover:shadow-lg transition-shadow cursor-pointer gap-2">
             <div className="bg-teal-200 text-teal-700 text-lg md:text-2xl p-4 rounded-lg">
               <FaPlus />

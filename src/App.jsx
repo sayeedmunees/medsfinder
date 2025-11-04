@@ -26,7 +26,6 @@ function App() {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/all-products" element={<ProductsPage />} />
         <Route path="/signin" element={<Login />} />
-        <Route path="/signup" element={<Login />} />
 
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/admin-pharmacies" element={<AdminPharmacies />} />
