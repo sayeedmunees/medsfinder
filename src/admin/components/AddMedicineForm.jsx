@@ -4,7 +4,7 @@ import { IoMdClose } from "react-icons/io";
 const AddMedicineForm = ({ showAddMedicine }) => {
   return (
     <>
-      <div className="fixed top-0 left-0 w-full h-full bg-black/70 flex justify-center items-center z-100">
+      <div className="hidden md:flex fixed top-0 left-0 w-full h-full bg-black/70 justify-center items-center z-100">
         <div className="bg-white border w-[90%] max-w-[800px] p-8 shadow rounded-2xl">
           <div className="flex justify-between items-center mb-6">
             <h3 className="text-2xl font-bold text-gray-800 ">
@@ -84,7 +84,7 @@ const AddMedicineForm = ({ showAddMedicine }) => {
                 Medicine Description
               </label>
               <textarea
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-800 placeholder:text-gray-400 focus:outline-none h-32"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-800 placeholder:text-gray-400 focus:outline-none h-20"
                 id="medicine-description"
                 placeholder="A description of the medicine..."
               ></textarea>
