@@ -81,6 +81,7 @@ const SearchPage = () => {
               <LuMapPin className="text-2xl text-gray-500" />
 
               <select
+                id="home-search-location"
                 className="p-2 border-none outline-none rounded-md text-gray-700 bg-white focus:border-teal-600 focus:ring-2 focus:ring-teal-200 cursor-pointer w-full"
                 defaultValue="Kakkanad"
               >
@@ -94,6 +95,7 @@ const SearchPage = () => {
             </div>
             <div className="w-[90%] md:h-8 border-b md:w-auto md:border-0 md:border-l border-gray-300 "></div>
             <input
+              id="home-search-medicine"
               className="w-full border-none pl-8 md:pl-1 outline-none bg-transparent text-gray-700 placeholder-gray-500 focus:ring-0 my-5 md:my-0"
               defaultValue={medicine.title}
               type="text"
