@@ -46,12 +46,12 @@ const Footer = () => {
               </li>
               <li>
                 <a className="text-sm md:text-base hover:text-white" href="#">
-                  Privacy Policy
+                  Request a Feature
                 </a>
               </li>
               <li>
                 <a className="text-sm md:text-base hover:text-white" href="#">
-                  Terms of Service
+                  Report a Bug
                 </a>
               </li>
             </ul>
