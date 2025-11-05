@@ -41,19 +41,12 @@ const Header = ({ onLoginClick, from }) => {
               </button>
             </Link>
           )}
-          {hasToken ? (
+          {hasToken && (
             <Link to={"/saved"}>
               <button className="p-2 rounded-full text-xl md:text-2xl text-teal-600  hover:text-teal-700">
                 <FaBookmark />
               </button>
             </Link>
-          ) : (
-            <button
-              onClick={onLoginClick}
-              className="p-2 rounded-full text-xl md:text-2xl text-teal-600  hover:text-teal-700"
-            >
-              <FaBookmark />
-            </button>
           )}
 
           {/* <button
