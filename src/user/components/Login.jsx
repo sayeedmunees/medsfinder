@@ -261,7 +261,7 @@ const Login = ({ onLoginClick }) => {
                   <p className="text-center text-xs md:text-sm text-gray-600 mb-3 -mt-3 cursor-default">
                     or
                   </p>
-                  <div className="bg-teal-600 p-0.5 rounded-full flex items-center justify-center">
+                  <div className="bg-teal-600 p-0.5 rounded-full flex items-center justify-center w-fit">
                     <GoogleLogin
                       onSuccess={(credentialResponse) => {
                         console.log(credentialResponse);

@@ -8,7 +8,7 @@ const MedicineCard = ({ title, brand, imageURL, saved }) => {
       <Link to={"/product"}>
         <div className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center justify-between transition-transform transform hover:scale-105 hover:shadow-xl">
           <img
-            alt="Dolo 650 mg"
+            alt={title}
             className="w-auto h-60 object-cover border-3 border-gray-100 rounded-md mb-4"
             src={imageURL}
           />

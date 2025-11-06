@@ -86,13 +86,12 @@ const HomePage = () => {
     },
   ];
 
-  const [showLogin, setShowLogin] = useState(false);
 
   // setTimeout(()=>{setShowLogin(true)}, 3000)
 
   return (
     <>
-      <Header from="home" onLoginClick={() => setShowLogin(true)} />
+      <Header from="home" />
 
       <main>
         {/* hero */}
@@ -192,7 +191,7 @@ const HomePage = () => {
         </section>
 
         {/* login dropdown dialog using headless UI */}
-        <Dialog
+        {/* <Dialog
           open={showLogin}
           onClose={setShowLogin}
           className="relative z-10"
@@ -212,7 +211,7 @@ const HomePage = () => {
               </DialogPanel>
             </div>
           </div>
-        </Dialog>
+        </Dialog> */}
       </main>
 
       <Footer className="overflow-x-clip" />
