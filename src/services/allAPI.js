@@ -1,23 +1,22 @@
 import { serverURL } from "./serverURL";
 import { commonAPI } from "./commonAPI";
 
-// signin using post
-export const signinAPI = async (reqBody) => {
-  console.log(reqBody);
-  return commonAPI(`POST`, `${serverURL}/signin`, reqBody);
-};
-
 // signup using post
 export const signupAPI = async (reqBody) => {
   console.log(reqBody);
   return commonAPI(`POST`, `${serverURL}/signup`, reqBody);
 };
 
+// signin using post
+export const signinAPI = async (reqBody) => {
+  console.log(reqBody);
+  return commonAPI(`POST`, `${serverURL}/signin`, reqBody);
+};
+
 // google signin
 export const googleSigninAPI = async (reqBody) => {
   return await commonAPI(`POST`, `${serverURL}/google-signin`, reqBody);
 };
-
 
 
 // USER PAGE//
