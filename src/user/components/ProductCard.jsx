@@ -5,7 +5,7 @@ const ProductCard = ({title, type, price , imageURL}) => {
   return (
     <>
       <Link to={"/product"}>
-        <div className="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-2xl">
+        <div className="bg-white h-[400px] rounded-lg shadow-lg overflow-hidden group hover:shadow-2xl">
           <div className="relative">
             <img
               alt={title}
