@@ -86,7 +86,6 @@ const HomePage = () => {
     },
   ];
 
-
   // setTimeout(()=>{setShowLogin(true)}, 3000)
 
   return (
@@ -108,7 +107,10 @@ const HomePage = () => {
             {/* select location dropdown. Have to add user location fetching feature */}
             <div className="flex items-center p-2 w-[90%]">
               <LuMapPin className="text-2xl text-gray-500" />
-              <select id="home-search-location" className="p-2 appearance-none border-none outline-none rounded-md text-gray-700 bg-white focus:border-teal-500 focus:ring-2 focus:ring-teal-200 cursor-pointer w-full">
+              <select
+                id="home-search-location"
+                className="p-2 appearance-none border-none outline-none rounded-md text-gray-700 bg-white focus:border-teal-500 focus:ring-2 focus:ring-teal-200 cursor-pointer w-full"
+              >
                 <option defaultValue hidden>
                   Select Location
                 </option>
@@ -125,7 +127,7 @@ const HomePage = () => {
             <div className="w-[90%] md:h-8 border-b md:w-auto md:border-0 md:border-l border-gray-300 "></div>
             {/* serch bar */}
             <input
-             id="home-search-medicine"
+              id="home-search-medicine"
               className="w-full border-none pl-8 md:pl-1 outline-none bg-transparent text-gray-700 placeholder-gray-500 focus:ring-0 my-5 md:my-0"
               placeholder="Search for medicines"
               type="text"
@@ -209,6 +211,7 @@ const HomePage = () => {
               >
                 <Login onLoginClick={() => setShowLogin(false)} />
               </DialogPanel>
+             
             </div>
           </div>
         </Dialog> */}
