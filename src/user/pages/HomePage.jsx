@@ -94,7 +94,7 @@ const HomePage = () => {
 
       <main>
         {/* hero */}
-        <section className="bg-teal-600 text-white pt-30 md:pt-20 py-30 md:py-20 px-6 md:px-12 text-center">
+        <section className="bg-teal-600 text-white pt-30 py-20 px-6 md:px-12 text-center">
           {/* hero text */}
           <h2 className="text-2xl md:text-5xl font-bold mb-3">
             Find medicines faster nearby you
@@ -211,7 +211,6 @@ const HomePage = () => {
               >
                 <Login onLoginClick={() => setShowLogin(false)} />
               </DialogPanel>
-             
             </div>
           </div>
         </Dialog> */}
