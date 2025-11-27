@@ -1,10 +1,4 @@
 import React, { useState } from "react";
-import {
-  Dialog,
-  DialogBackdrop,
-  DialogPanel,
-  DialogTitle,
-} from "@headlessui/react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ProductCard from "../components/ProductCard";
@@ -13,7 +7,7 @@ import { Link } from "react-router-dom";
 import { LuMapPin } from "react-icons/lu";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { MdExpandMore } from "react-icons/md";
-import Login from "../components/Login";
+
 
 const HomePage = () => {
   const medicineItems = [
