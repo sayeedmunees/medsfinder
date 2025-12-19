@@ -81,7 +81,7 @@ const Login = ({ onLoginClick }) => {
       const result = await signinAPI({ email, password });
       console.log(result);
       if (result.status == 200) {
-        toast.success("Sign Ip Succesful");
+        toast.success("Sign In Succesful");
         sessionStorage.setItem(
           "existingUser",
           JSON.stringify(result.data.existingUser)
@@ -126,7 +126,7 @@ const Login = ({ onLoginClick }) => {
     });
     console.log(result);
     if (result.status == 200) {
-      toast.success("Login Successful");
+      toast.success("Sign In Successful");
       sessionStorage.setItem(
         "existingUser",
         JSON.stringify(result.data.existingUser)

@@ -18,6 +18,32 @@ export const googleSigninAPI = async (reqBody) => {
   return await commonAPI(`POST`, `${serverURL}/google-signin`, reqBody);
 };
 
+// ADMIN PAGE //
+
+// Dashbaord
+// get total medicines, pharamacy and products
+
+// Medicine
+// get all medicines - GET
+// add medicine - POST
+export const addMedicineAPI = async (reqBody, reqHeader) => {
+  return await commonAPI(`POST`, `${serverURL}/add-medicine`, reqBody, reqHeader);
+};
+// update medicine - PUT
+// delete medicine - DELETE
+
+// Pharamcy
+// get all pharamcies - GET
+// add pharmacy - POST
+// update pharmacy - PUT
+// delete pharmacy - DELETE
+
+// Products
+// get all products - GET
+// add product - POST
+// update product - PUT
+// delete product - DELETE
+
 
 // USER PAGE//
 
@@ -36,27 +62,3 @@ export const googleSigninAPI = async (reqBody) => {
 // get user details for profile page - GET
 
 // update user details in profile page - PUT
-
-
-// ADMIN PAGE //
-
-// Dashbaord
-// get total medicines, pharamacy and products
-
-// Medicine
-// get all medicines - GET
-// add medicine - POST
-// update medicine - PUT
-// delete medicine - DELETE
-
-// Pharamcy
-// get all pharamcies - GET
-// add pharmacy - POST
-// update pharmacy - PUT
-// delete pharmacy - DELETE
-
-// Products
-// get all products - GET
-// add product - POST
-// update product - PUT
-// delete product - DELETE

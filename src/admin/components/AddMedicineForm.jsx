@@ -1,7 +1,91 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
+import { addMedicineAPI } from "../../services/allAPI";
+import { toast, ToastContainer } from "react-toastify";
 
 const AddMedicineForm = ({ showAddMedicine }) => {
+  const [token, setToken] = useState("");
+  const [medicineDetails, setMedicineDetails] = useState({
+    medicineName: "",
+    genericName: "",
+    brandName: "",
+    category: "",
+    description: "",
+    price: "",
+    uploadedImg: [],
+  });
+
+  const handleUploadImage = (e) => {
+    const fileArray = medicineDetails.uploadedImg;
+    // console.log(e.target.files[0]);
+    fileArray.push(e.target.files[0]);
+    setMedicineDetails({ ...medicineDetails, uploadedImg: fileArray });
+  };
+
+  const handleSubmit = async () => {
+    const {
+      medicineName,
+      genericName,
+      brandName,
+      category,
+      description,
+      price,
+      uploadedImg,
+    } = medicineDetails;
+
+    console.log(medicineDetails);
+
+    if (
+      !medicineName ||
+      !genericName ||
+      !brandName ||
+      !category ||
+      !description ||
+      !price ||
+      uploadedImg.length == 0
+    ) {
+      toast.info("Please fill the form completely");
+      console.log(medicineDetails);
+    } else {
+      const reqHeader = { Authorization: `Bearer ${token}` };
+
+      const reqBody = new FormData();
+
+      for (let key in medicineDetails) {
+        if (key != "uploadedImg") {
+          reqBody.append(key, medicineDetails[key]);
+        } else {
+          medicineDetails.uploadedImg.forEach((item) => {
+            reqBody.append("uploadedImg", item);
+          });
+        }
+      }
+
+      const result = await addMedicineAPI(reqBody, reqHeader);
+      console.log(result);
+
+      if (result.status == 401) {
+        toast.warning(result.response.data);
+        handleReset();
+      } else if (result.status == 200) {
+        toast.success("Medicine Added Successfully");
+        setTimeout(() => {
+          showAddMedicine();
+        }, 2000);
+      } else {
+        toast.error("Something Went Wrong");
+        handleReset();
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (sessionStorage.getItem("token")) {
+      const token = sessionStorage.getItem("token");
+      setToken(token);
+    }
+  }, []);
+
   return (
     <>
       <div className="hidden md:flex fixed top-0 left-0 w-full h-full bg-black/70 justify-center items-center z-100">
@@ -25,6 +109,13 @@ const AddMedicineForm = ({ showAddMedicine }) => {
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-800 placeholder:text-gray-400 focus:outline-none"
                 id="medicine-name"
+                value={medicineDetails.medicineName}
+                onChange={(e) =>
+                  setMedicineDetails({
+                    ...medicineDetails,
+                    medicineName: e.target.value,
+                  })
+                }
                 placeholder="Type Medicine Name"
                 type="text"
               />
@@ -39,6 +130,13 @@ const AddMedicineForm = ({ showAddMedicine }) => {
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-800 placeholder:text-gray-400 focus:outline-none"
                 id="medicine-generic-name"
+                value={medicineDetails.genericName}
+                onChange={(e) =>
+                  setMedicineDetails({
+                    ...medicineDetails,
+                    genericName: e.target.value,
+                  })
+                }
                 placeholder="Type Medicine Generic Name"
                 type="text"
               />
@@ -53,6 +151,13 @@ const AddMedicineForm = ({ showAddMedicine }) => {
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-800 placeholder:text-gray-400 focus:outline-none"
                 id="medicine-brand-name"
+                value={medicineDetails.brandName}
+                onChange={(e) =>
+                  setMedicineDetails({
+                    ...medicineDetails,
+                    brandName: e.target.value,
+                  })
+                }
                 placeholder="Type Medicine Brand Name"
                 type="text"
               />
@@ -64,18 +169,30 @@ const AddMedicineForm = ({ showAddMedicine }) => {
               >
                 Category
               </label>
+
               <select
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none"
                 id="product-category"
+                className="shadow border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                value={medicineDetails.category}
+                onChange={(e) =>
+                  setMedicineDetails({
+                    ...medicineDetails,
+                    category: e.target.value,
+                  })
+                }
               >
-                <option>Pain Relief</option>
-                <option>Diabities</option>
-                <option>Cold & Cough</option>
-                <option>Eye Care</option>
-                <option>Heart Care</option>
-                <option>Kidney Care</option>
+                <option value="" disabled>
+                  Select category
+                </option>
+                <option value="pain-relief">Pain Relief</option>
+                <option value="diabetes">Diabetes</option>
+                <option value="cold-cough">Cold & Cough</option>
+                <option value="eye-care">Eye Care</option>
+                <option value="heart-care">Heart Care</option>
+                <option value="kidney-care">Kidney Care</option>
               </select>
             </div>
+
             <div className="md:col-span-2">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
@@ -86,6 +203,13 @@ const AddMedicineForm = ({ showAddMedicine }) => {
               <textarea
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-800 placeholder:text-gray-400 focus:outline-none h-20"
                 id="medicine-description"
+                value={medicineDetails.description}
+                onChange={(e) =>
+                  setMedicineDetails({
+                    ...medicineDetails,
+                    description: e.target.value,
+                  })
+                }
                 placeholder="A description of the medicine..."
               ></textarea>
             </div>
@@ -99,6 +223,13 @@ const AddMedicineForm = ({ showAddMedicine }) => {
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-800 placeholder:text-gray-400 focus:outline-none"
                 id="product-price"
+                value={medicineDetails.price}
+                onChange={(e) =>
+                  setMedicineDetails({
+                    ...medicineDetails,
+                    price: e.target.value,
+                  })
+                }
                 placeholder="e.g., 7"
                 step="0.5"
                 type="number"
@@ -113,8 +244,9 @@ const AddMedicineForm = ({ showAddMedicine }) => {
                 Medicine Image
               </label>
               <input
-                className="block w-full p-2 text-gray-700  border border-gray-300 rounded-lg cursor-pointer bg-gray-50 placeholder-gray-400 focus:outline-none"
+                className="block w-full p-2 text-gray-700 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 placeholder-gray-400 focus:outline-none"
                 id="medicine-image"
+                onChange={(e) => handleUploadImage(e)}
                 type="file"
               />
               <p className="mt-1 text-sm text-gray-500">
@@ -130,6 +262,7 @@ const AddMedicineForm = ({ showAddMedicine }) => {
                 Cancel
               </button>
               <button
+                onClick={handleSubmit}
                 className="bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded-lg"
                 type="button"
               >
@@ -139,6 +272,7 @@ const AddMedicineForm = ({ showAddMedicine }) => {
           </div>
         </div>
       </div>
+      <ToastContainer theme="colored" position="top-center" autoClose={3000} />
     </>
   );
 };
