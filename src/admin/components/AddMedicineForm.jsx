@@ -12,14 +12,14 @@ const AddMedicineForm = ({ showAddMedicine }) => {
     category: "",
     description: "",
     price: "",
-    uploadedImg: [],
+    uploadedImg: "",
   });
 
   const handleUploadImage = (e) => {
-    const fileArray = medicineDetails.uploadedImg;
+    // const fileArray = medicineDetails.uploadedImg;
     // console.log(e.target.files[0]);
-    fileArray.push(e.target.files[0]);
-    setMedicineDetails({ ...medicineDetails, uploadedImg: fileArray });
+    // fileArray.push(e.target.files[0]);
+    setMedicineDetails({ ...medicineDetails, uploadedImg: e.target.files[0] });
   };
 
   const handleSubmit = async () => {
@@ -52,13 +52,7 @@ const AddMedicineForm = ({ showAddMedicine }) => {
       const reqBody = new FormData();
 
       for (let key in medicineDetails) {
-        if (key != "uploadedImg") {
-          reqBody.append(key, medicineDetails[key]);
-        } else {
-          medicineDetails.uploadedImg.forEach((item) => {
-            reqBody.append("uploadedImg", item);
-          });
-        }
+        reqBody.append(key, medicineDetails[key]);
       }
 
       const result = await addMedicineAPI(reqBody, reqHeader);

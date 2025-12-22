@@ -25,9 +25,24 @@ export const googleSigninAPI = async (reqBody) => {
 
 // Medicine
 // get all medicines - GET
+export const getAllMedicinesAPI = async () => {
+  return await commonAPI(`GET`, `${serverURL}/all-medicines`);
+};
+
+// get a medicine
+// get a view book
+export const viewMedicineAPI = async (id) => {
+  return await commonAPI(`GET`, `${serverURL}/view-medicine/${id}`);
+};
+
 // add medicine - POST
 export const addMedicineAPI = async (reqBody, reqHeader) => {
-  return await commonAPI(`POST`, `${serverURL}/add-medicine`, reqBody, reqHeader);
+  return await commonAPI(
+    `POST`,
+    `${serverURL}/add-medicine`,
+    reqBody,
+    reqHeader
+  );
 };
 // update medicine - PUT
 // delete medicine - DELETE
@@ -43,7 +58,6 @@ export const addMedicineAPI = async (reqBody, reqHeader) => {
 // add product - POST
 // update product - PUT
 // delete product - DELETE
-
 
 // USER PAGE//
 

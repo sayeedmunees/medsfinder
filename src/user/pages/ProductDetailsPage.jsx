@@ -1,68 +1,79 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
+import { serverURL } from "../../services/serverURL";
+import { viewMedicineAPI } from "../../services/allAPI";
 
 const ProductDetailsPage = () => {
-  const product = {
-    title: "Panadol Advance",
-    brand: "Sun Pharma Ltd",
-    description:
-      "Panadol Advance is a paracetamol (acetaminophen) based medication primarily used to relieve mild to moderate pain and reduce fever. It is effective for headaches, muscle aches, arthritis, backache, toothaches, colds, and fevers. Known for its quick action and minimal side effects when taken as directed.",
-    imageURL:
-      "https://pharmazone.com/cdn/shop/files/20883-PANADOL_ADVANCE_48_TAB_Front_Side.webp?v=1746619875&width=1000",
-    saved: true,
+  const { id } = useParams();
+  const [product, setProduct] = useState(null);
+
+  const getMedicineDetails = async () => {
+    const result = await viewMedicineAPI(id);
+    if (result.status === 200) {
+      setProduct(result.data);
+    }
   };
+
+  useEffect(() => {
+    getMedicineDetails();
+  }, [id]);
+
+  if (!product) {
+    return <div className="p-20 text-center">Loading...</div>;
+  }
 
   return (
     <>
       <Header />
+
       <section className="py-16 px-6 md:px-12 bg-gray-100">
-        <div className="max-w-6xl h-auto mx-auto flex flex-col lg:flex-row items-start lg:space-x-16">
-          <div className="lg:w-1/2 flex justify-center mb-12 lg:mb-0">
+        <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-16">
+          <div className="lg:w-1/2 flex justify-center">
             <img
-              alt={product.title}
-              className="max-w-full h-auto max-h-[600px] rounded-lg shadow-xl"
-              src={product.imageURL}
+              src={`${serverURL}/upload/${product.uploadedImg}`}
+              alt={product.medicineName}
+              className="max-h-[600px] rounded-lg shadow-xl"
             />
           </div>
-          <div className="lg:w-1/2 pt-4 lg:pt-16">
-            <h1 className="text-2xl md:text-4xl font-semibold text-gray-800 mb-2">
-              {product.title}
+
+          <div className="lg:w-1/2 pt-6">
+            <h1 className="text-3xl md:text-4xl font-semibold text-gray-800 mb-2">
+              {product.medicineName}
             </h1>
-            <p className="text-lg md:text-2xl text-gray-500 mb-8">
-              {product.brand}
+
+            <p className="text-lg text-gray-500 mb-6">{product.brandName}</p>
+
+            <h2 className="text-xl font-semibold mb-2">Description</h2>
+            <p className="text-gray-700 leading-relaxed mb-8">
+              {product.description}
             </p>
-            <div className="mb-4 md:mb-10">
-              <h2 className="text-xl md:text-2xl font-semibold text-gray-800 mb-2">
-                Description
-              </h2>
-              <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-                {product.description}
-              </p>
-            </div>
-            <div className="flex gap-3 flex-col md:flex-row items-start justify-center">
-              <Link to={"/search-result"}>
-                <button className="mt-4 md:mt-8 text-base md:text-lg bg-teal-600 hover:bg-teal-700 text-white font-semibold px-4 py-3 md:px-8 rounded-full shadow-lg transition duration-300 ease-in-out">
-                  Find Pharmacies With Availabilty
+
+            <div className="flex gap-4 flex-wrap">
+              <Link to="/search-result">
+                <button className="bg-teal-600 hover:bg-teal-700 text-white font-semibold px-6 py-3 rounded-full">
+                  Find Pharmacies With Availability
                 </button>
               </Link>
-              <button className="mt-4 md:mt-8 text-base md:text-lg bg-gray-200 outline-2 outline-teal-600 hover:bg-teal-600 text-teal-600 hover:text-white font-semibold px-4 py-3 md:px-8 rounded-full shadow-lg transition duration-300 ease-in-out">
+
+              <button className="bg-gray-200 hover:bg-teal-600 text-teal-600 hover:text-white font-semibold px-6 py-3 rounded-full">
                 {product.saved ? (
-                  <div className="flex gap-2 items-center">
+                  <span className="flex items-center gap-2">
                     <FaBookmark /> Saved
-                  </div>
+                  </span>
                 ) : (
-                  <div className="flex gap-2 items-center">
+                  <span className="flex items-center gap-2">
                     <FaRegBookmark /> Save
-                  </div>
+                  </span>
                 )}
               </button>
             </div>
           </div>
         </div>
       </section>
+
       <Footer />
     </>
   );

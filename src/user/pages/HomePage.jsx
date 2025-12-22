@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ProductCard from "../components/ProductCard";
@@ -7,46 +7,20 @@ import { Link } from "react-router-dom";
 import { LuMapPin } from "react-icons/lu";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { MdExpandMore } from "react-icons/md";
-
+import { getAllMedicinesAPI } from "../../services/allAPI";
 
 const HomePage = () => {
-  const medicineItems = [
-    {
-      title: "Panadol Advance",
-      brand: "Sun Pharma Ltd",
-      imageURL:
-        "https://pharmazone.com/cdn/shop/files/20883-PANADOL_ADVANCE_48_TAB_Front_Side.webp?v=1746619875&width=1000",
-      saved: false,
-    },
-    {
-      title: "Meftal Forte",
-      brand: "Micro Labs Ltd",
-      imageURL:
-        "https://mockuphunt.co/cdn/shop/products/Box_Mockups_OK_3_241036b2-175b-484e-960d-3c632a6e0f48_800x.jpg?v=1524830968",
-      saved: true,
-    },
-    {
-      title: "Ascoril Cough Syrup",
-      brand: "Cipla Ltd",
-      imageURL:
-        "https://www.graphicsfuel.com/wp-content/uploads/2022/12/medicine-syrup-bottle-mockup1.jpg",
-      saved: true,
-    },
-    {
-      title: "Panadol Extra",
-      brand: "Sun Pharma Ltd",
-      imageURL:
-        "https://i-cf65.ch-static.com/content/dam/cf-consumer-healthcare/health-professionals/en_PK/pain-relief/packshots/Extra_25_970x416.png?auto=format",
-      saved: false,
-    },
-    {
-      title: "Multi Vitamin Tablet",
-      brand: "Micro Labs Ltd",
-      imageURL:
-        "https://keysupplements.in/wp-content/uploads/2023/05/Multi-Vitamin-Mockup-min-1.png",
-      saved: true,
-    },
-  ];
+  const [homeMedicines, setHomeMedicines] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const getAllMedicines = async () => {
+    const result = await getAllMedicinesAPI();
+    if (result.status === 200) {
+      setHomeMedicines(result.data);
+    }
+  };
+
+  console.log(homeMedicines);
 
   const productItems = [
     {
@@ -79,6 +53,10 @@ const HomePage = () => {
         "https://unblast.com/wp-content/uploads/2020/11/Matt-Hand-Sanitizer-Mockup-1-1-1536x1024.jpg",
     },
   ];
+
+  useEffect(() => {
+    getAllMedicines();
+  }, []);
 
   // setTimeout(()=>{setShowLogin(true)}, 3000)
 
@@ -143,14 +121,15 @@ const HomePage = () => {
           </h3>
           {/* medicine cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-            {medicineItems.map((item) => {
+            {homeMedicines.slice(0, 5).map((medicine) => {
               return (
                 <MedicineCard
-                  key={item.title}
-                  title={item.title}
-                  brand={item.brand}
-                  imageURL={item.imageURL}
-                  saved={item.saved}
+                  key={medicine._id}
+                  id={medicine._id}
+                  title={medicine.medicineName}
+                  brand={medicine.brandName}
+                  imageURL={medicine.uploadedImg}
+                  saved={medicine?.saved}
                 />
               );
             })}
