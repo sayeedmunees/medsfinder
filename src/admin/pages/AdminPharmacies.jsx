@@ -5,11 +5,16 @@ import { FaPlus } from "react-icons/fa";
 import { MdDelete, MdEdit, MdOutlineUnfoldMore } from "react-icons/md";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import AddPharmacyForm from "../components/AddPharmacyForm";
+import { toast, ToastContainer } from "react-toastify";
+
+const itemsPerPage = 5;
 
 const AdminPharmacies = () => {
   const [showAddPharmacy, setShowAddPharmacy] = useState(false);
   const [pharmacies, setPharmacies] = useState([]);
-  const [searchKey, setSearchKey] = useState("");
+  const [searchKey, setSearchKey] = useState(""); // This acts as filters here
+  const [currentPage, setCurrentPage] = useState(1);
+  const [selectedPharmacy, setSelectedPharmacy] = useState(null);
 
   const getAllPharmacies = async () => {
     try {
@@ -23,12 +28,71 @@ const AdminPharmacies = () => {
     }
   };
 
+  const deletePharmacy = async (id) => {
+    try {
+        const { deletePharmacyAPI } = await import("../../services/allAPI");
+        const token = sessionStorage.getItem("token")
+        const reqHeader = {
+            "Authorization" : `Bearer ${token}`
+        }
+        const result = await deletePharmacyAPI(id,reqHeader)
+        if(result.status===200){
+            toast.success("Pharmacy Deleted Successfully")
+            getAllPharmacies()
+        }else{
+            toast.warning(result.response.data)
+        }
+    } catch (error) {
+        console.error("Error deleting pharmacy:", error);
+        toast.error("Error deleting pharmacy");
+    }
+  }
+
+  const handleDelete = (id) => {
+    if(window.confirm("Are you sure you want to delete this pharmacy?")){
+        deletePharmacy(id)
+    }
+  }
+
+  const handleEdit = (pharmacy) => {
+    setSelectedPharmacy(pharmacy)
+    setShowAddPharmacy(true)
+  }
+
   useEffect(() => {
     getAllPharmacies();
   }, [showAddPharmacy]);
 
+  /* ---------- FILTER & PAGINATION LOGIC ---------- */
+  const filteredPharmacies = pharmacies.filter((pharmacy) => {
+    const query = searchKey.toLowerCase();
+    return (
+      pharmacy.pharmacyName?.toLowerCase().includes(query) ||
+      pharmacy.pharmacyLocationName?.toLowerCase().includes(query) ||
+      pharmacy.pharmacyStatus?.toLowerCase().includes(query)
+    );
+  });
+
+  const totalPages = Math.ceil(filteredPharmacies.length / itemsPerPage);
+
+  const paginatedPharmacies = filteredPharmacies.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  const start =
+    filteredPharmacies.length === 0
+      ? 0
+      : (currentPage - 1) * itemsPerPage + 1;
+
+  const end = Math.min(
+    currentPage * itemsPerPage,
+    filteredPharmacies.length
+  );
+
+  // Reset page when search changes
   useEffect(() => {
-    getAllPharmacies();
+    setCurrentPage(1);
   }, [searchKey]);
 
   return (
@@ -51,6 +115,8 @@ const AdminPharmacies = () => {
                     className="w-full pl-2 pr-4 py-2 border placeholder:text-white md:placeholder:text-gray-500 border-gray-300 rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-500 text-xs md:text-base"
                     placeholder="Search by name, location..."
                     type="text"
+                    value={searchKey}
+                    onChange={(e) => setSearchKey(e.target.value)}
                   />
                   <FaMagnifyingGlass className="text-xl absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" />
                 </div>
@@ -90,67 +156,96 @@ const AdminPharmacies = () => {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200 ">
-                    {pharmacies.map((pharmacy) => {
-                      return (
-                        <tr key={pharmacy._id}>
-                          <td className="p-4 text-gray-800 ">
-                            {pharmacy.pharmacyName}
-                          </td>
-                          <td className="p-4 text-gray-600 ">
-                            {pharmacy.pharmacyLocationName}
-                          </td>
-                          <td className="p-4 text-gray-600 ">
-                            {pharmacy.pharmacyContactNumber}
-                          </td>
-                          <td className="p-4">
-                            {pharmacy.pharmacyStatus === "Active" ? (
-                              <span className="px-3 py-1 text-sm font-medium rounded-full bg-green-100 text-green-800 ">
-                                Active
-                              </span>
-                            ) : (
-                              <span className="px-3 py-1 text-sm font-medium rounded-full bg-red-100 text-red-800">
-                                Inactive
-                              </span>
-                            )}
-                          </td>
-                          <td className="p-4 flex space-x-2">
-                            <button className="p-2 text-gray-500 hover:text-blue-500 rounded-full hover:bg-gray-100 ">
+                    {paginatedPharmacies.length > 0 ? (
+                      paginatedPharmacies.map((pharmacy) => {
+                        return (
+                          <tr key={pharmacy._id}>
+                            <td className="p-4 text-gray-800 ">
+                              {pharmacy.pharmacyName}
+                            </td>
+                            <td className="p-4 text-gray-600 ">
+                              {pharmacy.pharmacyLocationName}
+                            </td>
+                            <td className="p-4 text-gray-600 ">
+                              {pharmacy.pharmacyContactNumber}
+                            </td>
+                            <td className="p-4">
+                              {pharmacy.pharmacyStatus === "Active" ? (
+                                <span className="px-3 py-1 text-sm font-medium rounded-full bg-green-100 text-green-800 ">
+                                  Active
+                                </span>
+                              ) : (
+                                <span className="px-3 py-1 text-sm font-medium rounded-full bg-red-100 text-red-800">
+                                  Inactive
+                                </span>
+                              )}
+                            </td>
+                            <td className="p-4 flex space-x-2">
+                            <button
+                                onClick={()=>handleEdit(pharmacy)}
+                                className="p-2 text-gray-500 hover:text-blue-500 rounded-full hover:bg-gray-100 "
+                            >
                               <MdEdit className="text-2xl" />
                             </button>
-                            <button className="p-2 text-gray-500 hover:text-red-500 rounded-full hover:bg-gray-100 ">
+                            <button
+                                onClick={()=>handleDelete(pharmacy._id)}
+                                className="p-2 text-gray-500 hover:text-red-500 rounded-full hover:bg-gray-100 "
+                            >
                               <MdDelete className="text-2xl" />
                             </button>
                           </td>
                         </tr>
                       );
-                    })}
+                    })
+                    ) : (
+                      <tr>
+                        <td
+                          colSpan="5"
+                          className="p-6 text-center text-gray-500"
+                        >
+                          No pharmacies found
+                        </td>
+                      </tr>
+                    )}
                   </tbody>
                 </table>
               </div>
               <div className="mt-6 flex flex-col lg:flex-row justify-between items-center">
                 <p className="text-xs md:text-sm text-gray-500 ">
-                  Showing 1 to 5 of 150 entries
+                  Showing {start} to {end} of {filteredPharmacies.length} entries
                 </p>
                 <div className="flex flex-col lg:flex-row mt-4 lg:mt-0 items-center gap-2 text-xs md:text-sm">
-                  <button className="px-3 py-1 border border-gray-300  rounded-md text-gray-600 hover:bg-gray-100 ">
+                  <button
+                    onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+                    disabled={currentPage === 1}
+                    className="px-3 py-1 border border-gray-300  rounded-md text-gray-600 hover:bg-gray-100 disabled:opacity-50"
+                  >
                     Previous
                   </button>
                   <div className="flex gap-2">
-                    <button className="px-3 py-1 border border-teal-600 bg-teal-500 text-white rounded-md">
-                      1
-                    </button>
-                    <button className="px-3 py-1 border border-gray-300  rounded-md text-gray-600  hover:bg-gray-100 ">
-                      2
-                    </button>
-                    <button className="px-3 py-1 border border-gray-300  rounded-md text-gray-600  hover:bg-gray-100 ">
-                      3
-                    </button>
-                    <span className="text-gray-500">...</span>
-                    <button className="px-3 py-1 border border-gray-300  rounded-md text-gray-600  hover:bg-gray-100">
-                      30
-                    </button>
+                    {Array.from({ length: totalPages }, (_, i) => i + 1)
+                      .slice(0, 5) // Just showing first 5 pages max for simplicity to match AdminMedicines style
+                      .map((page) => (
+                        <button
+                          key={page}
+                          onClick={() => setCurrentPage(page)}
+                          className={`px-3 py-1 border rounded-md ${
+                            page === currentPage
+                              ? "border-teal-600 bg-teal-500 text-white"
+                              : "border-gray-300 text-gray-600 hover:bg-gray-100"
+                          }`}
+                        >
+                          {page}
+                        </button>
+                      ))}
                   </div>
-                  <button className="px-3 py-1 border border-gray-300 rounded-md text-gray-600 hover:bg-gray-100 ">
+                  <button
+                    onClick={() =>
+                      setCurrentPage((p) => Math.min(p + 1, totalPages))
+                    }
+                    disabled={currentPage === totalPages}
+                    className="px-3 py-1 border border-gray-300 rounded-md text-gray-600 hover:bg-gray-100 disabled:opacity-50"
+                  >
                     Next
                   </button>
                 </div>
@@ -159,9 +254,16 @@ const AdminPharmacies = () => {
           </main>
         </div>
         {showAddPharmacy && (
-          <AddPharmacyForm showAddPharmacy={() => setShowAddPharmacy(false)} />
+          <AddPharmacyForm 
+            showAddPharmacy={() => {
+                setShowAddPharmacy(false);
+                setSelectedPharmacy(null);
+            }} 
+            selectedPharmacy={selectedPharmacy}
+          />
         )}
       </div>
+      <ToastContainer theme="colored" position="top-center" autoClose={3000} />
     </>
   );
 };

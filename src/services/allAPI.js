@@ -85,7 +85,24 @@ export const addPharmacyAPI = async (reqBody, reqHeader) => {
   );
 };
 // update pharmacy - PUT
+export const updatePharmacyAPI = async (id, reqBody, reqHeader) => {
+  return await commonAPI(
+    `PUT`,
+    `${serverURL}/update-pharmacy/${id}`,
+    reqBody,
+    reqHeader
+  );
+};
+
 // delete pharmacy - DELETE
+export const deletePharmacyAPI = async (id, reqHeader) => {
+  return await commonAPI(
+    `DELETE`,
+    `${serverURL}/delete-pharmacy/${id}`,
+    {},
+    reqHeader
+  );
+};
 
 // Products
 // get all products - GET

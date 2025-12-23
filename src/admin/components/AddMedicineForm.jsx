@@ -218,17 +218,24 @@ const AddMedicineForm = ({ showAddMedicine, selectedMedicine }) => {
                     ...medicineDetails,
                     category: e.target.value,
                   })
-                }
-              >
-                <option value="" disabled>
-                  Select category
-                </option>
+                }>
                 <option value="pain-relief">Pain Relief</option>
                 <option value="diabetes">Diabetes</option>
                 <option value="cold-cough">Cold & Cough</option>
                 <option value="eye-care">Eye Care</option>
                 <option value="heart-care">Heart Care</option>
                 <option value="kidney-care">Kidney Care</option>
+                <option value="skin-care">Skin Care</option>
+                <option value="digestive-health">Digestive Health</option>
+                <option value="vitamins-supplements">
+                  Vitamins & Supplements
+                </option>
+                <option value="antibiotics">Antibiotics</option>
+                <option value="first-aid">First Aid</option>
+                <option value="baby-care">Baby Care</option>
+                <option value="women-care">Women's Care</option>
+                <option value="men-care">Men's Care</option>
+                <option value="mental-wellness">Mental Wellness</option>
               </select>
             </div>
 

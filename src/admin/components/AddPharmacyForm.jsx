@@ -1,7 +1,8 @@
 import React from "react";
 import { IoMdClose } from "react-icons/io";
+import { toast, ToastContainer } from "react-toastify";
 
-const AddPharmacyForm = ({ showAddPharmacy }) => {
+const AddPharmacyForm = ({ showAddPharmacy, selectedPharmacy }) => {
   const [pharmacyDetails, setPharmacyDetails] = React.useState({
     name: "",
     location: "Kakkanad",
@@ -18,9 +19,37 @@ const AddPharmacyForm = ({ showAddPharmacy }) => {
 
   React.useEffect(() => {
     if (pharmacyDetails.image) {
-      setPreview(URL.createObjectURL(pharmacyDetails.image));
+      // If it's a file object (new upload)
+      if (typeof pharmacyDetails.image !== "string") {
+        setPreview(URL.createObjectURL(pharmacyDetails.image));
+      } else {
+        // If it's a string (existing image from backend)
+        import("../../services/serverURL").then(({ serverURL }) => {
+             setPreview(`${serverURL}/uploads/${pharmacyDetails.image}`);
+        });
+      }
     }
   }, [pharmacyDetails.image]);
+
+
+  React.useEffect(() => {
+    if (selectedPharmacy) {
+      setPharmacyDetails({
+        name: selectedPharmacy.pharmacyName,
+        location: selectedPharmacy.pharmacyLocationName,
+        contact: selectedPharmacy.pharmacyContactNumber,
+        status: selectedPharmacy.pharmacyStatus,
+        mapLink: selectedPharmacy.pharmacyLocationLink,
+        rating: selectedPharmacy.pharmacyRating || "",
+        reviews: selectedPharmacy.pharmacyReviews || "",
+        medicinesStock: selectedPharmacy.pharmacyMedicinesInStock
+          ? selectedPharmacy.pharmacyMedicinesInStock.join(", ")
+          : "",
+        image: selectedPharmacy.pharmacyImage,
+      });
+    }
+  }, [selectedPharmacy]);
+
 
   const handleClose = () => {
     showAddPharmacy(false);
@@ -66,7 +95,7 @@ const AddPharmacyForm = ({ showAddPharmacy }) => {
       !medicinesStock ||
       !image
     ) {
-      alert("Please fill all fields");
+      toast.info("Please fill all fields");
     } else {
       const reqBody = new FormData();
       reqBody.append("pharmacyName", name);
@@ -83,26 +112,40 @@ const AddPharmacyForm = ({ showAddPharmacy }) => {
       const token = sessionStorage.getItem("token");
 
       if (token) {
-        const reqHeader = {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${token}`,
-        };
-
+        
         try {
           // Import API dynamically or assume imported
-          const { addPharmacyAPI } = await import("../../services/allAPI");
-          const result = await addPharmacyAPI(reqBody, reqHeader);
+          const { addPharmacyAPI, updatePharmacyAPI } = await import("../../services/allAPI");
+          
+          let result;
+          if(selectedPharmacy) {
+             // Edit Mode
+             const reqHeader = {
+                "Content-Type": "multipart/form-data",
+                Authorization: `Bearer ${token}`,
+              };
+             result = await updatePharmacyAPI(selectedPharmacy._id, reqBody, reqHeader);
+          } else {
+            // Add Mode
+            const reqHeader = {
+                "Content-Type": "multipart/form-data",
+                Authorization: `Bearer ${token}`,
+              };
+            result = await addPharmacyAPI(reqBody, reqHeader);
+          }
 
           if (result.status === 200) {
-            alert("Pharmacy Added Successfully");
+            toast.success(selectedPharmacy ? "Pharmacy Updated Successfully" : "Pharmacy Added Successfully");
             handleReset();
-            showAddPharmacy(false);
+            setTimeout(() => {
+              showAddPharmacy(false);
+            }, 2000);
           } else {
-            alert(result.response?.data || "Something went wrong");
+            toast.warning(result.response?.data || "Something went wrong");
           }
         } catch (err) {
           console.error(err);
-          alert("Error adding pharmacy");
+          toast.error("Error adding/updating pharmacy");
         }
       }
     }
@@ -114,7 +157,7 @@ const AddPharmacyForm = ({ showAddPharmacy }) => {
         <div className="bg-white border w-[90%] max-w-[800px] p-8 shadow rounded-2xl max-h-[90vh] overflow-y-auto">
           <div className="flex justify-between items-center mb-6">
             <h3 className="text-2xl font-bold text-gray-800 ">
-              Add New Pharmacy
+              {selectedPharmacy ? "Edit Pharmacy" : "Add New Pharmacy"}
             </h3>
             <button onClick={handleClose} className="text-2xl">
               <IoMdClose />
@@ -338,6 +381,7 @@ const AddPharmacyForm = ({ showAddPharmacy }) => {
           </form>
         </div>
       </div>
+      <ToastContainer theme="colored" position="top-center" autoClose={3000} />
     </>
   );
 };
