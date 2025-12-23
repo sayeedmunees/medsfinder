@@ -103,14 +103,26 @@ const HomePage = () => {
               className="w-full border-none pl-8 md:pl-1 outline-none bg-transparent text-gray-700 placeholder-gray-500 focus:ring-0 my-5 md:my-0"
               placeholder="Search for medicines"
               type="text"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
             />
             {/* search button */}
-            <Link to={"/search-result"} className="w-full md:w-fit">
-              <button className="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-6 rounded-md flex justify-center items-center gap-2 w-full ">
+            {/* search button */}
+            <div className="w-full md:w-fit">
+              <button
+                onClick={() => {
+                  if (searchTerm.trim()) {
+                    window.location.href = `/search-result?search=${searchTerm}`;
+                  } else {
+                    alert("Please enter a medicine name");
+                  }
+                }}
+                className="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-6 rounded-md flex justify-center items-center gap-2 w-full "
+              >
                 Search
                 <FaMagnifyingGlass className="text-xl" />
               </button>
-            </Link>
+            </div>
           </div>
         </section>
         {/* Most frequent medicines*/}

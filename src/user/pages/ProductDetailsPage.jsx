@@ -52,7 +52,7 @@ const ProductDetailsPage = () => {
             </p>
 
             <div className="flex gap-4 flex-wrap">
-              <Link to="/search-result">
+              <Link to={`/search-result?search=${product.medicineName}`}>
                 <button className="bg-teal-600 hover:bg-teal-700 text-white font-semibold px-6 py-3 rounded-full">
                   Find Pharmacies With Availability
                 </button>

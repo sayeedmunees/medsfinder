@@ -29,6 +29,11 @@ export const getAllMedicinesAPI = async () => {
   return await commonAPI(`GET`, `${serverURL}/all-medicines`);
 };
 
+// search medicines
+export const searchMedicineAPI = async (searchKey) => {
+  return await commonAPI(`GET`, `${serverURL}/search-medicines?search=${searchKey}`);
+};
+
 // get a medicine
 // get a view book
 export const viewMedicineAPI = async (id) => {
@@ -49,7 +54,19 @@ export const addMedicineAPI = async (reqBody, reqHeader) => {
 
 // Pharamcy
 // get all pharamcies - GET
+export const getAllPharmaciesAPI = async () => {
+  return await commonAPI(`GET`, `${serverURL}/all-pharmacies`);
+};
+
 // add pharmacy - POST
+export const addPharmacyAPI = async (reqBody, reqHeader) => {
+  return await commonAPI(
+    `POST`,
+    `${serverURL}/add-pharmacy`,
+    reqBody,
+    reqHeader
+  );
+};
 // update pharmacy - PUT
 // delete pharmacy - DELETE
 

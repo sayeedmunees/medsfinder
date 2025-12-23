@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import { FaPlus } from "react-icons/fa";
@@ -8,38 +8,28 @@ import AddPharmacyForm from "../components/AddPharmacyForm";
 
 const AdminPharmacies = () => {
   const [showAddPharmacy, setShowAddPharmacy] = useState(false);
-  const pharmacies = [
-    {
-      name: "Wellness Pharmacy",
-      address: "123 Main St, Anytown",
-      phone: "(123) 456-7890",
-      active: true,
-    },
-    {
-      name: "HealthFirst Drugs",
-      address: "456 Oak Ave, Sometown",
-      phone: "(987) 654-3210",
-      active: true,
-    },
-    {
-      name: "CarePlus Pharmacy",
-      address: "789 Pine Ln, Otherville",
-      phone: "(555) 123-4567",
-      active: false,
-    },
-    {
-      name: "City Central Pharmacy",
-      address: "101 Center Plaza, Metropolis",
-      phone: "(111) 222-3333",
-      active: true,
-    },
-    {
-      name: "Suburban Health Mart",
-      address: "222 Suburbia Rd, Greendale",
-      phone: "(444) 555-6666",
-      active: false,
-    },
-  ];
+  const [pharmacies, setPharmacies] = useState([]);
+  const [searchKey, setSearchKey] = useState("");
+
+  const getAllPharmacies = async () => {
+    try {
+      const { getAllPharmaciesAPI } = await import("../../services/allAPI");
+      const result = await getAllPharmaciesAPI();
+      if (result.status === 200) {
+        setPharmacies(result.data);
+      }
+    } catch (error) {
+      console.error("Error fetching pharmacies:", error);
+    }
+  };
+
+  useEffect(() => {
+    getAllPharmacies();
+  }, [showAddPharmacy]);
+
+  useEffect(() => {
+    getAllPharmacies();
+  }, [searchKey]);
 
   return (
     <>
@@ -102,18 +92,18 @@ const AdminPharmacies = () => {
                   <tbody className="divide-y divide-gray-200 ">
                     {pharmacies.map((pharmacy) => {
                       return (
-                        <tr key={pharmacy.name}>
+                        <tr key={pharmacy._id}>
                           <td className="p-4 text-gray-800 ">
-                            {pharmacy.name}
+                            {pharmacy.pharmacyName}
                           </td>
                           <td className="p-4 text-gray-600 ">
-                            {pharmacy.address}
+                            {pharmacy.pharmacyLocationName}
                           </td>
                           <td className="p-4 text-gray-600 ">
-                            {pharmacy.phone}
+                            {pharmacy.pharmacyContactNumber}
                           </td>
                           <td className="p-4">
-                            {pharmacy.active ? (
+                            {pharmacy.pharmacyStatus === "Active" ? (
                               <span className="px-3 py-1 text-sm font-medium rounded-full bg-green-100 text-green-800 ">
                                 Active
                               </span>

@@ -1,27 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import PharmacyCard from "../components/PharmacyCard";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { LuMapPin } from "react-icons/lu";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import { MdExpandMore } from "react-icons/md";
+import { searchMedicineAPI } from "../../services/allAPI";
+import { serverURL } from "../../services/serverURL";
 
 const SearchPage = () => {
-  const medicine = {
-    title: "Panadol Advance",
-    composition: "Paracetamol (500mg)",
-    highlights: [
-      "Relieves pain and fever.",
-      "Can be taken with or without food.",
-      "Should be taken as per the doctor's advice.",
-    ],
-    imageURL:
-      "https://pharmazone.com/cdn/shop/files/20883-PANADOL_ADVANCE_48_TAB_Front_Side.webp?v=1746619875&width=1000",
-    saved: true,
+  const [searchParams] = useSearchParams();
+  const searchKey = searchParams.get("search");
+  const [medicines, setMedicines] = useState([]);
+  const [searchTerm, setSearchTerm] = useState(searchKey || "");
+
+  // Fetch medicines based on search key
+  const getSearchMedicines = async () => {
+    if (searchKey) {
+      try {
+        const result = await searchMedicineAPI(searchKey);
+        if (result.status === 200) {
+          setMedicines(result.data);
+        }
+      } catch (error) {
+        console.error("Error fetching medicines:", error);
+      }
+    }
   };
 
+  useEffect(() => {
+    setSearchTerm(searchKey || "");
+    getSearchMedicines();
+  }, [searchKey]);
+
+  // Hardcoded pharmacies data (persisted as requested)
   const pharmacies = [
     {
       shopName: "Aster Pharmacy",
@@ -31,7 +45,6 @@ const SearchPage = () => {
       reviews: "124",
       inStock: true,
       saved: false,
-
       imageURL:
         "https://www.towncentrejumeirah.com/wp-content/uploads/2019/08/aster1.jpg",
     },
@@ -74,12 +87,11 @@ const SearchPage = () => {
     <>
       <Header />
       <div>
-        {/* serach and description */}
+        {/* Search and results section */}
         <section className="bg-teal-600 py-8 px-4 sm:px-6 lg:px-8">
           <div className="mt-8 max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-2 flex flex-col md:flex-row items-center space-x-2 gap-2 group focus-within:outline-2 focus-within:outline-teal-300 focus-within:shadow-2xl">
             <div className="flex items-center p-2 w-[90%]">
               <LuMapPin className="text-2xl text-gray-500" />
-
               <select
                 id="home-search-location"
                 className="p-2 border-none outline-none rounded-md text-gray-700 bg-white focus:border-teal-600 focus:ring-2 focus:ring-teal-200 cursor-pointer w-full"
@@ -97,48 +109,80 @@ const SearchPage = () => {
             <input
               id="home-search-medicine"
               className="w-full border-none pl-8 md:pl-1 outline-none bg-transparent text-gray-700 placeholder-gray-500 focus:ring-0 my-5 md:my-0"
-              defaultValue={medicine.title}
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder="Search for medicines"
               type="text"
             />
-            <Link to={"/search-result"} className="w-full md:w-fit">
-              <button className="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-6 rounded-md flex justify-center items-center gap-2 w-full">
+            <div className="w-full md:w-fit">
+              <button
+                onClick={() => {
+                  if (searchTerm.trim()) {
+                    window.location.href = `/search-result?search=${searchTerm}`;
+                  } else {
+                    alert("Please enter a medicine name");
+                  }
+                }}
+                className="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-6 rounded-md flex justify-center items-center gap-2 w-full"
+              >
                 Search
                 <FaMagnifyingGlass className="text-xl" />
               </button>
-            </Link>
+            </div>
           </div>
 
           <div className="py-12 max-w-4xl mx-auto">
-            <Link to={"/product"}>
-              <div className="bg-white rounded-lg shadow-lg p-6 flex flex-col md:flex-row items-start md:items-center hover:shadow-2xl transition duration-300 ease-in-out">
-                <img
-                  alt={medicine.title}
-                  className="w-32 h-32 object-contain rounded-md mb-4 md:mb-0 md:mr-6"
-                  src={medicine.imageURL}
-                />
-                <div className="text-gray-800 ">
-                  <h2 className="text-xl md:text-3xl font-bold">
-                    {medicine.title}
-                  </h2>
-                  <p className="text-xs md:text-lg text-gray-600 ">
-                    Composition: {medicine.composition}
+            {medicines.length > 0 ? (
+              <div className="space-y-6">
+                {medicines.length > 1 && (
+                  <p className="text-white text-lg mb-4">
+                    Did you mean{" "}
+                    <span className="font-bold">
+                      {medicines[0].medicineName}
+                    </span>
+                    ?
                   </p>
-                  <div className="mt-4">
-                    <h4 className="text-sm md:text-lg font-semibold mb-2">
-                      Product Highlights
-                    </h4>
-                    <ul className="list-disc list-inside space-y-1 text-xs  md:text-base text-gray-700 ">
-                      {medicine.highlights.map((highlight, index) => {
-                        return <li key={index}>{highlight}</li>;
-                      })}
-                    </ul>
-                  </div>
-                </div>
-                <button className="ml-auto mt-4 md:mt-0 p-2 rounded-full self-start text-teal-500 text-xl hover:bg-gray-200 ">
-                  {medicine.saved ? <FaBookmark /> : <FaRegBookmark />}
-                </button>
+                )}
+                {medicines.slice(0, 1).map((medicine) => (
+                  <Link to={`/product/${medicine._id}`} key={medicine._id}>
+                    <div className="bg-white rounded-lg shadow-lg p-6 flex flex-col md:flex-row items-start md:items-center hover:shadow-2xl transition duration-300 ease-in-out mb-6">
+                      <img
+                        alt={medicine.medicineName}
+                        className="w-32 h-32 object-contain rounded-md mb-4 md:mb-0 md:mr-6"
+                        src={
+                          medicine.uploadedImg
+                            ? `${serverURL}/upload/${medicine.uploadedImg}`
+                            : "https://via.placeholder.com/150"
+                        }
+                      />
+                      <div className="text-gray-800 ">
+                        <h2 className="text-xl md:text-3xl font-bold">
+                          {medicine.medicineName}
+                        </h2>
+                        <p className="text-xs md:text-lg text-gray-600 ">
+                          Generic: {medicine.genericName}
+                        </p>
+                        <div className="mt-4">
+                          <h4 className="text-sm md:text-lg font-semibold mb-2">
+                            Product Description
+                          </h4>
+                          <p className="text-xs md:text-lg text-gray-600 ">
+                            {medicine.description}
+                          </p>
+                        </div>
+                      </div>
+                      <button className="ml-auto mt-4 md:mt-0 p-2 rounded-full self-start text-teal-500 text-xl hover:bg-gray-200 ">
+                        {medicine.saved ? <FaBookmark /> : <FaRegBookmark />}
+                      </button>
+                    </div>
+                  </Link>
+                ))}
               </div>
-            </Link>
+            ) : (
+              <p className="text-white text-lg text-center">
+                No medicines found.
+              </p>
+            )}
           </div>
         </section>
 
