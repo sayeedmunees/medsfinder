@@ -5,7 +5,8 @@ import { FaPlus } from "react-icons/fa";
 import { MdDelete, MdEdit, MdOutlineUnfoldMore } from "react-icons/md";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import AddMedicineForm from "../components/AddMedicineForm";
-import { getAllMedicinesAPI } from "../../services/allAPI";
+import { getAllMedicinesAPI, deleteMedicineAPI } from "../../services/allAPI";
+import { toast, ToastContainer } from "react-toastify";
 
 const itemsPerPage = 5;
 
@@ -14,12 +15,37 @@ const AdminMedicines = () => {
   const [adminMedicines, setAdminMedicines] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedMedicine, setSelectedMedicine] = useState(null);
 
   const getAllMedicines = async () => {
     const result = await getAllMedicinesAPI();
     if (result.status === 200) {
       setAdminMedicines(result.data);
     }
+  };
+
+  const handleDelete = async (id) => {
+    if (window.confirm("Are you sure you want to delete this medicine?")) {
+        const token = sessionStorage.getItem("token");
+        const reqHeader = { Authorization: `Bearer ${token}` };
+        const result = await deleteMedicineAPI(id, reqHeader);
+        if (result.status === 200) {
+            toast.success("Medicine deleted successfully");
+            getAllMedicines();
+        } else {
+            toast.error("Failed to delete medicine");
+        }
+    }
+  };
+
+  const handleEdit = (medicine) => {
+    setSelectedMedicine(medicine);
+    setShowAddMedicine(true);
+  };
+
+  const handleClose = () => {
+    setShowAddMedicine(false);
+    setSelectedMedicine(null);
   };
 
   useEffect(() => {
@@ -142,10 +168,16 @@ const AdminMedicines = () => {
                             </div>
                           </td>
                           <td className="p-4 flex space-x-2">
-                            <button className="p-2 text-gray-500 hover:text-blue-500 rounded-full hover:bg-gray-100">
+                            <button
+                                onClick={() => handleEdit(medicine)}
+                                className="p-2 text-gray-500 hover:text-blue-500 rounded-full hover:bg-gray-100"
+                            >
                               <MdEdit className="text-2xl" />
                             </button>
-                            <button className="p-2 text-gray-500 hover:text-red-500 rounded-full hover:bg-gray-100">
+                            <button
+                                onClick={() => handleDelete(medicine._id)}
+                                className="p-2 text-gray-500 hover:text-red-500 rounded-full hover:bg-gray-100"
+                            >
                               <MdDelete className="text-2xl" />
                             </button>
                           </td>
@@ -219,10 +251,12 @@ const AdminMedicines = () => {
 
         {showAddMedicine && (
           <AddMedicineForm
-            showAddMedicine={() => setShowAddMedicine(false)}
+            showAddMedicine={handleClose}
+            selectedMedicine={selectedMedicine}
           />
         )}
       </div>
+      <ToastContainer theme="colored" position="top-center" autoClose={3000} />
     </>
   );
 };

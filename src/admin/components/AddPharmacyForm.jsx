@@ -8,8 +8,9 @@ const AddPharmacyForm = ({ showAddPharmacy }) => {
     contact: "",
     status: "Active",
     mapLink: "",
-    latitude: "",
-    longitude: "",
+    rating: "",
+    reviews: "",
+    medicinesStock: "",
     image: "",
   });
 
@@ -32,8 +33,9 @@ const AddPharmacyForm = ({ showAddPharmacy }) => {
       contact: "",
       status: "Active",
       mapLink: "",
-      latitude: "",
-      longitude: "",
+      rating: "",
+      reviews: "",
+      medicinesStock: "",
       image: "",
     });
     setPreview("");
@@ -47,8 +49,9 @@ const AddPharmacyForm = ({ showAddPharmacy }) => {
       contact,
       status,
       mapLink,
-      latitude,
-      longitude,
+      rating,
+      reviews,
+      medicinesStock,
       image,
     } = pharmacyDetails;
 
@@ -58,8 +61,9 @@ const AddPharmacyForm = ({ showAddPharmacy }) => {
       !contact ||
       !status ||
       !mapLink ||
-      !latitude ||
-      !longitude ||
+      !rating ||
+      !reviews ||
+      !medicinesStock ||
       !image
     ) {
       alert("Please fill all fields");
@@ -70,8 +74,9 @@ const AddPharmacyForm = ({ showAddPharmacy }) => {
       reqBody.append("pharmacyContactNumber", contact);
       reqBody.append("pharmacyStatus", status);
       reqBody.append("pharmacyLocationLink", mapLink);
-      reqBody.append("pharmacyLattitude", latitude);
-      reqBody.append("pharmacyLongitude", longitude);
+      reqBody.append("pharmacyRating", rating);
+      reqBody.append("pharmacyReviews", reviews || "0");
+      reqBody.append("pharmacyMedicinesInStock", medicinesStock);
       reqBody.append("pharmacyImage", image);
 
       // Retrieving the token from local storage
@@ -229,21 +234,23 @@ const AddPharmacyForm = ({ showAddPharmacy }) => {
             <div>
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="pharmacy-lattitude"
+                htmlFor="pharmacy-rating"
               >
-                Latitude
+                Rating
               </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-800 placeholder:text-gray-400 focus:outline-none"
-                id="pharmacy-lattitude"
-                placeholder="Type Latitude"
-                step="any"
+                id="pharmacy-rating"
+                placeholder="Type Rating"
                 type="number"
-                value={pharmacyDetails.latitude}
+                min="0"
+                max="5"
+                step="0.1"
+                value={pharmacyDetails.rating}
                 onChange={(e) =>
                   setPharmacyDetails({
                     ...pharmacyDetails,
-                    latitude: e.target.value,
+                    rating: e.target.value,
                   })
                 }
               />
@@ -251,21 +258,42 @@ const AddPharmacyForm = ({ showAddPharmacy }) => {
             <div>
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="pharmacy-longitude"
+                htmlFor="pharmacy-reviews"
               >
-                Longitude
+                Reviews
               </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-800 placeholder:text-gray-400 focus:outline-none"
-                id="pharmacy-longitude"
-                placeholder="Type Longitude"
-                step="any"
+                id="pharmacy-reviews"
+                placeholder="Type Review Count"
                 type="number"
-                value={pharmacyDetails.longitude}
+                min="0"
+                value={pharmacyDetails.reviews}
                 onChange={(e) =>
                   setPharmacyDetails({
                     ...pharmacyDetails,
-                    longitude: e.target.value,
+                    reviews: e.target.value,
+                  })
+                }
+              />
+            </div>
+            <div className="md:col-span-2">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="pharmacy-stock"
+              >
+                Medicines in Stock (comma separated)
+              </label>
+              <textarea
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-800 placeholder:text-gray-400 focus:outline-none resize-y"
+                id="pharmacy-stock"
+                placeholder="e.g., Paracetamol, Aspirin, Ibuprofen"
+                rows="3"
+                value={pharmacyDetails.medicinesStock}
+                onChange={(e) =>
+                  setPharmacyDetails({
+                    ...pharmacyDetails,
+                    medicinesStock: e.target.value,
                   })
                 }
               />

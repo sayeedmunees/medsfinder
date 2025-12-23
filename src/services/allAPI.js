@@ -50,7 +50,24 @@ export const addMedicineAPI = async (reqBody, reqHeader) => {
   );
 };
 // update medicine - PUT
+export const updateMedicineAPI = async (id, reqBody, reqHeader) => {
+  return await commonAPI(
+    `PUT`,
+    `${serverURL}/update-medicine/${id}`,
+    reqBody,
+    reqHeader
+  );
+};
+
 // delete medicine - DELETE
+export const deleteMedicineAPI = async (id, reqHeader) => {
+  return await commonAPI(
+    `DELETE`,
+    `${serverURL}/delete-medicine/${id}`,
+    {},
+    reqHeader
+  );
+};
 
 // Pharamcy
 // get all pharamcies - GET

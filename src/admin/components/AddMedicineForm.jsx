@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
-import { addMedicineAPI } from "../../services/allAPI";
+import { addMedicineAPI, updateMedicineAPI } from "../../services/allAPI";
 import { toast, ToastContainer } from "react-toastify";
+import { serverURL } from "../../services/serverURL";
 
-const AddMedicineForm = ({ showAddMedicine }) => {
+const AddMedicineForm = ({ showAddMedicine, selectedMedicine }) => {
   const [token, setToken] = useState("");
   const [medicineDetails, setMedicineDetails] = useState({
     medicineName: "",
@@ -15,12 +16,32 @@ const AddMedicineForm = ({ showAddMedicine }) => {
     uploadedImg: "",
   });
 
+  const [preview, setPreview] = useState("");
+
   const handleUploadImage = (e) => {
-    // const fileArray = medicineDetails.uploadedImg;
-    // console.log(e.target.files[0]);
-    // fileArray.push(e.target.files[0]);
-    setMedicineDetails({ ...medicineDetails, uploadedImg: e.target.files[0] });
+    const file = e.target.files[0];
+    setMedicineDetails({ ...medicineDetails, uploadedImg: file });
+    setPreview(URL.createObjectURL(file));
   };
+
+  useEffect(() => {
+    if (sessionStorage.getItem("token")) {
+      const token = sessionStorage.getItem("token");
+      setToken(token);
+    }
+    if (selectedMedicine) {
+      setMedicineDetails({
+        medicineName: selectedMedicine.medicineName,
+        genericName: selectedMedicine.genericName,
+        brandName: selectedMedicine.brandName,
+        category: selectedMedicine.category,
+        description: selectedMedicine.description,
+        price: selectedMedicine.price,
+        uploadedImg: selectedMedicine.uploadedImg,
+      });
+      setPreview(`${serverURL}/uploads/${selectedMedicine.uploadedImg}`);
+    }
+  }, [selectedMedicine]);
 
   const handleSubmit = async () => {
     const {
@@ -33,8 +54,6 @@ const AddMedicineForm = ({ showAddMedicine }) => {
       uploadedImg,
     } = medicineDetails;
 
-    console.log(medicineDetails);
-
     if (
       !medicineName ||
       !genericName ||
@@ -42,43 +61,69 @@ const AddMedicineForm = ({ showAddMedicine }) => {
       !category ||
       !description ||
       !price ||
-      uploadedImg.length == 0
+      !uploadedImg
     ) {
       toast.info("Please fill the form completely");
-      console.log(medicineDetails);
     } else {
       const reqHeader = { Authorization: `Bearer ${token}` };
-
       const reqBody = new FormData();
 
-      for (let key in medicineDetails) {
-        reqBody.append(key, medicineDetails[key]);
+      reqBody.append("medicineName", medicineName);
+      reqBody.append("genericName", genericName);
+      reqBody.append("brandName", brandName);
+      reqBody.append("category", category);
+      reqBody.append("description", description);
+      reqBody.append("price", price);
+      reqBody.append("uploadedImg", uploadedImg);
+
+      let result;
+      if (selectedMedicine) {
+        // Edit Mode
+        if (preview) {
+            const reqHeader = {
+            "Content-Type": "multipart/form-data",
+             Authorization: `Bearer ${token}`,
+            };
+            result = await updateMedicineAPI(
+            selectedMedicine._id,
+            reqBody,
+            reqHeader
+            );
+        } else {
+            const reqHeader = {
+                "Content-Type": "application/json",
+                 Authorization: `Bearer ${token}`,
+            };
+            result = await updateMedicineAPI(
+            selectedMedicine._id,
+            reqBody,
+            reqHeader
+            );
+        }
+        
+      } else {
+        // Add Mode
+        const reqHeader = {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        };
+        result = await addMedicineAPI(reqBody, reqHeader);
       }
 
-      const result = await addMedicineAPI(reqBody, reqHeader);
-      console.log(result);
-
-      if (result.status == 401) {
-        toast.warning(result.response.data);
-        handleReset();
-      } else if (result.status == 200) {
-        toast.success("Medicine Added Successfully");
+      if (result.status === 200) {
+        toast.success(
+          selectedMedicine
+            ? "Medicine Updated Successfully"
+            : "Medicine Added Successfully"
+        );
         setTimeout(() => {
           showAddMedicine();
         }, 2000);
       } else {
-        toast.error("Something Went Wrong");
-        handleReset();
+        toast.error(result.response?.data || "Something Went Wrong");
       }
     }
   };
-
-  useEffect(() => {
-    if (sessionStorage.getItem("token")) {
-      const token = sessionStorage.getItem("token");
-      setToken(token);
-    }
-  }, []);
 
   return (
     <>
@@ -86,7 +131,7 @@ const AddMedicineForm = ({ showAddMedicine }) => {
         <div className="bg-white border w-[90%] max-w-[800px] p-8 shadow rounded-2xl">
           <div className="flex justify-between items-center mb-6">
             <h3 className="text-2xl font-bold text-gray-800 ">
-              Add New Medicine
+              {selectedMedicine ? "Edit Medicine" : "Add New Medicine"}
             </h3>
             <button onClick={showAddMedicine} className="text-2xl">
               <IoMdClose />
