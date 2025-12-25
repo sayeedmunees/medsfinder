@@ -39,7 +39,7 @@ const AddMedicineForm = ({ showAddMedicine, selectedMedicine }) => {
         price: selectedMedicine.price,
         uploadedImg: selectedMedicine.uploadedImg,
       });
-      setPreview(`${serverURL}/uploads/${selectedMedicine.uploadedImg}`);
+      setPreview(`${serverURL}/upload/${selectedMedicine.uploadedImg}`);
     }
   }, [selectedMedicine]);
 

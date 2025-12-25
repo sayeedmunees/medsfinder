@@ -25,7 +25,7 @@ const AddPharmacyForm = ({ showAddPharmacy, selectedPharmacy }) => {
       } else {
         // If it's a string (existing image from backend)
         import("../../services/serverURL").then(({ serverURL }) => {
-             setPreview(`${serverURL}/uploads/${pharmacyDetails.image}`);
+             setPreview(`${serverURL}/upload/${pharmacyDetails.image}`);
         });
       }
     }

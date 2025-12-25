@@ -125,5 +125,36 @@ export const deletePharmacyAPI = async (id, reqHeader) => {
 // post saved medicine and pharamcy for individual - POST
 
 // get user details for profile page - GET
+export const getUserProfileAPI = async (reqHeader) => {
+  return await commonAPI(`GET`, `${serverURL}/user/profile`, "", reqHeader);
+};
 
 // update user details in profile page - PUT
+export const updateUserProfileAPI = async (reqBody, reqHeader) => {
+  return await commonAPI(
+    `PUT`,
+    `${serverURL}/user/profile/update`,
+    reqBody,
+    reqHeader
+  );
+};
+
+// toggle saved medicine - POST
+export const toggleSavedMedicineAPI = async (reqBody, reqHeader) => {
+  return await commonAPI(
+    `POST`,
+    `${serverURL}/user/save-medicine`,
+    reqBody,
+    reqHeader
+  );
+};
+
+// toggle saved pharmacy - POST
+export const toggleSavedPharmacyAPI = async (reqBody, reqHeader) => {
+  return await commonAPI(
+    `POST`,
+    `${serverURL}/user/save-pharmacy`,
+    reqBody,
+    reqHeader
+  );
+};

@@ -12,6 +12,7 @@ import { getAllMedicinesAPI } from "../../services/allAPI";
 const HomePage = () => {
   const [homeMedicines, setHomeMedicines] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [location, setLocation] = useState("");
 
   const getAllMedicines = async () => {
     const result = await getAllMedicinesAPI();
@@ -82,8 +83,10 @@ const HomePage = () => {
               <select
                 id="home-search-location"
                 className="p-2 appearance-none border-none outline-none rounded-md text-gray-700 bg-white focus:border-teal-500 focus:ring-2 focus:ring-teal-200 cursor-pointer w-full"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
               >
-                <option defaultValue hidden>
+                <option value="" disabled selected>
                   Select Location
                 </option>
                 <option className="border-none outline-none" value="Edapally">
@@ -111,10 +114,12 @@ const HomePage = () => {
             <div className="w-full md:w-fit">
               <button
                 onClick={() => {
-                  if (searchTerm.trim()) {
-                    window.location.href = `/search-result?search=${searchTerm}`;
-                  } else {
+                  if (searchTerm.trim() && location) {
+                    window.location.href = `/search-result?search=${searchTerm}&location=${location}`;
+                  } else if (!searchTerm.trim()) {
                     alert("Please enter a medicine name");
+                  } else {
+                    alert("Please select a location");
                   }
                 }}
                 className="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-6 rounded-md flex justify-center items-center gap-2 w-full "

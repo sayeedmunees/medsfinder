@@ -7,14 +7,21 @@ import { FaMagnifyingGlass } from "react-icons/fa6";
 import { LuMapPin } from "react-icons/lu";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import { MdExpandMore } from "react-icons/md";
-import { searchMedicineAPI } from "../../services/allAPI";
+import {
+  searchMedicineAPI,
+  getAllPharmaciesAPI,
+} from "../../services/allAPI";
 import { serverURL } from "../../services/serverURL";
 
 const SearchPage = () => {
   const [searchParams] = useSearchParams();
   const searchKey = searchParams.get("search");
+  const searchLocation = searchParams.get("location");
+  
   const [medicines, setMedicines] = useState([]);
+  const [pharmacies, setPharmacies] = useState([]);
   const [searchTerm, setSearchTerm] = useState(searchKey || "");
+  const [selectedLocation, setSelectedLocation] = useState(searchLocation || "");
 
   // Fetch medicines based on search key
   const getSearchMedicines = async () => {
@@ -30,58 +37,33 @@ const SearchPage = () => {
     }
   };
 
+  const getAllPharmacies = async () => {
+    try {
+      const result = await getAllPharmaciesAPI();
+      if (result.status === 200) {
+        const allPharmacies = result.data;
+        // Filter by location
+        const locationFiltered = allPharmacies.filter(
+          (pharmacy) =>
+            pharmacy.pharmacyLocationName?.toLowerCase() ===
+            selectedLocation.toLowerCase()
+        );
+        setPharmacies(locationFiltered);
+      }
+    } catch (error) {
+      console.error("Error fetching pharmacies:", error);
+    }
+  };
+
+
   useEffect(() => {
     setSearchTerm(searchKey || "");
+    setSelectedLocation(searchLocation || "");
     getSearchMedicines();
-  }, [searchKey]);
-
-  // Hardcoded pharmacies data (persisted as requested)
-  const pharmacies = [
-    {
-      shopName: "Aster Pharmacy",
-      location: "Athani, Kakkanad",
-      direction: "#",
-      rating: "4.0",
-      reviews: "124",
-      inStock: true,
-      saved: false,
-      imageURL:
-        "https://www.towncentrejumeirah.com/wp-content/uploads/2019/08/aster1.jpg",
-    },
-    {
-      shopName: "Apollo Pharmacy",
-      location: "Infopark Road, Kakkanad",
-      direction: "#",
-      rating: "4.5",
-      reviews: "210",
-      inStock: false,
-      saved: false,
-      imageURL:
-        "https://www.corewebnetworks.in/bestfranchisedealer.com/media/blogs/apollo-pharmacy-franchise-cost-profit-and-how-to-get-started-in-2024.webp",
-    },
-    {
-      shopName: "MedPlus Pharmacy",
-      location: "Edachira, Kakkanad",
-      direction: "#",
-      rating: "3.5",
-      reviews: "88",
-      inStock: true,
-      saved: true,
-      imageURL:
-        "https://content.jdmagicbox.com/v2/comp/mumbai/i5/022pxx22.xx22.220422191030.q2i5/catalogue/medplus-kandivali-west-mumbai-61bxkvcbsz.jpg",
-    },
-    {
-      shopName: "V-Care Medicals",
-      location: "Thrikkakara, Kakkanad",
-      direction: "#",
-      rating: "3.0",
-      reviews: "45",
-      inStock: true,
-      saved: true,
-      imageURL:
-        "https://content3.jdmagicbox.com/comp/thrissur/v9/9999px487.x487.210104104711.b6v9/catalogue/v-care-medical-paravattani-thrissur-surgical-equipment-dealers-hrf4p0a84j.jpg",
-    },
-  ];
+    if(searchLocation) {
+        getAllPharmacies();
+    }
+  }, [searchKey, searchLocation]);
 
   return (
     <>
@@ -95,8 +77,12 @@ const SearchPage = () => {
               <select
                 id="home-search-location"
                 className="p-2 border-none outline-none rounded-md text-gray-700 bg-white focus:border-teal-600 focus:ring-2 focus:ring-teal-200 cursor-pointer w-full"
-                defaultValue="Kakkanad"
+                value={selectedLocation}
+                onChange={(e)=>setSelectedLocation(e.target.value)}
               >
+                <option value="" disabled >
+                  Select Location
+                </option>
                 <option className="border-none outline-none" value="Edapally">
                   Edapally
                 </option>
@@ -117,10 +103,12 @@ const SearchPage = () => {
             <div className="w-full md:w-fit">
               <button
                 onClick={() => {
-                  if (searchTerm.trim()) {
-                    window.location.href = `/search-result?search=${searchTerm}`;
-                  } else {
+                  if (searchTerm.trim() && selectedLocation) {
+                    window.location.href = `/search-result?search=${searchTerm}&location=${selectedLocation}`;
+                  } else if(!searchTerm.trim()) {
                     alert("Please enter a medicine name");
+                  } else {
+                     alert("Please select a location"); 
                   }
                 }}
                 className="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-6 rounded-md flex justify-center items-center gap-2 w-full"
@@ -190,25 +178,38 @@ const SearchPage = () => {
         <section className="py-16 px-6 md:px-12 bg-gray-100">
           <div className="max-w-4xl mx-auto">
             <h3 className="text-xl md:text-2xl font-bold mb-6 text-gray-800 ">
-              Pharmacies near Kakkanad
+              Pharmacies near {selectedLocation}
             </h3>
             <div className="space-y-6">
-              {pharmacies.map((pharmacy) => {
+              {pharmacies.length > 0 ? pharmacies.map((pharmacy) => {
+                // Determine stock status
+                // We check if the SEARCHED medicine name exists in the pharmacy's stock list
+                // We use the first result from medicines list as the target name
+                const targetMedicine = medicines.length > 0 ? medicines[0].medicineName : "";
+                // Normalize for case-insensitive comparison
+                const inStock = pharmacy.pharmacyMedicinesInStock?.some(stockItem => 
+                    stockItem.toLowerCase().includes(targetMedicine.toLowerCase()) || 
+                    targetMedicine.toLowerCase().includes(stockItem.toLowerCase())
+                );
+
                 return (
                   <PharmacyCard
-                    key={pharmacy.shopName}
-                    shopName={pharmacy.shopName}
-                    location={pharmacy.location}
-                    direction={pharmacy.direction}
-                    rating={pharmacy.rating}
-                    reviews={pharmacy.reviews}
-                    inStock={pharmacy.inStock}
-                    saved={pharmacy.saved}
-                    imageURL={pharmacy.imageURL}
+                    key={pharmacy._id}
+                    id={pharmacy._id}
+                    shopName={pharmacy.pharmacyName}
+                    location={pharmacy.pharmacyLocationName}
+                    direction={pharmacy.pharmacyLocationLink}
+                    rating={pharmacy.pharmacyRating}
+                    reviews={pharmacy.pharmacyReviews}
+                    inStock={inStock}
+                    saved={false}
+                    imageURL={pharmacy.pharmacyImage ? `${serverURL}/upload/${pharmacy.pharmacyImage}` : "https://via.placeholder.com/150"}
                     from="SearchPage"
                   />
                 );
-              })}
+              }) : (
+                <p className="text-gray-600">No pharmacies found in this location.</p>
+              )}
             </div>
           </div>
         </section>
