@@ -1,98 +1,47 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import MedicineCard from "../components/MedicineCard";
 import PharmacyCard from "../components/PharmacyCard";
+import { getSavedItemsAPI } from "../../services/allAPI";
+import { serverURL } from "../../services/serverURL";
 
 const SavedPage = () => {
   const [medicineTab, setMedicineTab] = useState(true);
   const [pharmacyTab, setPharmacyTab] = useState(false);
+  const [savedMedicines, setSavedMedicines] = useState([]);
+  const [savedPharmacies, setSavedPharmacies] = useState([]);
 
-  const medicineItems = [
-    {
-      title: "Panadol Advance",
-      brand: "Sun Pharma Ltd",
-      imageURL:
-        "https://pharmazone.com/cdn/shop/files/20883-PANADOL_ADVANCE_48_TAB_Front_Side.webp?v=1746619875&width=1000",
-      saved: false,
-    },
-    {
-      title: "Meftal Forte",
-      brand: "Micro Labs Ltd",
-      imageURL:
-        "https://mockuphunt.co/cdn/shop/products/Box_Mockups_OK_3_241036b2-175b-484e-960d-3c632a6e0f48_800x.jpg?v=1524830968",
-      saved: true,
-    },
-    {
-      title: "Ascoril Cough Syrup",
-      brand: "Cipla Ltd",
-      imageURL:
-        "https://www.graphicsfuel.com/wp-content/uploads/2022/12/medicine-syrup-bottle-mockup1.jpg",
-      saved: true,
-    },
-    {
-      title: "Panadol Extra",
-      brand: "Sun Pharma Ltd",
-      imageURL:
-        "https://i-cf65.ch-static.com/content/dam/cf-consumer-healthcare/health-professionals/en_PK/pain-relief/packshots/Extra_25_970x416.png?auto=format",
-      saved: false,
-    },
-    {
-      title: "Multi Vitamin Tablet",
-      brand: "Micro Labs Ltd",
-      imageURL:
-        "https://keysupplements.in/wp-content/uploads/2023/05/Multi-Vitamin-Mockup-min-1.png",
-      saved: true,
-    },
-  ];
+  const getSavedItems = async () => {
+    const token = sessionStorage.getItem("token");
+    if (token) {
+      const reqHeader = {
+        Authorization: `Bearer ${token}`,
+      };
+      try {
+        const result = await getSavedItemsAPI(reqHeader);
+        if (result.status === 200) {
+          setSavedMedicines(result.data.savedMedicines);
+          setSavedPharmacies(result.data.savedPharmacies);
+          
+          // Update session storage
+           const existingUser = JSON.parse(sessionStorage.getItem("existingUser"));
+           if (existingUser) {
+                existingUser.savedMedicines = result.data.savedMedicines.map(item => item._id);
+                existingUser.savedPharmacies = result.data.savedPharmacies.map(item => item._id);
+                sessionStorage.setItem("existingUser", JSON.stringify(existingUser));
+           }
 
-  const pharmacies = [
-    {
-      shopName: "Aster Pharmacy",
-      location: "Athani, Kakkanad",
-      direction: "#",
-      rating: "4.0",
-      reviews: "124",
-      inStock: true,
-      saved: false,
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
 
-      imageURL:
-        "https://www.towncentrejumeirah.com/wp-content/uploads/2019/08/aster1.jpg",
-    },
-    {
-      shopName: "Apollo Pharmacy",
-      location: "Infopark Road, Kakkanad",
-      direction: "#",
-      rating: "4.5",
-      reviews: "210",
-      inStock: false,
-      saved: false,
-      imageURL:
-        "https://www.corewebnetworks.in/bestfranchisedealer.com/media/blogs/apollo-pharmacy-franchise-cost-profit-and-how-to-get-started-in-2024.webp",
-    },
-    {
-      shopName: "MedPlus Pharmacy",
-      location: "Edachira, Kakkanad",
-      direction: "#",
-      rating: "3.5",
-      reviews: "88",
-      inStock: true,
-      saved: true,
-      imageURL:
-        "https://content.jdmagicbox.com/v2/comp/mumbai/i5/022pxx22.xx22.220422191030.q2i5/catalogue/medplus-kandivali-west-mumbai-61bxkvcbsz.jpg",
-    },
-    {
-      shopName: "V-Care Medicals",
-      location: "Thrikkakara, Kakkanad",
-      direction: "#",
-      rating: "3.0",
-      reviews: "45",
-      inStock: true,
-      saved: true,
-      imageURL:
-        "https://content3.jdmagicbox.com/comp/thrissur/v9/9999px487.x487.210104104711.b6v9/catalogue/v-care-medical-paravattani-thrissur-surgical-equipment-dealers-hrf4p0a84j.jpg",
-    },
-  ];
+  useEffect(() => {
+    getSavedItems();
+  }, []);
 
   const handlePharmacyTab = () => {
     setMedicineTab(false);
@@ -138,41 +87,41 @@ const SavedPage = () => {
 
         {medicineTab && (
           <section className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
-            {medicineItems
-              .filter((item) => item.saved)
-              .map((item) => {
-                return (
-                  <MedicineCard
-                    key={item.title}
-                    title={item.title}
-                    brand={item.brand}
-                    imageURL={item.imageURL}
-                    saved={item.saved}
-                  />
-                );
-              })}
+            {savedMedicines?.length > 0 ? (
+              savedMedicines.map((item) => (
+                <MedicineCard
+                  key={item._id}
+                  id={item._id}
+                  title={item.medicineName}
+                  brand={item.brandName}
+                  imageURL={item.uploadedImg}
+                />
+              ))
+            ) : (
+              <p className="text-gray-500">No saved medicines found.</p>
+            )}
           </section>
         )}
 
         {pharmacyTab && (
           <section className="space-y-6">
-            {pharmacies
-              .filter((item) => item.saved)
-              .map((pharmacy) => {
-                return (
-                  <PharmacyCard
-                    key={pharmacy.shopName}
-                    shopName={pharmacy.shopName}
-                    location={pharmacy.location}
-                    direction={pharmacy.direction}
-                    rating={pharmacy.rating}
-                    reviews={pharmacy.reviews}
-                    inStock={pharmacy.inStock}
-                    saved={pharmacy.saved}
-                    imageURL={pharmacy.imageURL}
-                  />
-                );
-              })}
+            {savedPharmacies?.length > 0 ? (
+              savedPharmacies.map((pharmacy) => (
+                <PharmacyCard
+                  key={pharmacy._id}
+                  id={pharmacy._id}
+                  shopName={pharmacy.pharmacyName}
+                  location={pharmacy.pharmacyLocationName}
+                  direction={pharmacy.pharmacyLocationLink}
+                  rating={pharmacy.rating}
+                  reviews={pharmacy.reviews}
+                  inStock={true} // You might want real stock logic here later
+                  imageURL={`${serverURL}/upload/${pharmacy.pharmacyImage}`}
+                />
+              ))
+            ) : (
+                <p className="text-gray-500">No saved pharmacies found.</p>
+            )}
           </section>
         )}
       </div>

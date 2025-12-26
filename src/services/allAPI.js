@@ -158,3 +158,8 @@ export const toggleSavedPharmacyAPI = async (reqBody, reqHeader) => {
     reqHeader
   );
 };
+
+// get saved items - GET
+export const getSavedItemsAPI = async (reqHeader) => {
+  return await commonAPI(`GET`, `${serverURL}/user/saved-items`, "", reqHeader);
+};
