@@ -25,7 +25,7 @@ const ProductDetailsPage = () => {
         return;
       }
 
-      // If not medicine, try hygiene product
+      // If not medicine, try product
       result = await viewProductAPI(id);
       if (result.status === 200 && result.data) {
         setProduct({
