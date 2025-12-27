@@ -1,16 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import MedicineCard from "../components/MedicineCard";
 import PharmacyCard from "../components/PharmacyCard";
 import { getSavedItemsAPI } from "../../services/allAPI";
 import { serverURL } from "../../services/serverURL";
+import { toast } from "react-toastify";
 
 const SavedPage = () => {
   const [medicineTab, setMedicineTab] = useState(true);
   const [pharmacyTab, setPharmacyTab] = useState(false);
   const [savedMedicines, setSavedMedicines] = useState([]);
   const [savedPharmacies, setSavedPharmacies] = useState([]);
+  
+  // Track pending removals to allow cancellation (re-save) within the delay window
+  const pendingRemovals = useRef({});
 
   const getSavedItems = async () => {
     const token = sessionStorage.getItem("token");
@@ -41,6 +45,10 @@ const SavedPage = () => {
 
   useEffect(() => {
     getSavedItems();
+    return () => {
+        // Cleanup timeouts on unmount
+        Object.values(pendingRemovals.current).forEach(id => clearTimeout(id));
+    };
   }, []);
 
   const handlePharmacyTab = () => {
@@ -51,6 +59,34 @@ const SavedPage = () => {
   const handlemedicineTab = () => {
     setPharmacyTab(false);
     setMedicineTab(true);
+  };
+
+  const onItemToggle = (id, isSaved, item, type) => {
+    if (!isSaved) {
+       // User just UNSAVED the item.
+       // Show toast immediately
+       toast.error(`Removed ${type === 'medicine' ? item.medicineName : item.pharmacyName}`);
+
+       // Schedule removal from list after 3 seconds
+       const timeoutId = setTimeout(() => {
+           if (type === 'medicine') {
+               setSavedMedicines(prev => prev.filter(m => m._id !== id));
+           } else {
+               setSavedPharmacies(prev => prev.filter(p => p._id !== id));
+           }
+           delete pendingRemovals.current[id];
+       }, 3000);
+
+       pendingRemovals.current[id] = timeoutId;
+
+    } else {
+        // User RE-SAVED the item (cancelled removal)
+        if (pendingRemovals.current[id]) {
+            clearTimeout(pendingRemovals.current[id]);
+            delete pendingRemovals.current[id];
+            toast.success(`Saved ${type === 'medicine' ? item.medicineName : item.pharmacyName}`);
+        }
+    }
   };
 
   return (
@@ -95,10 +131,12 @@ const SavedPage = () => {
                   title={item.medicineName}
                   brand={item.brandName}
                   imageURL={item.uploadedImg}
+                  onToggle={(id, isSaved) => onItemToggle(id, isSaved, item, 'medicine')}
+                  showToast={false}
                 />
               ))
             ) : (
-              <p className="text-gray-500">No saved medicines found.</p>
+                 <p className="text-gray-500">No saved medicines found.</p>
             )}
           </section>
         )}
@@ -115,8 +153,10 @@ const SavedPage = () => {
                   direction={pharmacy.pharmacyLocationLink}
                   rating={pharmacy.rating}
                   reviews={pharmacy.reviews}
-                  inStock={true} // You might want real stock logic here later
+                  inStock={true}
                   imageURL={`${serverURL}/upload/${pharmacy.pharmacyImage}`}
+                  onToggle={(id, isSaved) => onItemToggle(id, isSaved, pharmacy, 'pharmacy')}
+                  showToast={false}
                 />
               ))
             ) : (

@@ -13,11 +13,19 @@ import Login from "./user/components/Login";
 import ProductsPage from "./user/pages/ProductsPage";
 import ScrollToTop from "./user/components/ScrollToTop";
 import PageNotFound from "./pages/PageNotFound";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
     <>
       <ScrollToTop />
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        theme="colored"
+        newestOnTop={true}
+      />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/search-result" element={<SearchPage />} />

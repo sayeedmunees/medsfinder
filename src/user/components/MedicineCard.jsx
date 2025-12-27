@@ -5,7 +5,7 @@ import { serverURL } from "../../services/serverURL";
 import { toggleSavedMedicineAPI } from "../../services/allAPI";
 import { toast } from "react-toastify";
 
-const MedicineCard = ({ id, title, brand, imageURL }) => {
+const MedicineCard = ({ id, title, brand, imageURL, onToggle, showToast = true }) => {
   const [isSaved, setIsSaved] = useState(false);
 
   useEffect(() => {
@@ -42,7 +42,12 @@ const MedicineCard = ({ id, title, brand, imageURL }) => {
             }
             sessionStorage.setItem("existingUser", JSON.stringify(existingUser));
          }
-        toast.success(result.data);
+        if (showToast) {
+          toast.success(result.data);
+        }
+        if (onToggle) {
+            onToggle(id, !isSaved);
+        }
       } else {
         toast.error(result.response.data);
       }

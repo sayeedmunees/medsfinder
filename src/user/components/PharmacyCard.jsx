@@ -15,6 +15,8 @@ const PharmacyCard = ({
   imageURL,
   from,
   direction,
+  onToggle,
+  showToast = true
 }) => {
   const [isSaved, setIsSaved] = useState(false);
 
@@ -51,7 +53,12 @@ const PharmacyCard = ({
             }
             sessionStorage.setItem("existingUser", JSON.stringify(existingUser));
          }
-        toast.success(result.data);
+        if (showToast) {
+            toast.success(result.data);
+        }
+        if (onToggle) {
+            onToggle(id, !isSaved);
+        }
       } else {
         toast.error(result.response.data);
       }
