@@ -5,7 +5,7 @@ import { FaPlus } from "react-icons/fa";
 import { MdDelete, MdEdit, MdOutlineUnfoldMore } from "react-icons/md";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import AddPharmacyForm from "../components/AddPharmacyForm";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 
 const itemsPerPage = 5;
 
@@ -263,7 +263,6 @@ const AdminPharmacies = () => {
           />
         )}
       </div>
-      <ToastContainer theme="colored" position="top-center" autoClose={3000} />
     </>
   );
 };

@@ -1,10 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const ProductCard = ({title, type, price , imageURL}) => {
+import { incrementProductClicksAPI } from "../../services/allAPI";
+
+const ProductCard = ({ id, title, type, price, imageURL }) => {
+  const handleCardClick = async () => {
+    try {
+      await incrementProductClicksAPI(id);
+    } catch (error) {
+      console.log("Error incrementing click:", error);
+    }
+  };
+
   return (
     <>
-      <Link to={"/product"}>
+      <Link to={`/product/${id}`} onClick={handleCardClick}>
         <div className="bg-white h-[400px] rounded-lg shadow-lg overflow-hidden group hover:shadow-2xl">
           <div className="relative">
             <img

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import OverviewCard from "../components/OverviewCard";
@@ -9,6 +9,7 @@ import { MdCampaign } from "react-icons/md";
 import AddProductForm from "../components/AddProductForm";
 import AddPharmacyForm from "../components/AddPharmacyForm";
 import AddMedicineForm from "../components/AddMedicineForm";
+import { getAdminDashboardStatsAPI } from "../../services/allAPI";
 
 const AdminDashboard = () => {
   const [pharmacies, setPharmacies] = useState(true);
@@ -17,6 +18,34 @@ const AdminDashboard = () => {
   const [showAddPharmacy, setShowAddPharmacy] = useState(false);
   const [showAddMedicine, setShowAddMedicine] = useState(false);
   const [showAddProduct, setShowAddProduct] = useState(false);
+
+  const [stats, setStats] = useState({
+      medicineCount: 0,
+      pharmacyCount: 0,
+      productCount: 0,
+      userCount: 0
+  });
+
+  const getDashboardStats = async () => {
+      const token = sessionStorage.getItem("token");
+      if (token) {
+          const reqHeader = {
+              Authorization: `Bearer ${token}`,
+          };
+          try {
+              const result = await getAdminDashboardStatsAPI(reqHeader);
+              if (result.status === 200) {
+                  setStats(result.data);
+              }
+          } catch (error) {
+              console.log(error);
+          }
+      }
+  };
+
+  useEffect(() => {
+      getDashboardStats();
+  }, []);
 
   const handlePharmacies = () => {
     setPharmacies(true);
@@ -50,9 +79,9 @@ const AdminDashboard = () => {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-6 mb-2 md:mb-8">
-              <TotalCards icon="medicine" count="1,250" item="Medicines" />
-              <TotalCards icon="pharmacy" count="150" item="Pharmacies" />
-              <TotalCards icon="ad" count="50" item="Ad Products" />
+              <TotalCards icon="medicine" count={stats.medicineCount} item="Medicines" />
+              <TotalCards icon="pharmacy" count={stats.pharmacyCount} item="Pharmacies" />
+              <TotalCards icon="ad" count={stats.productCount} item="Ad Products" />
             </div>
 
             <div className="bg-white rounded-lg shadow p-6">

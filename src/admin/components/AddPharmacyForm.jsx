@@ -1,6 +1,6 @@
 import React from "react";
 import { IoMdClose } from "react-icons/io";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 
 const AddPharmacyForm = ({ showAddPharmacy, selectedPharmacy }) => {
   const [pharmacyDetails, setPharmacyDetails] = React.useState({
@@ -381,7 +381,6 @@ const AddPharmacyForm = ({ showAddPharmacy, selectedPharmacy }) => {
           </form>
         </div>
       </div>
-      <ToastContainer theme="colored" position="top-center" autoClose={3000} />
     </>
   );
 };

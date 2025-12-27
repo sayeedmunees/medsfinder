@@ -219,18 +219,7 @@ const SearchPage = () => {
           <div className="py-12 max-w-4xl mx-auto">
             {medicines.length > 0 ? (
               <div className="space-y-6">
-                {medicines.length > 1 && (
-                  <p className="text-white text-lg mb-4">
-                    Did you mean{" "}
-                    <span className="font-bold">
-                      {medicines[0].medicineName}
-                    </span>
-                    ?
-                  </p>
-                )}
-                {medicines.map((medicine) => (
-                  <SearchMedicineCard key={medicine._id} medicine={medicine} />
-                ))}
+                <SearchMedicineCard key={medicines[0]._id} medicine={medicines[0]} />
               </div>
             ) : (
               <p className="text-white text-lg text-center">
@@ -241,44 +230,58 @@ const SearchPage = () => {
         </section>
 
         {/* Pharmacies */}
-        <section className="py-16 px-6 md:px-12 bg-gray-100">
-          <div className="max-w-4xl mx-auto">
-            <h3 className="text-xl md:text-2xl font-bold mb-6 text-gray-800 ">
-              Pharmacies near {selectedLocation}
-            </h3>
-            <div className="space-y-6">
-              {pharmacies.length > 0 ? pharmacies.map((pharmacy) => {
-                // Determine stock status
-                // We check if the SEARCHED medicine name exists in the pharmacy's stock list
-                // We use the first result from medicines list as the target name
-                const targetMedicine = medicines.length > 0 ? medicines[0].medicineName : "";
-                // Normalize for case-insensitive comparison
-                const inStock = pharmacy.pharmacyMedicinesInStock?.some(stockItem => 
-                    stockItem.toLowerCase().includes(targetMedicine.toLowerCase()) || 
-                    targetMedicine.toLowerCase().includes(stockItem.toLowerCase())
-                );
+        {medicines.length > 0 && (
+          <section className="py-16 px-6 md:px-12 bg-gray-100">
+            <div className="max-w-4xl mx-auto">
+              <h3 className="text-xl md:text-2xl font-bold mb-6 text-gray-800 ">
+                Pharmacies near {selectedLocation}
+              </h3>
+              <div className="space-y-6">
+                {pharmacies.length > 0 ? (
+                  pharmacies.map((pharmacy) => {
+                    // Determine stock status
+                    // We check if the SEARCHED medicine name exists in the pharmacy's stock list
+                    // We use the first result from medicines list as the target name
+                    const targetMedicine =
+                      medicines.length > 0 ? medicines[0].medicineName : "";
+                    // Normalize for case-insensitive comparison
+                    const inStock = pharmacy.pharmacyMedicinesInStock?.some(
+                      (stockItem) =>
+                        stockItem
+                          .toLowerCase()
+                          .includes(targetMedicine.toLowerCase()) ||
+                        targetMedicine.toLowerCase().includes(stockItem.toLowerCase())
+                    );
 
-                return (
-                  <PharmacyCard
-                    key={pharmacy._id}
-                    id={pharmacy._id}
-                    shopName={pharmacy.pharmacyName}
-                    location={pharmacy.pharmacyLocationName}
-                    direction={pharmacy.pharmacyLocationLink}
-                    rating={pharmacy.pharmacyRating}
-                    reviews={pharmacy.pharmacyReviews}
-                    inStock={inStock}
-                    saved={false}
-                    imageURL={pharmacy.pharmacyImage ? `${serverURL}/upload/${pharmacy.pharmacyImage}` : "https://via.placeholder.com/150"}
-                    from="SearchPage"
-                  />
-                );
-              }) : (
-                <p className="text-gray-600">No pharmacies found in this location.</p>
-              )}
+                    return (
+                      <PharmacyCard
+                        key={pharmacy._id}
+                        id={pharmacy._id}
+                        shopName={pharmacy.pharmacyName}
+                        location={pharmacy.pharmacyLocationName}
+                        direction={pharmacy.pharmacyLocationLink}
+                        rating={pharmacy.pharmacyRating}
+                        reviews={pharmacy.pharmacyReviews}
+                        inStock={inStock}
+                        saved={false}
+                        imageURL={
+                          pharmacy.pharmacyImage
+                            ? `${serverURL}/upload/${pharmacy.pharmacyImage}`
+                            : "https://via.placeholder.com/150"
+                        }
+                        from="SearchPage"
+                      />
+                    );
+                  })
+                ) : (
+                  <p className="text-gray-600">
+                    No pharmacies found in this location.
+                  </p>
+                )}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
       </div>
       <Footer />
     </>

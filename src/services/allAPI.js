@@ -106,9 +106,44 @@ export const deletePharmacyAPI = async (id, reqHeader) => {
 
 // Products
 // get all products - GET
+export const getAllProductsAPI = async () => {
+  return await commonAPI(`GET`, `${serverURL}/all-products`);
+};
+// get a product - GET
+export const viewProductAPI = async (id) => {
+  return await commonAPI(`GET`, `${serverURL}/view-product/${id}`);
+};
+// increment product clicks - PATCH
+export const incrementProductClicksAPI = async (id) => {
+  return await commonAPI(`PATCH`, `${serverURL}/increment-product-clicks/${id}`, {});
+};
 // add product - POST
+export const addProductAPI = async (reqBody, reqHeader) => {
+  return await commonAPI(
+    `POST`,
+    `${serverURL}/add-product`,
+    reqBody,
+    reqHeader
+  );
+};
 // update product - PUT
+export const updateProductAPI = async (id, reqBody, reqHeader) => {
+  return await commonAPI(
+    `PUT`,
+    `${serverURL}/update-product/${id}`,
+    reqBody,
+    reqHeader
+  );
+};
 // delete product - DELETE
+export const deleteProductAPI = async (id, reqHeader) => {
+  return await commonAPI(
+    `DELETE`,
+    `${serverURL}/delete-product/${id}`,
+    {},
+    reqHeader
+  );
+};
 
 // USER PAGE//
 
@@ -162,4 +197,14 @@ export const toggleSavedPharmacyAPI = async (reqBody, reqHeader) => {
 // get saved items - GET
 export const getSavedItemsAPI = async (reqHeader) => {
   return await commonAPI(`GET`, `${serverURL}/user/saved-items`, "", reqHeader);
+};
+
+// get admin dashboard stats - GET
+export const getAdminDashboardStatsAPI = async (reqHeader) => {
+  return await commonAPI(`GET`, `${serverURL}/admin/dashboard-stats`, "", reqHeader);
+};
+
+// update admin profile - PUT
+export const updateAdminProfileAPI = async (reqBody, reqHeader) => {
+  return await commonAPI(`PUT`, `${serverURL}/admin/update-profile`, reqBody, reqHeader);
 };

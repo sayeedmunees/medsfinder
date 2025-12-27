@@ -6,7 +6,7 @@ import { MdDelete, MdEdit, MdOutlineUnfoldMore } from "react-icons/md";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import AddMedicineForm from "../components/AddMedicineForm";
 import { getAllMedicinesAPI, deleteMedicineAPI } from "../../services/allAPI";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 
 const itemsPerPage = 5;
 
@@ -256,7 +256,6 @@ const AdminMedicines = () => {
           />
         )}
       </div>
-      <ToastContainer theme="colored" position="top-center" autoClose={3000} />
     </>
   );
 };

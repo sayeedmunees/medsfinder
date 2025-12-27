@@ -1,97 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import ProductCard from "../components/ProductCard";
 import Footer from "../components/Footer";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import { getAllProductsAPI } from "../../services/allAPI";
+import { serverURL } from "../../services/serverURL";
 
 const ProductsPage = () => {
-  const productItems = [
-    {
-      title: "SPF 50+ Sunscreen",
-      type: "Broad spectrum protection",
-      price: "299",
-      imageURL:
-        "https://unblast.com/wp-content/uploads/2019/01/Tube-Mockup-1600x1226.jpg",
-    },
-    {
-      title: "Hydrating Face Cream",
-      type: "For all skin types",
-      price: "249",
-      imageURL:
-        "https://unblast.com/wp-content/uploads/2022/02/Mini-Spray-Bottle-Packaging-Mockup-1536x1152.jpg",
-    },
-    {
-      title: "Vitamin C Serum",
-      type: "Brightens & evens skin tone",
-      price: "329",
-      imageURL:
-        "https://unblast.com/wp-content/uploads/2020/10/Dropper-Packaging-Mockup--1536x1152.jpg",
-    },
-    {
-      title: "Hand Sanitizer",
-      type: "Removes dirt and kills germs",
-      price: "149",
-      imageURL:
-        "https://unblast.com/wp-content/uploads/2020/11/Matt-Hand-Sanitizer-Mockup-1-1-1536x1024.jpg",
-    },
-    {
-      title: "Vitamin C Serum",
-      type: "Brightens & evens skin tone",
-      price: "329",
-      imageURL:
-        "https://unblast.com/wp-content/uploads/2020/10/Dropper-Packaging-Mockup--1536x1152.jpg",
-    },
-    {
-      title: "Hand Sanitizer",
-      type: "Removes dirt and kills germs",
-      price: "149",
-      imageURL:
-        "https://unblast.com/wp-content/uploads/2020/11/Matt-Hand-Sanitizer-Mockup-1-1-1536x1024.jpg",
-    },
-    {
-      title: "Hydrating Face Cream",
-      type: "For all skin types",
-      price: "249",
-      imageURL:
-        "https://unblast.com/wp-content/uploads/2022/02/Mini-Spray-Bottle-Packaging-Mockup-1536x1152.jpg",
-    },
-    {
-      title: "SPF 50+ Sunscreen",
-      type: "Broad spectrum protection",
-      price: "299",
-      imageURL:
-        "https://unblast.com/wp-content/uploads/2019/01/Tube-Mockup-1600x1226.jpg",
-    },
-    {
-      title: "Hand Sanitizer",
-      type: "Removes dirt and kills germs",
-      price: "149",
-      imageURL:
-        "https://unblast.com/wp-content/uploads/2020/11/Matt-Hand-Sanitizer-Mockup-1-1-1536x1024.jpg",
-    },
-    {
-      title: "Vitamin C Serum",
-      type: "Brightens & evens skin tone",
-      price: "329",
-      imageURL:
-        "https://unblast.com/wp-content/uploads/2020/10/Dropper-Packaging-Mockup--1536x1152.jpg",
-    },
-    {
-      title: "SPF 50+ Sunscreen",
-      type: "Broad spectrum protection",
-      price: "299",
-      imageURL:
-        "https://unblast.com/wp-content/uploads/2019/01/Tube-Mockup-1600x1226.jpg",
-    },
-    {
-      title: "Hydrating Face Cream",
-      type: "For all skin types",
-      price: "249",
-      imageURL:
-        "https://unblast.com/wp-content/uploads/2022/02/Mini-Spray-Bottle-Packaging-Mockup-1536x1152.jpg",
-    },
-  ];
+  const [allProducts, setAllProducts] = useState([]);
+  const [searchKey, setSearchKey] = useState("");
+
+  const getAllProducts = async () => {
+    try {
+      const result = await getAllProductsAPI();
+      if (result.status === 200) {
+        setAllProducts(result.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getAllProducts();
+  }, []);
+
+  const filteredProducts = allProducts.filter(product => 
+    product.productName.toLowerCase().includes(searchKey.toLowerCase())
+  );
 
   return (
     <>
@@ -108,29 +45,34 @@ const ProductsPage = () => {
             className="w-full border-none pl-8 md:pl-1 outline-none bg-transparent text-gray-700 placeholder-gray-500 mt-5 md:my-0"
             placeholder="Search for a product"
             type="text"
+            value={searchKey}
+            onChange={(e) => setSearchKey(e.target.value)}
           />
           <div className="w-[90%] md:hidden border-t my-3 border-gray-300 "></div>
-          <Link to={"/all-products"} className="w-full md:w-fit">
-            <button className="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-6 rounded-md flex justify-center items-center gap-2 w-full">
-              Search
-              <FaMagnifyingGlass className="text-xl" />
-            </button>
-          </Link>
+          <button className="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-6 rounded-md flex justify-center items-center gap-2 w-full md:w-fit">
+            Search
+            <FaMagnifyingGlass className="text-xl" />
+          </button>
         </div>
       </section>
       <section className="py-16 px-6 md:px-12 bg-gray-50 ">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {productItems.map((item) => {
-            return (
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map((item) => (
               <ProductCard
-                key={item.title}
-                title={item.title}
-                type={item.type}
+                key={item._id}
+                id={item._id}
+                title={item.productName}
+                type={item.brandName}
                 price={item.price}
-                imageURL={item.imageURL}
+                imageURL={`${serverURL}/upload/${item.uploadedImg}`}
               />
-            );
-          })}
+            ))
+          ) : (
+            <div className="col-span-full text-center py-10">
+              <p className="text-gray-500 text-lg">No products found matching your search.</p>
+            </div>
+          )}
         </div>
       </section>
       <Footer />

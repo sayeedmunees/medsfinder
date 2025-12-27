@@ -7,10 +7,12 @@ import { Link } from "react-router-dom";
 import { LuMapPin } from "react-icons/lu";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { MdExpandMore } from "react-icons/md";
-import { getAllMedicinesAPI } from "../../services/allAPI";
+import { getAllMedicinesAPI, getAllProductsAPI } from "../../services/allAPI";
+import { serverURL } from "../../services/serverURL";
 
 const HomePage = () => {
   const [homeMedicines, setHomeMedicines] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [location, setLocation] = useState("");
 
@@ -21,45 +23,21 @@ const HomePage = () => {
     }
   };
 
-  console.log(homeMedicines);
-
-  const productItems = [
-    {
-      title: "SPF 50+ Sunscreen",
-      type: "Broad spectrum protection",
-      price: "299",
-      imageURL:
-        "https://unblast.com/wp-content/uploads/2019/01/Tube-Mockup-1600x1226.jpg",
-    },
-    {
-      title: "Hydrating Face Cream",
-      type: "For all skin types",
-      price: "249",
-      imageURL:
-        "https://unblast.com/wp-content/uploads/2022/02/Mini-Spray-Bottle-Packaging-Mockup-1536x1152.jpg",
-    },
-    {
-      title: "Vitamin C Serum",
-      type: "Brightens & evens skin tone",
-      price: "329",
-      imageURL:
-        "https://unblast.com/wp-content/uploads/2020/10/Dropper-Packaging-Mockup--1536x1152.jpg",
-    },
-
-    {
-      title: "Hand Sanitizer",
-      type: "Removes dirt and kills germs",
-      price: "149",
-      imageURL:
-        "https://unblast.com/wp-content/uploads/2020/11/Matt-Hand-Sanitizer-Mockup-1-1-1536x1024.jpg",
-    },
-  ];
+  const getAllProducts = async () => {
+    try {
+      const result = await getAllProductsAPI();
+      if (result.status === 200) {
+        setAllProducts(result.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     getAllMedicines();
+    getAllProducts();
   }, []);
-
-  // setTimeout(()=>{setShowLogin(true)}, 3000)
 
   return (
     <>
@@ -86,7 +64,7 @@ const HomePage = () => {
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
               >
-                <option value="" disabled selected>
+                <option value="" disabled>
                   Select Location
                 </option>
                 <option className="border-none outline-none" value="Edapally">
@@ -109,7 +87,6 @@ const HomePage = () => {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            {/* search button */}
             {/* search button */}
             <div className="w-full md:w-fit">
               <button
@@ -168,14 +145,15 @@ const HomePage = () => {
           </div>
           {/* Product cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {productItems.map((item) => {
+            {allProducts.slice(0, 4).map((item) => {
               return (
                 <ProductCard
-                  key={item.title}
-                  title={item.title}
-                  type={item.type}
+                  key={item._id}
+                  id={item._id}
+                  title={item.productName}
+                  type={item.brandName}
                   price={item.price}
-                  imageURL={item.imageURL}
+                  imageURL={`${serverURL}/upload/${item.uploadedImg}`}
                 />
               );
             })}

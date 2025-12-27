@@ -6,7 +6,7 @@ import { FiLogOut } from "react-icons/fi";
 import { ImUser } from "react-icons/im";
 import { PiPillFill } from "react-icons/pi";
 import { RiAdminFill } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import {
   Dialog,
@@ -19,6 +19,7 @@ import Login from "./Login";
 const Header = ({ from }) => {
   // const [dropDownStatus, setDropDownStatus] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
+  const navigate = useNavigate();
 
   const hasToken = !!sessionStorage.getItem("token");
   // true if a token string exists, false otherwise
@@ -26,6 +27,7 @@ const Header = ({ from }) => {
   const handleLogout = () => {
     sessionStorage.removeItem("existingUser");
     sessionStorage.removeItem("token");
+    navigate("/");
   };
 
   return (

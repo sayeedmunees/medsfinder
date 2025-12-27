@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { addMedicineAPI, updateMedicineAPI } from "../../services/allAPI";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { serverURL } from "../../services/serverURL";
 
 const AddMedicineForm = ({ showAddMedicine, selectedMedicine }) => {
@@ -318,7 +318,6 @@ const AddMedicineForm = ({ showAddMedicine, selectedMedicine }) => {
           </div>
         </div>
       </div>
-      <ToastContainer theme="colored" position="top-center" autoClose={3000} />
     </>
   );
 };
