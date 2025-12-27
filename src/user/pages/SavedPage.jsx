@@ -3,11 +3,14 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import MedicineCard from "../components/MedicineCard";
 import PharmacyCard from "../components/PharmacyCard";
+import { FaArrowLeft } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 import { getSavedItemsAPI } from "../../services/allAPI";
 import { serverURL } from "../../services/serverURL";
 import { toast } from "react-toastify";
 
 const SavedPage = () => {
+  const navigate = useNavigate();
   const [medicineTab, setMedicineTab] = useState(true);
   const [pharmacyTab, setPharmacyTab] = useState(false);
   const [savedMedicines, setSavedMedicines] = useState([]);
@@ -90,9 +93,17 @@ const SavedPage = () => {
   };
 
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <Header />
-      <div className="min-h-screen px-6 md:px-12 py-8 bg-gray-200">
+      <div className="bg-gray-200 px-6 md:px-12 pt-6">
+        <button
+          onClick={() => navigate(-1)}
+          className="flex items-center gap-2 text-teal-600 hover:text-teal-700 font-semibold transition-colors"
+        >
+          <FaArrowLeft /> Back
+        </button>
+      </div>
+      <div className="flex-grow px-6 md:px-12 py-8 bg-gray-200">
         <h2 className="text-xl md:text-4xl font-bold mb-8 text-gray-800 ">
           Your Saved List
         </h2>
@@ -131,12 +142,14 @@ const SavedPage = () => {
                   title={item.medicineName}
                   brand={item.brandName}
                   imageURL={item.uploadedImg}
-                  onToggle={(id, isSaved) => onItemToggle(id, isSaved, item, 'medicine')}
+                  onToggle={(id, isSaved) =>
+                    onItemToggle(id, isSaved, item, "medicine")
+                  }
                   showToast={false}
                 />
               ))
             ) : (
-                 <p className="text-gray-500">No saved medicines found.</p>
+              <p className="text-gray-500">No saved medicines found.</p>
             )}
           </section>
         )}
@@ -155,18 +168,20 @@ const SavedPage = () => {
                   reviews={pharmacy.reviews}
                   inStock={true}
                   imageURL={`${serverURL}/upload/${pharmacy.pharmacyImage}`}
-                  onToggle={(id, isSaved) => onItemToggle(id, isSaved, pharmacy, 'pharmacy')}
+                  onToggle={(id, isSaved) =>
+                    onItemToggle(id, isSaved, pharmacy, "pharmacy")
+                  }
                   showToast={false}
                 />
               ))
             ) : (
-                <p className="text-gray-500">No saved pharmacies found.</p>
+              <p className="text-gray-500">No saved pharmacies found.</p>
             )}
           </section>
         )}
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 

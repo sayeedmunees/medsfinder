@@ -40,10 +40,10 @@ const HomePage = () => {
   }, []);
 
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <Header from="home" />
 
-      <main>
+      <main className="flex-grow">
         {/* hero */}
         <section className="bg-teal-600 text-white py-20 px-6 md:px-12 text-center">
           {/* hero text */}
@@ -185,7 +185,7 @@ const HomePage = () => {
       </main>
 
       <Footer className="overflow-x-clip" />
-    </>
+    </div>
   );
 };
 

@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { ImUser } from "react-icons/im";
+import { IoArrowBackOutline } from "react-icons/io5";
 import { FaRegCircleUser } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getUserProfileAPI, updateUserProfileAPI } from "../../services/allAPI";
 import { toast, ToastContainer } from "react-toastify";
 
 const ProfilePage = () => {
+  const navigate = useNavigate();
   const [userDetails, setUserDetails] = useState({
     username: "",
     email: "",
@@ -72,9 +74,17 @@ const ProfilePage = () => {
   };
 
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <Header />
-      <section className="min-h-[80vh] py-16 px-6 md:px-12 bg-gray-200 ">
+      <div className="bg-gray-200 px-6 md:px-12 pt-6">
+        <button
+          onClick={() => navigate(-1)}
+          className="flex items-center gap-2 text-teal-600 hover:text-teal-700 font-semibold transition-colors"
+        >
+          <IoArrowBackOutline className="text-xl" /> Back
+        </button>
+      </div>
+      <section className="flex-grow py-10 px-6 md:px-12 bg-gray-200 ">
         <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-xl p-8 space-y-12">
           <div className="text-center">
             <div className="w-32 h-32 rounded-full bg-gray-200 mx-auto mb-6 flex items-center justify-center overflow-hidden">
@@ -178,7 +188,7 @@ const ProfilePage = () => {
       </section>
       <Footer />
       <ToastContainer theme="colored" position="top-center" autoClose={3000} />
-    </>
+    </div>
   );
 };
 export default ProfilePage;

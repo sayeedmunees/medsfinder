@@ -163,9 +163,9 @@ const SearchPage = () => {
   }, [searchKey, searchLocation]);
 
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <Header />
-      <div>
+      <div className="flex-grow">
         {/* Search and results section */}
         <section className="bg-teal-600 py-8 px-4 sm:px-6 lg:px-8">
           <div className="mt-8 max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-2 flex flex-col md:flex-row items-center space-x-2 gap-2 group focus-within:outline-2 focus-within:outline-teal-300 focus-within:shadow-2xl">
@@ -175,9 +175,9 @@ const SearchPage = () => {
                 id="home-search-location"
                 className="p-2 border-none outline-none rounded-md text-gray-700 bg-white focus:border-teal-600 focus:ring-2 focus:ring-teal-200 cursor-pointer w-full"
                 value={selectedLocation}
-                onChange={(e)=>setSelectedLocation(e.target.value)}
+                onChange={(e) => setSelectedLocation(e.target.value)}
               >
-                <option value="" disabled >
+                <option value="" disabled>
                   Select Location
                 </option>
                 <option className="border-none outline-none" value="Edapally">
@@ -202,10 +202,10 @@ const SearchPage = () => {
                 onClick={() => {
                   if (searchTerm.trim() && selectedLocation) {
                     window.location.href = `/search-result?search=${searchTerm}&location=${selectedLocation}`;
-                  } else if(!searchTerm.trim()) {
+                  } else if (!searchTerm.trim()) {
                     alert("Please enter a medicine name");
                   } else {
-                     alert("Please select a location"); 
+                    alert("Please select a location");
                   }
                 }}
                 className="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-6 rounded-md flex justify-center items-center gap-2 w-full"
@@ -219,7 +219,10 @@ const SearchPage = () => {
           <div className="py-12 max-w-4xl mx-auto">
             {medicines.length > 0 ? (
               <div className="space-y-6">
-                <SearchMedicineCard key={medicines[0]._id} medicine={medicines[0]} />
+                <SearchMedicineCard
+                  key={medicines[0]._id}
+                  medicine={medicines[0]}
+                />
               </div>
             ) : (
               <p className="text-white text-lg text-center">
@@ -284,7 +287,7 @@ const SearchPage = () => {
         )}
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 

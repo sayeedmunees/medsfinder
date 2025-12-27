@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { Link, useParams } from "react-router-dom";
-import { FaBookmark, FaRegBookmark } from "react-icons/fa";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { FaBookmark, FaRegBookmark, FaArrowLeft } from "react-icons/fa6";
 import { serverURL } from "../../services/serverURL";
 import { viewMedicineAPI, viewProductAPI, toggleSavedMedicineAPI } from "../../services/allAPI";
 import { toast } from "react-toastify";
 
 const ProductDetailsPage = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [product, setProduct] = useState(null);
   const [isSaved, setIsSaved] = useState(false);
   const [isMedicine, setIsMedicine] = useState(true);
@@ -93,14 +94,27 @@ const ProductDetailsPage = () => {
   }
 
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <Header />
 
-      <section className="py-16 px-6 md:px-12 bg-gray-100">
+      <div className="bg-gray-100 px-6 md:px-12 pt-6">
+        <button
+          onClick={() => navigate(-1)}
+          className="flex items-center gap-2 text-teal-600 hover:text-teal-700 font-semibold transition-colors"
+        >
+          <FaArrowLeft /> Back
+        </button>
+      </div>
+
+      <section className="flex-grow py-10 px-6 md:px-12 bg-gray-100">
         <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-16">
           <div className="lg:w-1/2 flex justify-center">
             <img
-              src={product.uploadedImg ? `${serverURL}/upload/${product.uploadedImg}` : "https://via.placeholder.com/400"}
+              src={
+                product.uploadedImg
+                  ? `${serverURL}/upload/${product.uploadedImg}`
+                  : "https://via.placeholder.com/400"
+              }
               alt={product.medicineName}
               className="max-h-[600px] rounded-lg shadow-xl"
             />
@@ -112,7 +126,9 @@ const ProductDetailsPage = () => {
             </h1>
 
             <p className="text-lg text-gray-500 mb-2">{product.brandName}</p>
-            <p className="text-2xl font-bold text-teal-600 mb-6">₹{product.price}</p>
+            <p className="text-2xl font-bold text-teal-600 mb-6">
+              ₹{product.price}
+            </p>
 
             <h2 className="text-xl font-semibold mb-2">Description</h2>
             <p className="text-gray-700 leading-relaxed mb-8">
@@ -150,7 +166,7 @@ const ProductDetailsPage = () => {
       </section>
 
       <Footer />
-    </>
+    </div>
   );
 };
 
