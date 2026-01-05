@@ -43,10 +43,9 @@ const HomePage = () => {
     <div className="flex flex-col min-h-screen">
       <Header from="home" />
 
-      <main className="flex-grow">
+      <main className="grow">
         {/* hero */}
         <section className="bg-teal-600 text-white py-20 px-6 md:px-12 text-center">
-          {/* hero text */}
           <h2 className="text-2xl md:text-5xl font-bold mb-3">
             Find medicines faster nearby you
           </h2>
@@ -55,7 +54,7 @@ const HomePage = () => {
           </p>
           {/* search */}
           <div className="mt-16 md:mt-8 max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-2 flex flex-col md:flex-row items-center space-x-2 group focus-within:outline-2 focus-within:outline-teal-300 focus-within:shadow-2xl">
-            {/* select location dropdown. Have to add user location fetching feature */}
+            {/* location dropdown */}
             <div className="flex items-center p-2 w-[90%]">
               <LuMapPin className="text-2xl text-gray-500" />
               <select

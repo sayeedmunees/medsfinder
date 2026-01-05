@@ -1,11 +1,14 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import MedicineCard from "../components/MedicineCard";
 import PharmacyCard from "../components/PharmacyCard";
 import { FaArrowLeft } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
-import { getSavedItemsAPI } from "../../services/allAPI";
+import {
+  getAllMedicinesAPI,
+  getAllPharmaciesAPI,
+} from "../../services/allAPI";
 import { serverURL } from "../../services/serverURL";
 import { toast } from "react-toastify";
 
@@ -15,30 +18,31 @@ const SavedPage = () => {
   const [pharmacyTab, setPharmacyTab] = useState(false);
   const [savedMedicines, setSavedMedicines] = useState([]);
   const [savedPharmacies, setSavedPharmacies] = useState([]);
-  
-  // Track pending removals to allow cancellation (re-save) within the delay window
-  const pendingRemovals = useRef({});
 
   const getSavedItems = async () => {
-    const token = sessionStorage.getItem("token");
-    if (token) {
-      const reqHeader = {
-        Authorization: `Bearer ${token}`,
-      };
-      try {
-        const result = await getSavedItemsAPI(reqHeader);
-        if (result.status === 200) {
-          setSavedMedicines(result.data.savedMedicines);
-          setSavedPharmacies(result.data.savedPharmacies);
-          
-          // Update session storage
-           const existingUser = JSON.parse(sessionStorage.getItem("existingUser"));
-           if (existingUser) {
-                existingUser.savedMedicines = result.data.savedMedicines.map(item => item._id);
-                existingUser.savedPharmacies = result.data.savedPharmacies.map(item => item._id);
-                sessionStorage.setItem("existingUser", JSON.stringify(existingUser));
-           }
+    const existingUser = JSON.parse(sessionStorage.getItem("existingUser"));
 
+    if (existingUser) {
+      const savedMedicineIds = existingUser.savedMedicines || [];
+      const savedPharmacyIds = existingUser.savedPharmacies || [];
+
+      try {
+        // Fetch all medicines
+        const medicineResult = await getAllMedicinesAPI();
+        if (medicineResult.status === 200) {
+          const filteredMedicines = medicineResult.data.filter((item) =>
+            savedMedicineIds.includes(item._id)
+          );
+          setSavedMedicines(filteredMedicines);
+        }
+
+        // Fetch all pharmacies
+        const pharmacyResult = await getAllPharmaciesAPI();
+        if (pharmacyResult.status === 200) {
+          const filteredPharmacies = pharmacyResult.data.filter((item) =>
+            savedPharmacyIds.includes(item._id)
+          );
+          setSavedPharmacies(filteredPharmacies);
         }
       } catch (error) {
         console.log(error);
@@ -48,10 +52,6 @@ const SavedPage = () => {
 
   useEffect(() => {
     getSavedItems();
-    return () => {
-        // Cleanup timeouts on unmount
-        Object.values(pendingRemovals.current).forEach(id => clearTimeout(id));
-    };
   }, []);
 
   const handlePharmacyTab = () => {
@@ -66,29 +66,15 @@ const SavedPage = () => {
 
   const onItemToggle = (id, isSaved, item, type) => {
     if (!isSaved) {
-       // User just UNSAVED the item.
-       // Show toast immediately
-       toast.error(`Removed ${type === 'medicine' ? item.medicineName : item.pharmacyName}`);
+      toast.error(
+        `Removed ${type === "medicine" ? item.medicineName : item.pharmacyName}`
+      );
 
-       // Schedule removal from list after 3 seconds
-       const timeoutId = setTimeout(() => {
-           if (type === 'medicine') {
-               setSavedMedicines(prev => prev.filter(m => m._id !== id));
-           } else {
-               setSavedPharmacies(prev => prev.filter(p => p._id !== id));
-           }
-           delete pendingRemovals.current[id];
-       }, 3000);
-
-       pendingRemovals.current[id] = timeoutId;
-
-    } else {
-        // User RE-SAVED the item (cancelled removal)
-        if (pendingRemovals.current[id]) {
-            clearTimeout(pendingRemovals.current[id]);
-            delete pendingRemovals.current[id];
-            toast.success(`Saved ${type === 'medicine' ? item.medicineName : item.pharmacyName}`);
-        }
+      if (type === "medicine") {
+        setSavedMedicines((prev) => prev.filter((m) => m._id !== id));
+      } else {
+        setSavedPharmacies((prev) => prev.filter((p) => p._id !== id));
+      }
     }
   };
 
@@ -103,7 +89,7 @@ const SavedPage = () => {
           <FaArrowLeft /> Back
         </button>
       </div>
-      <div className="flex-grow px-6 md:px-12 py-8 bg-gray-200">
+      <div className="grow px-6 md:px-12 py-8 bg-gray-200">
         <h2 className="text-xl md:text-4xl font-bold mb-8 text-gray-800 ">
           Your Saved List
         </h2>

@@ -27,7 +27,7 @@ const ProductsPage = () => {
     getAllProducts();
   }, []);
 
-  const filteredProducts = allProducts.filter(product => 
+  const filteredProducts = allProducts.filter((product) =>
     product.productName.toLowerCase().includes(searchKey.toLowerCase())
   );
 
@@ -42,7 +42,7 @@ const ProductsPage = () => {
           <FaArrowLeft /> Back
         </button>
       </div>
-      <div className="flex-grow">
+      <div className="grow">
         <section className="bg-teal-600 text-white py-10 px-6 md:px-12 text-center">
           <h2 className="text-2xl md:text-5xl font-bold mb-3">
             Personal Care & Hygiene Products

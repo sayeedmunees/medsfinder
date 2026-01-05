@@ -18,10 +18,6 @@ export const googleSigninAPI = async (reqBody) => {
   return await commonAPI(`POST`, `${serverURL}/google-signin`, reqBody);
 };
 
-// ADMIN PAGE //
-
-// Dashbaord
-// get total medicines, pharamacy and products
 
 // Medicine
 // get all medicines - GET
@@ -35,7 +31,6 @@ export const searchMedicineAPI = async (searchKey) => {
 };
 
 // get a medicine
-// get a view book
 export const viewMedicineAPI = async (id) => {
   return await commonAPI(`GET`, `${serverURL}/view-medicine/${id}`);
 };

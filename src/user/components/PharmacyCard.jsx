@@ -9,7 +9,7 @@ const PharmacyCard = ({
   id,
   shopName,
   location,
-  rating = 3.5,
+  rating ,
   reviews,
   inStock,
   imageURL,

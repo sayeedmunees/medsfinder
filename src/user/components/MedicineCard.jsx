@@ -16,7 +16,7 @@ const MedicineCard = ({ id, title, brand, imageURL, onToggle, showToast = true }
   }, [id]);
 
   const handleSave = async (e) => {
-    e.preventDefault(); // Prevent link navigation
+    e.preventDefault(); 
     const token = sessionStorage.getItem("token");
     if (!token) {
       toast.warning("Please login to save medicines");

@@ -22,24 +22,6 @@ const ProfilePage = () => {
     if (existingUser) {
       setUserDetails(existingUser);
     }
-    
-    // Also fetch fresh data from backend
-    const token = sessionStorage.getItem("token");
-    if (token) {
-      const reqHeader = {
-        Authorization: `Bearer ${token}`,
-      };
-      try {
-        const result = await getUserProfileAPI(reqHeader);
-        if (result.status === 200) {
-          setUserDetails(result.data);
-          // Update session storage with fresh data
-          sessionStorage.setItem("existingUser", JSON.stringify(result.data));
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    }
   };
 
   useEffect(() => {
@@ -84,7 +66,7 @@ const ProfilePage = () => {
           <IoArrowBackOutline className="text-xl" /> Back
         </button>
       </div>
-      <section className="flex-grow py-10 px-6 md:px-12 bg-gray-200 ">
+      <section className="grow py-10 px-6 md:px-12 bg-gray-200 ">
         <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-xl p-8 space-y-12">
           <div className="text-center">
             <div className="w-32 h-32 rounded-full bg-gray-200 mx-auto mb-6 flex items-center justify-center overflow-hidden">
