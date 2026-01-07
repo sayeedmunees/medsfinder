@@ -2,7 +2,6 @@ import React from "react";
 import { FaClinicMedical } from "react-icons/fa";
 import { GiMedicines } from "react-icons/gi";
 import { MdCampaign } from "react-icons/md";
-import { RiMedicineBottleFill } from "react-icons/ri";
 import { TbHandClick } from "react-icons/tb";
 
 const TotalCards = ({ icon, count, item }) => {

@@ -128,7 +128,7 @@ const HomePage = () => {
             })}
           </div>
         </section>
-        {/*Ad Products */}
+        {/* products */}
         <section className="py-16 px-6 md:px-12 bg-gray-50 ">
           {/* header and view all */}
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-2">
@@ -142,7 +142,7 @@ const HomePage = () => {
               View All
             </Link>
           </div>
-          {/* Product cards */}
+          {/* product cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {allProducts.slice(0, 4).map((item) => {
               return (
@@ -158,29 +158,6 @@ const HomePage = () => {
             })}
           </div>
         </section>
-
-        {/* login dropdown dialog using headless UI */}
-        {/* <Dialog
-          open={showLogin}
-          onClose={setShowLogin}
-          className="relative z-10"
-        >
-          <DialogBackdrop
-            transition
-            className="fixed inset-0 bg-gray-900/50 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in"
-          />
-
-          <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-            <div className="flex min-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0">
-              <DialogPanel
-                transition
-                className="relative transform overflow-hidden rounded-lg bg-gray-800 text-left shadow-xl outline -outline-offset-1 outline-white/10 transition-all data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in sm:my-8 min-w-fit data-closed:sm:translate-y-0 data-closed:sm:scale-95"
-              >
-                <Login onLoginClick={() => setShowLogin(false)} />
-              </DialogPanel>
-            </div>
-          </div>
-        </Dialog> */}
       </main>
 
       <Footer className="overflow-x-clip" />

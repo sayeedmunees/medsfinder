@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import HomePage from "./user/pages/HomePage";
 import SearchPage from "./user/pages/SearchPage";
 import ProductDetailsPage from "./user/pages/ProductDetailsPage";
@@ -15,6 +15,15 @@ import ScrollToTop from "./user/components/ScrollToTop";
 import PageNotFound from "./pages/PageNotFound";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+const AdminProtected = ({ children }) => {
+  const existingUser = JSON.parse(sessionStorage.getItem("existingUser"));
+  if (existingUser && existingUser.email === "admin@medsfinder.com") {
+    return children;
+  } else {
+    return <Navigate to="/" />;
+  }
+};
 
 function App() {
   return (
@@ -35,11 +44,46 @@ function App() {
         <Route path="/all-products" element={<ProductsPage />} />
         <Route path="/signin" element={<Login />} />
 
-        <Route path="/admin-dashboard" element={<AdminDashboard />} />
-        <Route path="/admin-pharmacies" element={<AdminPharmacies />} />
-        <Route path="/admin-medicines" element={<AdminMedicines />} />
-        <Route path="/admin-advertisement" element={<AdminAdvertisement />} />
-        <Route path="/admin-settings" element={<AdminSettings />} />
+        <Route
+          path="/admin-dashboard"
+          element={
+            <AdminProtected>
+              <AdminDashboard />
+            </AdminProtected>
+          }
+        />
+        <Route
+          path="/admin-pharmacies"
+          element={
+            <AdminProtected>
+              <AdminPharmacies />
+            </AdminProtected>
+          }
+        />
+        <Route
+          path="/admin-medicines"
+          element={
+            <AdminProtected>
+              <AdminMedicines />
+            </AdminProtected>
+          }
+        />
+        <Route
+          path="/admin-advertisement"
+          element={
+            <AdminProtected>
+              <AdminAdvertisement />
+            </AdminProtected>
+          }
+        />
+        <Route
+          path="/admin-settings"
+          element={
+            <AdminProtected>
+              <AdminSettings />
+            </AdminProtected>
+          }
+        />
 
         <Route path="/*" element={<PageNotFound />} />
       </Routes>

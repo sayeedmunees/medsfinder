@@ -6,13 +6,8 @@ import { Link, useSearchParams } from "react-router-dom";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { LuMapPin } from "react-icons/lu";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
-import {
-  searchMedicineAPI,
-  getAllPharmaciesAPI,
-  toggleSavedMedicineAPI,
-} from "../../services/allAPI";
+import { searchMedicineAPI, getAllPharmaciesAPI } from "../../services/allAPI";
 import { serverURL } from "../../services/serverURL";
-import { toast } from "react-toastify";
 import SearchMedicineCard from "../components/SearchMedicineCard";
 
 const SearchPage = () => {
@@ -46,7 +41,7 @@ const SearchPage = () => {
       const result = await getAllPharmaciesAPI();
       if (result.status === 200) {
         const allPharmacies = result.data;
-        // Filter by location
+        // filter by location
         const locationFiltered = allPharmacies.filter(
           (pharmacy) =>
             pharmacy.pharmacyLocationName?.toLowerCase() ===
@@ -56,6 +51,16 @@ const SearchPage = () => {
       }
     } catch (error) {
       console.error("Error fetching pharmacies:", error);
+    }
+  };
+
+  const handleSearch = () => {
+    if (searchTerm.trim() && selectedLocation) {
+      window.location.href = `/search-result?search=${searchTerm}&location=${selectedLocation}`;
+    } else if (!searchTerm.trim()) {
+      alert("Please enter a medicine name");
+    } else {
+      alert("Please select a location");
     }
   };
 
@@ -105,15 +110,7 @@ const SearchPage = () => {
             />
             <div className="w-full md:w-fit">
               <button
-                onClick={() => {
-                  if (searchTerm.trim() && selectedLocation) {
-                    window.location.href = `/search-result?search=${searchTerm}&location=${selectedLocation}`;
-                  } else if (!searchTerm.trim()) {
-                    alert("Please enter a medicine name");
-                  } else {
-                    alert("Please select a location");
-                  }
-                }}
+                onClick={handleSearch}
                 className="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-6 rounded-md flex justify-center items-center gap-2 w-full"
               >
                 Search
@@ -174,7 +171,7 @@ const SearchPage = () => {
                             ? `${serverURL}/upload/${pharmacy.pharmacyImage}`
                             : "https://via.placeholder.com/150"
                         }
-                        from="SearchPage"
+                        
                       />
                     );
                   })

@@ -5,7 +5,6 @@ import { FaRegCircleUser } from "react-icons/fa6";
 import { FiLogOut } from "react-icons/fi";
 import { ImUser } from "react-icons/im";
 import { PiPillFill } from "react-icons/pi";
-import { RiAdminFill } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import {
@@ -22,7 +21,6 @@ const Header = ({ from }) => {
   const navigate = useNavigate();
 
   const hasToken = !!sessionStorage.getItem("token");
-  // true if a token string exists, false otherwise
 
   const handleLogout = () => {
     sessionStorage.removeItem("existingUser");

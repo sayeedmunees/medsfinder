@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import ProductCard from "../components/ProductCard";
 import Footer from "../components/Footer";
 import { FaMagnifyingGlass, FaArrowLeft } from "react-icons/fa6";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getAllProductsAPI } from "../../services/allAPI";
 import { serverURL } from "../../services/serverURL";
 

@@ -38,8 +38,9 @@ const ProfilePage = () => {
         const reqHeader = {
           Authorization: `Bearer ${token}`,
         };
+        const reqbody = userDetails;
         try {
-          const result = await updateUserProfileAPI(userDetails, reqHeader);
+          const result = await updateUserProfileAPI(reqbody, reqHeader);
           if (result.status === 200) {
             toast.success("Profile Updated Successfully");
             setUserDetails(result.data);

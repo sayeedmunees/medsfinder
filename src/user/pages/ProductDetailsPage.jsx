@@ -25,15 +25,14 @@ const ProductDetailsPage = () => {
         return;
       }
 
-      // If not medicine, try product
+      // If not medicine
       result = await viewProductAPI(id);
       if (result.status === 200 && result.data) {
         setProduct({
             ...result.data,
-            medicineName: result.data.productName // Map productName to medicineName for UI consistency or handle in JSX
+            medicineName: result.data.productName
         });
         setIsMedicine(false);
-        // Hygiene products don't have personal save yet in this implementation, but we'll show details
       }
     } catch (error) {
        console.log("Error fetching details:", error);
@@ -42,7 +41,7 @@ const ProductDetailsPage = () => {
 
   useEffect(() => {
     getProductDetails();
-    // Check session storage for saved status as well
+    
     const existingUser = JSON.parse(sessionStorage.getItem("existingUser"));
     if (existingUser && existingUser.savedMedicines.includes(id)) {
       setIsSaved(true);
@@ -51,7 +50,7 @@ const ProductDetailsPage = () => {
 
   const handleSave = async () => {
     if (!isMedicine) {
-        toast.info("Saving hygiene products will be available soon!");
+        toast.info("Saving products is not available");
         return;
     }
     const token = sessionStorage.getItem("token");

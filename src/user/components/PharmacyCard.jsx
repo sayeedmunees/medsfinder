@@ -9,14 +9,14 @@ const PharmacyCard = ({
   id,
   shopName,
   location,
-  rating ,
+  rating,
   reviews,
   inStock,
   imageURL,
   from,
   direction,
   onToggle,
-  showToast = true
+  showToast = true,
 }) => {
   const [isSaved, setIsSaved] = useState(false);
 
@@ -43,21 +43,23 @@ const PharmacyCard = ({
       const result = await toggleSavedPharmacyAPI(reqBody, reqHeader);
       if (result.status === 200) {
         setIsSaved(!isSaved);
-         // Update session storage
-         const existingUser = JSON.parse(sessionStorage.getItem("existingUser"));
-         if (existingUser) {
-            if (isSaved) {
-                existingUser.savedPharmacies = existingUser.savedPharmacies.filter(pid => pid !== id);
-            } else {
-                existingUser.savedPharmacies.push(id);
-            }
-            sessionStorage.setItem("existingUser", JSON.stringify(existingUser));
-         }
+        // Update session storage
+        const existingUser = JSON.parse(sessionStorage.getItem("existingUser"));
+        if (existingUser) {
+          if (isSaved) {
+            existingUser.savedPharmacies = existingUser.savedPharmacies.filter(
+              (pid) => pid !== id
+            );
+          } else {
+            existingUser.savedPharmacies.push(id);
+          }
+          sessionStorage.setItem("existingUser", JSON.stringify(existingUser));
+        }
         if (showToast) {
-            toast.success(result.data);
+          toast.success(result.data);
         }
         if (onToggle) {
-            onToggle(id, !isSaved);
+          onToggle(id, !isSaved);
         }
       } else {
         toast.error(result.response.data);
@@ -148,9 +150,9 @@ const PharmacyCard = ({
                       )}
                     </div>
 
-                    <button 
-                        onClick={handleSave}
-                        className="p-2 rounded-full hover:bg-gray-200 text-teal-600 text-xl"
+                    <button
+                      onClick={handleSave}
+                      className="p-2 rounded-full hover:bg-gray-200 text-teal-600 text-xl"
                     >
                       {isSaved ? <FaBookmark /> : <FaRegBookmark />}
                     </button>
@@ -172,7 +174,7 @@ const PharmacyCard = ({
                     Get Directions
                   </a>
 
-                  <button 
+                  <button
                     onClick={handleSave}
                     className="p-2 rounded-full hover:bg-gray-200 text-teal-500 text-2xl"
                   >

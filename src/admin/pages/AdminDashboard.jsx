@@ -9,7 +9,11 @@ import { MdCampaign } from "react-icons/md";
 import AddProductForm from "../components/AddProductForm";
 import AddPharmacyForm from "../components/AddPharmacyForm";
 import AddMedicineForm from "../components/AddMedicineForm";
-import { getAdminDashboardStatsAPI } from "../../services/allAPI";
+import {
+  getAllMedicinesAPI,
+  getAllPharmaciesAPI,
+  getAllProductsAPI,
+} from "../../services/allAPI";
 
 const AdminDashboard = () => {
   const [pharmacies, setPharmacies] = useState(true);
@@ -23,24 +27,28 @@ const AdminDashboard = () => {
       medicineCount: 0,
       pharmacyCount: 0,
       productCount: 0,
-      userCount: 0
   });
 
   const getDashboardStats = async () => {
-      const token = sessionStorage.getItem("token");
-      if (token) {
-          const reqHeader = {
-              Authorization: `Bearer ${token}`,
-          };
-          try {
-              const result = await getAdminDashboardStatsAPI(reqHeader);
-              if (result.status === 200) {
-                  setStats(result.data);
-              }
-          } catch (error) {
-              console.log(error);
-          }
-      }
+    try {
+      const [medicineResult, pharmacyResult, productResult] = await Promise.all([
+        getAllMedicinesAPI(),
+        getAllPharmaciesAPI(),
+        getAllProductsAPI(),
+      ]);
+
+      setStats({
+        medicineCount:
+          medicineResult.status === 200 ? medicineResult.data.length : 0,
+        pharmacyCount:
+          pharmacyResult.status === 200 ? pharmacyResult.data.length : 0,
+        productCount:
+          productResult.status === 200 ? productResult.data.length : 0,
+        userCount: stats.userCount, // Keep userCount or fetch it if needed
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {

@@ -12,7 +12,6 @@ const SearchMedicineCard = ({ medicine }) => {
     if (medicine.saved) {
       setIsSaved(true);
     }
-
     const existingUser = JSON.parse(sessionStorage.getItem("existingUser"));
     if (existingUser && existingUser.savedMedicines.includes(medicine._id)) {
       setIsSaved(true);
@@ -21,13 +20,11 @@ const SearchMedicineCard = ({ medicine }) => {
 
   const handleSave = async (e) => {
     e.preventDefault();
-
     const token = sessionStorage.getItem("token");
     if (!token) {
       toast.warning("Please login to save medicines");
       return;
     }
-
     const reqHeader = {
       Authorization: `Bearer ${token}`,
     };
@@ -37,7 +34,8 @@ const SearchMedicineCard = ({ medicine }) => {
       const result = await toggleSavedMedicineAPI(reqBody, reqHeader);
       if (result.status === 200) {
         setIsSaved(!isSaved);
-        // Update session storage
+        // to updte session storage
+
         const existingUser = JSON.parse(sessionStorage.getItem("existingUser"));
         if (existingUser) {
           if (isSaved) {

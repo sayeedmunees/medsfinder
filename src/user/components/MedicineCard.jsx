@@ -5,7 +5,14 @@ import { serverURL } from "../../services/serverURL";
 import { toggleSavedMedicineAPI } from "../../services/allAPI";
 import { toast } from "react-toastify";
 
-const MedicineCard = ({ id, title, brand, imageURL, onToggle, showToast = true }) => {
+const MedicineCard = ({
+  id,
+  title,
+  brand,
+  imageURL,
+  onToggle,
+  showToast = true,
+}) => {
   const [isSaved, setIsSaved] = useState(false);
 
   useEffect(() => {
@@ -16,7 +23,7 @@ const MedicineCard = ({ id, title, brand, imageURL, onToggle, showToast = true }
   }, [id]);
 
   const handleSave = async (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
     const token = sessionStorage.getItem("token");
     if (!token) {
       toast.warning("Please login to save medicines");
@@ -34,19 +41,21 @@ const MedicineCard = ({ id, title, brand, imageURL, onToggle, showToast = true }
         setIsSaved(!isSaved);
         // Update session storage
         const existingUser = JSON.parse(sessionStorage.getItem("existingUser"));
-         if (existingUser) {
-            if (isSaved) {
-                existingUser.savedMedicines = existingUser.savedMedicines.filter(mid => mid !== id);
-            } else {
-                existingUser.savedMedicines.push(id);
-            }
-            sessionStorage.setItem("existingUser", JSON.stringify(existingUser));
-         }
+        if (existingUser) {
+          if (isSaved) {
+            existingUser.savedMedicines = existingUser.savedMedicines.filter(
+              (mid) => mid !== id
+            );
+          } else {
+            existingUser.savedMedicines.push(id);
+          }
+          sessionStorage.setItem("existingUser", JSON.stringify(existingUser));
+        }
         if (showToast) {
           toast.success(result.data);
         }
         if (onToggle) {
-            onToggle(id, !isSaved);
+          onToggle(id, !isSaved);
         }
       } else {
         toast.error(result.response.data);
@@ -71,9 +80,9 @@ const MedicineCard = ({ id, title, brand, imageURL, onToggle, showToast = true }
           <p className="text-sm text-gray-500">{brand}</p>
         </div>
 
-        <button 
-            onClick={handleSave}
-            className="mt-4 p-2 rounded-full hover:bg-gray-200 text-teal-600 text-xl"
+        <button
+          onClick={handleSave}
+          className="mt-4 p-2 rounded-full hover:bg-gray-200 text-teal-600 text-xl"
         >
           {isSaved ? <FaBookmark /> : <FaRegBookmark />}
         </button>
