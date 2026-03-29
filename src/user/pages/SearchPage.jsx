@@ -75,35 +75,33 @@ const SearchPage = () => {
   }, [searchKey, searchLocation]);
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen transition-colors duration-300">
       <Header />
       <div className="grow">
         {/* Search and results section */}
-        <section className="bg-teal-600 py-8 px-4 sm:px-6 lg:px-8">
-          <div className="mt-8 max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-2 flex flex-col md:flex-row items-center space-x-2 gap-2 group focus-within:outline-2 focus-within:outline-teal-300 focus-within:shadow-2xl">
+        <section className="bg-brand-primary py-8 px-4 sm:px-6 lg:px-8">
+          <div className="mt-8 max-w-4xl mx-auto bg-card rounded-lg shadow-lg p-2 flex flex-col md:flex-row items-center space-x-2 gap-2 group focus-within:outline-2 focus-within:outline-brand-primary/50 focus-within:shadow-2xl transition-all">
             <div className="flex items-center p-2 w-[90%]">
-              <LuMapPin className="text-2xl text-gray-500" />
+              <LuMapPin className="text-2xl text-muted-foreground" />
               <select
                 id="home-search-location"
-                className="p-2 border-none outline-none rounded-md text-gray-700 bg-white focus:border-teal-600 focus:ring-2 focus:ring-teal-200 cursor-pointer w-full"
+                className="p-2 border-none outline-none rounded-md text-foreground bg-card focus:ring-0 cursor-pointer w-full"
                 value={selectedLocation}
                 onChange={(e) => setSelectedLocation(e.target.value)}
               >
                 <option value="" disabled>
                   Select Location
                 </option>
-                <option className="border-none outline-none" value="Edapally">
-                  Edapally
-                </option>
+                <option value="Edapally">Edapally</option>
                 <option value="Kakkanad">Kakkanad</option>
                 <option value="Kalamassery">Kalamassery</option>
                 <option value="Palarivattam">Palarivattam</option>
               </select>
             </div>
-            <div className="w-[90%] md:h-8 border-b md:w-auto md:border-0 md:border-l border-gray-300 "></div>
+            <div className="w-[90%] md:h-8 border-b md:w-auto md:border-0 md:border-l border-border "></div>
             <input
               id="home-search-medicine"
-              className="w-full border-none pl-8 md:pl-1 outline-none bg-transparent text-gray-700 placeholder-gray-500 focus:ring-0 my-5 md:my-0"
+              className="w-full border-none pl-8 md:pl-1 outline-none bg-transparent text-foreground placeholder-muted-foreground focus:ring-0 my-5 md:my-0"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search for medicines"
@@ -112,7 +110,7 @@ const SearchPage = () => {
             <div className="w-full md:w-fit">
               <button
                 onClick={handleSearch}
-                className="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-6 rounded-md flex justify-center items-center gap-2 w-full"
+                className="bg-brand-primary hover:bg-brand-primary text-brand-text font-semibold py-3 px-6 rounded-md flex justify-center items-center gap-2 w-full transition-colors"
               >
                 Search
                 <FaMagnifyingGlass className="text-xl" />
@@ -129,7 +127,7 @@ const SearchPage = () => {
                 />
               </div>
             ) : (
-              <p className="text-white text-lg text-center">
+              <p className="text-brand-text text-lg text-center opacity-90">
                 No medicines found.
               </p>
             )}
@@ -138,9 +136,9 @@ const SearchPage = () => {
 
         {/* Pharmacies */}
         {medicines.length > 0 && (
-          <section className="py-16 px-6 md:px-12 bg-gray-100">
+          <section className="py-16 px-6 md:px-12 bg-background transition-colors duration-300">
             <div className="max-w-4xl mx-auto">
-              <h3 className="text-xl md:text-2xl font-bold mb-6 text-gray-800 ">
+              <h3 className="mb-6">
                 Pharmacies near {searchLocation}
               </h3>
               <div className="space-y-6">
@@ -177,7 +175,7 @@ const SearchPage = () => {
                     );
                   })
                 ) : (
-                  <p className="text-gray-600">
+                  <p className="text-foreground opacity-70">
                     No pharmacies found in this location.
                   </p>
                 )}

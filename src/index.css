@@ -1,6 +1,116 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-* {
-  font-family: "Poppins", "sans-serif";
-  scroll-behavior: smooth;
+@theme inline {
+  /* Font Config */
+  --font-sans: 'Poppins', system-ui, sans-serif;
+
+  /* MedsFinder Semantic Colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-destructive: var(--destructive);
+
+  /* Brand Constants (Always teal/white) */
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-text: var(--brand-text);
+  --color-brand-muted: var(--brand-muted);
+
+  /* Generic Tailwind Mappings for existing components */
+  --color-teal-600: var(--primary);
+  --color-teal-500: var(--secondary);
+  --color-gray-100: var(--background);
+  --color-gray-800: var(--foreground);
+  --color-gray-500: var(--muted-foreground);
+}
+
+:root {
+  --radius: 0.625rem;
+
+  /* BRAND CONSTANTS (Same in both themes) */
+  --brand-primary: #0d9488;    /* teal-600 (Canonical Brand Color) */
+  --brand-text: #ffffff;
+  --brand-muted: #ccfbf1;      /* teal-100 */
+
+  /* LIGHT THEME (Default) */
+  --background: #f3f4f6; /* gray-100 */
+  --foreground: #1f2937; /* gray-800 */
+
+  --card: #ffffff; /* white */
+  --card-foreground: #1f2937;
+
+  --primary: #0d9488; /* teal-600 */
+  --primary-foreground: #ffffff;
+
+  --secondary: #14b8a6; /* teal-500 */
+  --secondary-foreground: #ffffff;
+
+  --muted: #e5e7eb; /* gray-200 */
+  --muted-foreground: #6b7280; /* gray-500 */
+
+  --destructive: #ef4444; /* red-500 */
+
+  --border: #e5e7eb; /* gray-200 */
+  --input: rgba(0, 0, 0, 0.05);
+  --ring: #0d9488;
+}
+
+.dark {
+  /* BRAND CONSTANTS (Same in both themes) */
+  --brand-primary: #0d9488;
+  --brand-text: #ffffff;
+  --brand-muted: #ccfbf1;
+  /* DARK THEME (Neutral Gray/Black) */
+  --background: #121212;
+  --foreground: #f3f4f6;
+
+  --card: #1e1e1e;
+  --card-foreground: #f3f4f6;
+
+  --primary: #14b8a6; /* teal-500 used as primary in dark */
+  --primary-foreground: #121212;
+
+  --secondary: #0d9488;
+  --secondary-foreground: #ffffff;
+
+  --muted: #2d2d2d;
+  --muted-foreground: #9ca3af;
+
+  --destructive: #f87171;
+
+  --border: #374151;
+  --input: rgba(255, 255, 255, 0.1);
+  --ring: #14b8a6;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Standardized Typography Mappings */
+  h1 { @apply text-2xl md:text-3xl font-bold text-foreground leading-tight; }
+  h2 { @apply text-xl md:text-2xl font-semibold text-foreground leading-snug; }
+  h3 { @apply text-lg md:text-xl font-semibold text-foreground; }
+  p { @apply text-sm md:text-base text-foreground leading-relaxed; }
+  small { @apply text-xs text-muted-foreground; }
 }

@@ -58,7 +58,7 @@ const SearchMedicineCard = ({ medicine }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6 flex flex-col md:flex-row items-start md:items-center hover:shadow-2xl transition duration-300 ease-in-out mb-6">
+    <div className="bg-card border border-border rounded-lg shadow-lg p-6 flex flex-col md:flex-row items-start md:items-center hover:shadow-2xl transition-all duration-300 ease-in-out mb-6">
       <Link to={`/product/${medicine._id}`} className="shrink-0">
         <img
           alt={medicine.medicineName}
@@ -70,27 +70,27 @@ const SearchMedicineCard = ({ medicine }) => {
           }
         />
       </Link>
-      <div className="text-gray-800 grow">
+      <div className="text-foreground grow">
         <Link to={`/product/${medicine._id}`}>
-          <h2 className="text-xl md:text-3xl font-bold hover:text-teal-600 transition-colors cursor-pointer inline-block">
+          <h2 className="hover:text-primary transition-colors cursor-pointer inline-block">
             {medicine.medicineName}
           </h2>
         </Link>
-        <p className="text-xs md:text-lg text-gray-600 ">
+        <p className="text-xs md:text-lg text-muted-foreground ">
           Generic: {medicine.genericName}
         </p>
         <div className="mt-4">
-          <h4 className="text-sm md:text-lg font-semibold mb-2">
+          <h3 className="mb-2">
             Product Description
-          </h4>
-          <p className="text-xs md:text-lg text-gray-600 ">
+          </h3>
+          <p className="text-xs md:text-lg text-muted-foreground ">
             {medicine.description}
           </p>
         </div>
       </div>
       <button
         onClick={handleSave}
-        className="ml-auto mt-4 md:mt-0 p-2 rounded-full self-start text-teal-500 text-xl hover:bg-gray-200 transition-colors"
+        className="ml-auto mt-4 md:mt-0 p-2 rounded-full self-start text-primary text-xl hover:bg-muted transition-colors"
       >
         {isSaved ? <FaBookmark /> : <FaRegBookmark />}
       </button>

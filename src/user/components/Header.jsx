@@ -30,10 +30,10 @@ const Header = ({ from }) => {
 
   return (
     <>
-      <header className="py-6 px-6 md:px-12 flex justify-between items-center bg-white shadow-sm">
+      <header className="py-6 px-6 md:px-12 flex justify-between items-center bg-card shadow-sm transition-colors duration-300">
         <Link to={"/"}>
           <div className="flex items-center">
-            <h1 className="flex items-center gap-2 text-xl md:text-3xl font-bold text-teal-600 ml-2">
+            <h1 className="flex items-center gap-2 text-xl md:text-3xl font-bold text-primary ml-2">
               <PiPillFill className="text-blue-500" />
               <div>
                 Meds<span className="text-blue-500">Finder</span>
@@ -44,14 +44,14 @@ const Header = ({ from }) => {
         <div className="flex items-center md:gap-4">
           {from != "home" && (
             <Link to={"/"}>
-              <button className="p-2 rounded-full text-xl md:text-2xl text-teal-600  hover:text-teal-700">
+              <button className="p-2 rounded-full text-xl md:text-2xl text-primary hover:bg-muted transition-colors">
                 <AiFillHome />
               </button>
             </Link>
           )}
           {hasToken && (
             <Link to={"/saved"}>
-              <button className="p-2 rounded-full text-xl md:text-2xl text-teal-600  hover:text-teal-700">
+              <button className="p-2 rounded-full text-xl md:text-2xl text-primary hover:bg-muted transition-colors">
                 <FaBookmark />
               </button>
             </Link>
@@ -67,22 +67,20 @@ const Header = ({ from }) => {
           <div className="text-right">
             {hasToken ? (
               <Menu>
-                <MenuButton className="inline-flex items-center gap-2 rounded-full p-2 text-sm/6 font-semibold text-gray-800 shadow-inner shadow-white/10 focus:not-data-focus:outline-none data-focus:outline data-focus:outline-white data-hover:bg-gray-200 data-open:bg-gray-100">
+                <MenuButton className="inline-flex items-center gap-2 rounded-full p-2 text-sm/6 font-semibold text-foreground shadow-inner shadow-white/10 focus:outline-none data-hover:bg-muted data-open:bg-muted transition-colors">
                   <FaRegCircleUser className="text-xl md:text-2xl" />
                 </MenuButton>
 
                 <MenuItems
                   transition
                   anchor="bottom end"
-                  className="w-52 origin-top-right mt-5 rounded-xl border border-teal-600 bg-white p-2 text-sm/6 text-black transition duration-100 ease-out [--anchor-gap:--spacing(1)] focus:outline-none data-closed:scale-95 data-closed:opacity-0 "
+                  className="w-52 origin-top-right mt-5 rounded-xl border border-primary bg-card p-2 text-sm/6 text-foreground transition duration-100 ease-out [--anchor-gap:--spacing(1)] focus:outline-none data-closed:scale-95 data-closed:opacity-0 "
                 >
                   <MenuItem>
                     <Link to={"/profile"}>
                       <p
-                        className="flex justify-start gap-2 px-4 py-2 mb-1 text-sm rounded-md  hover:bg-gray-200 text-gray-700"
+                        className="flex justify-start gap-2 px-4 py-2 mb-1 text-sm rounded-md hover:bg-muted text-foreground transition-colors"
                         role="menuItem"
-                        tabIndex="-1"
-                        id="menu-item-0"
                       >
                         <ImUser className="text-xl" />
                         Profile
@@ -118,15 +116,13 @@ const Header = ({ from }) => {
                     </button>
                   </MenuItem> */}
 
-                  <div className="m-1 h-px bg-black/20" />
+                  <div className="m-1 h-px bg-border/50" />
                   <MenuItem>
                     <button
                       onClick={handleLogout}
                       type="submit"
-                      className="flex gap-2 w-full rounded-md px-4 py-2 text-left text-sm text-red-600 hover:bg-red-200"
+                      className="flex gap-2 w-full rounded-md px-4 py-2 text-left text-sm text-destructive hover:bg-destructive/10 transition-colors"
                       role="menuItem"
-                      tabIndex="-1"
-                      id="menu-item-1"
                     >
                       <FiLogOut className="text-xl" />
                       Logout
@@ -137,7 +133,7 @@ const Header = ({ from }) => {
             ) : (
               <button
                 onClick={() => setShowLogin(true)}
-                className="p-2 rounded-full text-xl md:text-2xl text-gray-800 hover:bg-gray-200 "
+                className="p-2 rounded-full text-xl md:text-2xl text-foreground hover:bg-muted transition-colors"
               >
                 <FaRegCircleUser />
               </button>

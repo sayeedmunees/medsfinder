@@ -75,7 +75,7 @@ const PharmacyCard = ({
 
   return (
     <>
-      <div className="bg-white rounded-lg shadow-md p-6 flex flex-col md:flex-row items-start hover:shadow-xl transition duration-300 ease-in-out">
+      <div className="bg-card border border-border rounded-lg shadow-md p-6 flex flex-col md:flex-row items-start hover:shadow-xl transition-all duration-300 ease-in-out">
         <img
           alt={shopName}
           className="w-24 h-24 rounded-lg object-cover mr-6 mb-6 md:mb-0"
@@ -84,10 +84,10 @@ const PharmacyCard = ({
         <div className="grow">
           <div className="flex flex-col h-full md:flex-row gap-2 justify-between items-start md:items-center">
             <div className="flex flex-col">
-              <h4 className="text-lg md:text-xl font-semibold text-gray-800 ">
+              <h4 className="text-lg md:text-xl font-semibold text-foreground ">
                 {shopName}
               </h4>
-              <p className="text-sm md:text-base text-gray-600">{location}</p>
+              <p className="text-sm md:text-base text-muted-foreground">{location}</p>
               <div className="flex items-center mt-2">
                 <div className="flex text-xl text-yellow-400">
                   {rating >= 1 ? (
@@ -130,7 +130,7 @@ const PharmacyCard = ({
                     <IoIosStarOutline />
                   )}
                 </div>
-                <span className="text-sm text-gray-500 ml-2">
+                <span className="text-sm text-muted-foreground ml-2">
                   {rating} ({reviews} reviews)
                 </span>
               </div>
@@ -146,7 +146,7 @@ const PharmacyCard = ({
                           <span>In Stock</span>
                         </div>
                       ) : (
-                        <div className="flex items-center space-x-2 text-red-500 font-semibold">
+                        <div className="flex items-center space-x-2 text-destructive font-semibold">
                           <FaCircleXmark className="text-2xl" />
                           <span>Out of Stock</span>
                         </div>
@@ -155,7 +155,7 @@ const PharmacyCard = ({
 
                     <button
                       onClick={handleSave}
-                      className="p-2 rounded-full hover:bg-gray-200 text-teal-600 text-xl"
+                      className="p-2 rounded-full hover:bg-muted text-primary text-xl transition-colors"
                     >
                       {isSaved ? <FaBookmark /> : <FaRegBookmark />}
                     </button>
@@ -163,7 +163,7 @@ const PharmacyCard = ({
 
                   <a
                     href={direction}
-                    className="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-4 w-full rounded-md flex justify-center items-center gap-2 mr-1"
+                    className="bg-primary hover:bg-primary-hover text-primary-foreground font-semibold py-3 px-4 w-full rounded-md flex justify-center items-center gap-2 mr-1 transition-colors"
                   >
                     Get Directions
                   </a>
@@ -172,14 +172,14 @@ const PharmacyCard = ({
                 <div className="flex flex-row gap-3 items-center justify-center">
                   <a
                     href={direction}
-                    className="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-6 rounded-md flex justify-center items-center gap-2 "
+                    className="bg-primary hover:bg-primary-hover text-primary-foreground font-semibold py-3 px-6 rounded-md flex justify-center items-center gap-2 transition-colors"
                   >
                     Get Directions
                   </a>
 
                   <button
                     onClick={handleSave}
-                    className="p-2 rounded-full hover:bg-gray-200 text-teal-500 text-2xl"
+                    className="p-2 rounded-full hover:bg-muted text-primary text-2xl transition-colors"
                   >
                     {isSaved ? <FaBookmark /> : <FaRegBookmark />}
                   </button>

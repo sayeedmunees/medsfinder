@@ -13,7 +13,9 @@ const Header = ({ from }) => {
       setAdminUser({
         username: existingUser.username,
         email: existingUser.email,
-        profile: existingUser.profile || "https://cdn-icons-png.freepik.com/512/3177/3177440.png",
+        profile:
+          existingUser.profile ||
+          "https://cdn-icons-png.freepik.com/512/3177/3177440.png",
       });
     }
   };
@@ -28,8 +30,8 @@ const Header = ({ from }) => {
 
   return (
     <>
-      <header className="py-4 px-6 md:px-12 flex justify-between items-center bg-white shadow-sm">
-        <h2 className="text-base md:text-2xl capitalize font-semibold text-gray-800 ">
+      <header className="py-4 px-6 md:px-12 flex justify-between items-center bg-card shadow-sm transition-colors duration-300">
+        <h2 className="text-base md:text-2xl capitalize font-semibold text-foreground ">
           {from}
         </h2>
         <div className="flex items-center space-x-4">
@@ -40,10 +42,10 @@ const Header = ({ from }) => {
               src={adminUser.profile}
             />
             <div className="ml-3 text-left">
-              <p className="hidden md:block text-sm font-semibold text-gray-800 ">
+              <p className="hidden md:block text-sm font-semibold text-foreground ">
                 {adminUser.username}
               </p>
-              <p className="hidden md:block text-xs text-gray-500 ">
+              <p className="hidden md:block text-xs text-muted-foreground ">
                 {adminUser.email}
               </p>
             </div>

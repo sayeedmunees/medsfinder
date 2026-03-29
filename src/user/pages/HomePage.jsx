@@ -41,47 +41,45 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen transition-colors duration-300">
       <Header from="home" />
 
       <main className="grow">
         {/* hero */}
-        <section className="bg-teal-600 text-white py-20 px-6 md:px-12 text-center">
-          <h2 className="text-2xl md:text-5xl font-bold mb-3">
+        <section className="bg-brand-primary text-brand-text py-20 px-6 md:px-12 text-center">
+          <h1 className="text-2xl md:text-5xl font-bold text-brand-text mb-3">
             Find medicines faster nearby you
-          </h2>
-          <p className="text-base md:text-xl text-white/80 ">
+          </h1>
+          <p className="text-base md:text-xl text-brand-text/80 ">
             No more queues to just hear the medicine is out of stock
           </p>
           {/* search */}
-          <div className="mt-16 md:mt-8 max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-2 flex flex-col md:flex-row items-center space-x-2 group focus-within:outline-2 focus-within:outline-teal-300 focus-within:shadow-2xl">
+          <div className="mt-16 md:mt-8 max-w-2xl mx-auto bg-card rounded-lg shadow-lg p-2 flex flex-col md:flex-row items-center space-x-2 group focus-within:outline-2 focus-within:outline-primary/50 focus-within:shadow-2xl transition-all">
             {/* location dropdown */}
             <div className="flex items-center p-2 w-[90%]">
-              <LuMapPin className="text-2xl text-gray-500" />
+              <LuMapPin className="text-2xl text-muted-foreground" />
               <select
                 id="home-search-location"
-                className="p-2 appearance-none border-none outline-none rounded-md text-gray-700 bg-white focus:border-teal-500 focus:ring-2 focus:ring-teal-200 cursor-pointer w-full"
+                className="p-2 appearance-none border-none outline-none rounded-md text-foreground bg-card focus:ring-0 cursor-pointer w-full"
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
               >
                 <option value="" disabled>
                   Select Location
                 </option>
-                <option className="border-none outline-none" value="Edapally">
-                  Edapally
-                </option>
+                <option value="Edapally">Edapally</option>
                 <option value="Kakkanad">Kakkanad</option>
                 <option value="Kalamassery">Kalamassery</option>
                 <option value="Palarivattam">Palarivattam</option>
               </select>
-              <MdExpandMore className="text-2xl text-gray-500" />
+              <MdExpandMore className="text-2xl text-muted-foreground" />
             </div>
-            {/* seprating btw search and location */}
-            <div className="w-[90%] md:h-8 border-b md:w-auto md:border-0 md:border-l border-gray-300 "></div>
-            {/* serch bar */}
+            {/* separating btw search and location */}
+            <div className="w-[90%] md:h-8 border-b md:w-auto md:border-0 md:border-l border-border "></div>
+            {/* search bar */}
             <input
               id="home-search-medicine"
-              className="w-full border-none pl-8 md:pl-1 outline-none bg-transparent text-gray-700 placeholder-gray-500 focus:ring-0 my-5 md:my-0"
+              className="w-full border-none pl-8 md:pl-1 outline-none bg-transparent text-foreground placeholder-muted-foreground focus:ring-0 my-5 md:my-0"
               placeholder="Search for medicines"
               type="text"
               value={searchTerm}
@@ -99,7 +97,7 @@ const HomePage = () => {
                     toast.info("Please select a location");
                   }
                 }}
-                className="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-6 rounded-md flex justify-center items-center gap-2 w-full "
+                className="bg-primary hover:bg-primary-hover text-primary-foreground font-semibold py-3 px-6 rounded-md flex justify-center items-center gap-2 w-full transition-colors"
               >
                 Search
                 <FaMagnifyingGlass className="text-xl" />
@@ -108,11 +106,11 @@ const HomePage = () => {
           </div>
         </section>
         {/* Most frequent medicines*/}
-        <section className="py-16 px-6 md:px-12 bg-gray-100">
-          {/* haeder */}
-          <h3 className="text-xl md:text-3xl font-bold mb-8 text-gray-800 ">
+        <section className="py-16 px-6 md:px-12 bg-background transition-colors duration-300">
+          {/* header */}
+          <h2 className="mb-8">
             Most frequent searches
-          </h3>
+          </h2>
           {/* medicine cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
             {homeMedicines.slice(0, 5).map((medicine) => {
@@ -130,15 +128,15 @@ const HomePage = () => {
           </div>
         </section>
         {/* products */}
-        <section className="py-16 px-6 md:px-12 bg-gray-50 ">
+        <section className="py-16 px-6 md:px-12 bg-card transition-colors duration-300">
           {/* header and view all */}
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-2">
-            <h3 className="text-xl md:text-3xl font-bold text-gray-800">
+            <h2>
               Personal Care & Hygiene
-            </h3>
+            </h2>
             <Link
               to={"/all-products"}
-              className="text-teal-600 hover:text-teal-700 hover:underline underline-offset-5 font-semibold transition ease-in-out"
+              className="text-primary hover:text-primary-hover hover:underline underline-offset-5 font-semibold transition-all"
             >
               View All
             </Link>

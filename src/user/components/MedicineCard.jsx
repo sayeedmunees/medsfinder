@@ -68,7 +68,7 @@ const MedicineCard = ({
 
   return (
     <Link to={`/product/${id}`}>
-      <div className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center justify-between transition-transform transform hover:scale-105 hover:shadow-xl">
+      <div className="bg-card border border-border rounded-lg shadow-md p-4 flex flex-col items-center justify-between transition-all transform hover:scale-105 hover:shadow-xl">
         <img
           alt={title}
           className="w-auto h-60 object-cover rounded-md mb-4"
@@ -76,13 +76,13 @@ const MedicineCard = ({
         />
 
         <div className="text-center">
-          <p className="font-semibold text-gray-800">{title}</p>
-          <p className="text-sm text-gray-500">{brand}</p>
+          <p className="font-semibold text-foreground">{title}</p>
+          <p className="text-sm text-muted-foreground">{brand}</p>
         </div>
 
         <button
           onClick={handleSave}
-          className="mt-4 p-2 rounded-full hover:bg-gray-200 text-teal-600 text-xl"
+          className="mt-4 p-2 rounded-full hover:bg-muted text-primary text-xl transition-colors"
         >
           {isSaved ? <FaBookmark /> : <FaRegBookmark />}
         </button>
