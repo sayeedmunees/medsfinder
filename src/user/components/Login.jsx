@@ -120,10 +120,7 @@ const Login = ({ onLoginClick }) => {
     console.log(details);
 
     const result = await googleSigninAPI({
-      username: details.name,
-      email: details.email,
-      password: "googlepswd",
-      profile: details.picture,
+      idToken: credentialResponse.credential
     });
     console.log(result);
     if (result.status == 200) {
