@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 const Header = ({ from }) => {
   const [adminUser, setAdminUser] = useState({
     username: "Admin User",
-    email: "admin@medsfinder.com",
+    email: "",
     profile: "https://cdn-icons-png.freepik.com/512/3177/3177440.png",
   });
 

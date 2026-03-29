@@ -88,7 +88,8 @@ const Login = ({ onLoginClick }) => {
         );
         sessionStorage.setItem("token", result.data.token);
         setTimeout(() => {
-          if (result.data.existingUser.email == "admin@medsfinder.com") {
+          const adminRoles = ["assistant", "editor", "admin"];
+          if (adminRoles.includes(result.data.existingUser.role)) {
             navigate("/admin-dashboard");
           } else {
             onLoginClick();
@@ -133,7 +134,8 @@ const Login = ({ onLoginClick }) => {
       );
       sessionStorage.setItem("token", result.data.token);
       setTimeout(() => {
-        if (result.data.existingUser.email == "admin@medsfinder.com") {
+        const adminRoles = ["assistant", "editor", "admin"];
+        if (adminRoles.includes(result.data.existingUser.role)) {
           navigate("/admin-dashboard");
         } else {
           onLoginClick();

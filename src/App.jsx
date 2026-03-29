@@ -18,7 +18,9 @@ import "react-toastify/dist/ReactToastify.css";
 
 const AdminProtected = ({ children }) => {
   const existingUser = JSON.parse(sessionStorage.getItem("existingUser"));
-  if (existingUser && existingUser.email === "admin@medsfinder.com") {
+  const adminRoles = ["assistant", "editor", "admin"];
+  
+  if (existingUser && adminRoles.includes(existingUser.role)) {
     return children;
   } else {
     return <Navigate to="/" />;

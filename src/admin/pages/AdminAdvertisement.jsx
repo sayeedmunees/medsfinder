@@ -16,6 +16,19 @@ const AdminAdvertisement = () => {
   const [showEditProduct, setShowEditProduct] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [allProducts, setAllProducts] = useState([]);
+  const [userRole, setUserRole] = useState("");
+
+  useEffect(() => {
+    const user = JSON.parse(sessionStorage.getItem("existingUser"));
+    if (user) {
+      setUserRole(user.role);
+    }
+  }, []);
+
+  const canEdit = userRole === "editor" || userRole === "admin";
+  const canDelete = userRole === "admin";
+  const canAdd =
+    userRole === "assistant" || userRole === "editor" || userRole === "admin";
 
   const getAllProducts = async () => {
     try {
@@ -90,13 +103,15 @@ const AdminAdvertisement = () => {
                 <h3 className="text-xl md:text-3xl font-bold text-gray-800">
                   Current Products
                 </h3>
-                <button
-                  onClick={() => setShowAddProduct(true)}
-                  className="flex items-center justify-center font-semibold w-fit px-4 py-3 bg-teal-600 text-sm md:text-base text-white rounded-lg shadow-md hover:bg-teal-700 transition-colors"
-                >
-                  <FaPlus className=" mr-2" />
-                  Add New Product
-                </button>
+                {canAdd && (
+                  <button
+                    onClick={() => setShowAddProduct(true)}
+                    className="flex items-center justify-center font-semibold w-fit px-4 py-3 bg-teal-600 text-sm md:text-base text-white rounded-lg shadow-md hover:bg-teal-700 transition-colors"
+                  >
+                    <FaPlus className=" mr-2" />
+                    Add New Product
+                  </button>
+                )}
               </div>
               <div
                 className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
@@ -109,6 +124,8 @@ const AdminAdvertisement = () => {
                       product={item}
                       onEdit={handleEditClick}
                       onDelete={handleDeleteProduct}
+                      canEdit={canEdit}
+                      canDelete={canDelete}
                     />
                   ))
                 ) : (

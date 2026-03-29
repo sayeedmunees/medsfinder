@@ -16,6 +16,19 @@ const AdminMedicines = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedMedicine, setSelectedMedicine] = useState(null);
+  const [userRole, setUserRole] = useState("");
+
+  useEffect(() => {
+    const user = JSON.parse(sessionStorage.getItem("existingUser"));
+    if (user) {
+      setUserRole(user.role);
+    }
+  }, []);
+
+  const canEdit = userRole === "editor" || userRole === "admin";
+  const canDelete = userRole === "admin";
+  const canAdd =
+    userRole === "assistant" || userRole === "editor" || userRole === "admin";
 
   const getAllMedicines = async () => {
     const result = await getAllMedicinesAPI();
@@ -114,13 +127,15 @@ const AdminMedicines = () => {
                   <FaMagnifyingGlass className="text-xl absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" />
                 </div>
 
-                <button
-                  className="flex items-center font-semibold justify-center px-4 py-2 bg-teal-600 text-sm md:text-base text-white rounded-lg shadow-md hover:bg-teal-700 transition-colors"
-                  onClick={() => setShowAddMedicine(true)}
-                >
-                  <FaPlus className="mr-2" />
-                  Add New Medicine
-                </button>
+                {canAdd && (
+                  <button
+                    className="flex items-center font-semibold justify-center px-4 py-2 bg-teal-600 text-sm md:text-base text-white rounded-lg shadow-md hover:bg-teal-700 transition-colors"
+                    onClick={() => setShowAddMedicine(true)}
+                  >
+                    <FaPlus className="mr-2" />
+                    Add New Medicine
+                  </button>
+                )}
               </div>
 
               <div className="overflow-x-auto">
@@ -168,18 +183,22 @@ const AdminMedicines = () => {
                             </div>
                           </td>
                           <td className="p-4 flex space-x-2">
-                            <button
+                            {canEdit && (
+                              <button
                                 onClick={() => handleEdit(medicine)}
                                 className="p-2 text-gray-500 hover:text-blue-500 rounded-full hover:bg-gray-100"
-                            >
-                              <MdEdit className="text-2xl" />
-                            </button>
-                            <button
+                              >
+                                <MdEdit className="text-2xl" />
+                              </button>
+                            )}
+                            {canDelete && (
+                              <button
                                 onClick={() => handleDelete(medicine._id)}
                                 className="p-2 text-gray-500 hover:text-red-500 rounded-full hover:bg-gray-100"
-                            >
-                              <MdDelete className="text-2xl" />
-                            </button>
+                              >
+                                <MdDelete className="text-2xl" />
+                              </button>
+                            )}
                           </td>
                         </tr>
                       ))

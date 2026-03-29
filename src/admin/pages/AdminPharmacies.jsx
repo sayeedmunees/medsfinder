@@ -15,6 +15,18 @@ const AdminPharmacies = () => {
   const [searchKey, setSearchKey] = useState(""); // This acts as filters here
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedPharmacy, setSelectedPharmacy] = useState(null);
+  const [userRole, setUserRole] = useState("");
+
+  useEffect(() => {
+    const user = JSON.parse(sessionStorage.getItem("existingUser"));
+    if (user) {
+      setUserRole(user.role);
+    }
+  }, []);
+
+  const canEdit = userRole === "editor" || userRole === "admin";
+  const canDelete = userRole === "admin";
+  const canAdd = userRole === "assistant" || userRole === "editor" || userRole === "admin";
 
   const getAllPharmacies = async () => {
     try {
@@ -120,13 +132,15 @@ const AdminPharmacies = () => {
                   />
                   <FaMagnifyingGlass className="text-xl absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" />
                 </div>
-                <button
-                  className="flex items-center font-semibold justify-center px-4 py-2 bg-teal-600 text-sm md:text-base text-white rounded-lg shadow-md hover:bg-teal-700 transition-colors"
-                  onClick={() => setShowAddPharmacy(true)}
-                >
-                  <FaPlus className=" mr-2" />
-                  Add New Pharmacy
-                </button>
+                {canAdd && (
+                  <button
+                    className="flex items-center font-semibold justify-center px-4 py-2 bg-teal-600 text-sm md:text-base text-white rounded-lg shadow-md hover:bg-teal-700 transition-colors"
+                    onClick={() => setShowAddPharmacy(true)}
+                  >
+                    <FaPlus className=" mr-2" />
+                    Add New Pharmacy
+                  </button>
+                )}
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-xs md:text-sm lg:text-base">
@@ -181,18 +195,22 @@ const AdminPharmacies = () => {
                               )}
                             </td>
                             <td className="p-4 flex space-x-2">
-                            <button
-                                onClick={()=>handleEdit(pharmacy)}
-                                className="p-2 text-gray-500 hover:text-blue-500 rounded-full hover:bg-gray-100 "
-                            >
-                              <MdEdit className="text-2xl" />
-                            </button>
-                            <button
-                                onClick={()=>handleDelete(pharmacy._id)}
-                                className="p-2 text-gray-500 hover:text-red-500 rounded-full hover:bg-gray-100 "
-                            >
-                              <MdDelete className="text-2xl" />
-                            </button>
+                            {canEdit && (
+                              <button
+                                onClick={() => handleEdit(pharmacy)}
+                                className="p-2 text-gray-500 hover:text-blue-500 rounded-full hover:bg-gray-100"
+                              >
+                                <MdEdit className="text-2xl" />
+                              </button>
+                            )}
+                            {canDelete && (
+                              <button
+                                onClick={() => handleDelete(pharmacy._id)}
+                                className="p-2 text-gray-500 hover:text-red-500 rounded-full hover:bg-gray-100"
+                              >
+                                <MdDelete className="text-2xl" />
+                              </button>
+                            )}
                           </td>
                         </tr>
                       );
