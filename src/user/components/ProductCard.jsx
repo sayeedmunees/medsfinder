@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { incrementProductClicksAPI } from "../../services/allAPI";
+import { getImagePath } from "../../services/imagePath";
 
 const ProductCard = ({ id, title, type, price, imageURL }) => {
   const handleCardClick = async () => {
@@ -20,7 +21,7 @@ const ProductCard = ({ id, title, type, price, imageURL }) => {
             <img
               alt={title}
               className="w-full h-56 object-cover"
-              src={imageURL}
+              src={getImagePath(imageURL)}
             />
             <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
               <button className="bg-brand-primary text-brand-text py-2 px-4 rounded-full font-semibold hover:bg-brand-primary/90 transition-colors">

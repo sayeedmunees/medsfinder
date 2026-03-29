@@ -5,7 +5,6 @@ import Footer from "../components/Footer";
 import { FaMagnifyingGlass, FaArrowLeft } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import { getAllProductsAPI } from "../../services/allAPI";
-import { serverURL } from "../../services/serverURL";
 
 const ProductsPage = () => {
   const navigate = useNavigate();
@@ -76,7 +75,7 @@ const ProductsPage = () => {
                   title={item.productName}
                   type={item.brandName}
                   price={item.price}
-                  imageURL={`${serverURL}/upload/${item.uploadedImg}`}
+                  imageURL={item.uploadedImg}
                 />
               ))
             ) : (

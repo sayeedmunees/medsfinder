@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { FaBookmark, FaRegBookmark, FaArrowLeft } from "react-icons/fa6";
-import { serverURL } from "../../services/serverURL";
+import { getImagePath } from "../../services/imagePath";
 import { viewMedicineAPI, viewProductAPI, toggleSavedMedicineAPI } from "../../services/allAPI";
 import { toast } from "react-toastify";
 
@@ -109,11 +109,7 @@ const ProductDetailsPage = () => {
         <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-16">
           <div className="lg:w-1/2 flex justify-center">
             <img
-              src={
-                product.uploadedImg
-                  ? `${serverURL}/upload/${product.uploadedImg}`
-                  : "https://via.placeholder.com/400"
-              }
+              src={getImagePath(product.uploadedImg) || "https://via.placeholder.com/400"}
               alt={product.medicineName}
               className="max-h-[600px] rounded-lg shadow-xl border border-border"
             />

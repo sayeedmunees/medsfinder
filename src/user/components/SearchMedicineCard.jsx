@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import { toggleSavedMedicineAPI } from "../../services/allAPI";
-import { serverURL } from "../../services/serverURL";
+import { getImagePath } from "../../services/imagePath";
 import { toast } from "react-toastify";
 
 const SearchMedicineCard = ({ medicine }) => {
@@ -63,11 +63,7 @@ const SearchMedicineCard = ({ medicine }) => {
         <img
           alt={medicine.medicineName}
           className="w-32 h-32 object-contain rounded-md mb-4 md:mb-0 md:mr-6 cursor-pointer"
-          src={
-            medicine.uploadedImg
-              ? `${serverURL}/upload/${medicine.uploadedImg}`
-              : "https://via.placeholder.com/150"
-          }
+          src={getImagePath(medicine.uploadedImg) || "https://via.placeholder.com/150"}
         />
       </Link>
       <div className="text-foreground grow">

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { serverURL } from "../../services/serverURL";
+import { getImagePath } from "../../services/imagePath";
 import { toggleSavedMedicineAPI } from "../../services/allAPI";
 import { toast } from "react-toastify";
 
@@ -72,7 +72,7 @@ const MedicineCard = ({
         <img
           alt={title}
           className="w-auto h-60 object-cover rounded-md mb-4"
-          src={`${serverURL}/upload/${imageURL}`}
+          src={getImagePath(imageURL)}
         />
 
         <div className="text-center">

@@ -1,6 +1,7 @@
 import React from "react";
 import { IoMdClose } from "react-icons/io";
 import { toast } from "react-toastify";
+import { compressImage, ALLOWED_IMAGE_TYPES } from "../../services/imageCompression";
 
 const AddPharmacyForm = ({ showAddPharmacy, selectedPharmacy }) => {
   const [pharmacyDetails, setPharmacyDetails] = React.useState({
@@ -352,15 +353,33 @@ const AddPharmacyForm = ({ showAddPharmacy, selectedPharmacy }) => {
                 className="block w-full p-2 text-gray-700  border border-gray-300 rounded-lg cursor-pointer bg-gray-50 placeholder-gray-400 focus:outline-none"
                 id="Pharmacy-image"
                 type="file"
-                onChange={(e) => {
-                  setPharmacyDetails({
-                    ...pharmacyDetails,
-                    image: e.target.files[0],
-                  });
+                accept=".jpg,.jpeg,.png,.webp"
+                onChange={async (e) => {
+                  const file = e.target.files[0];
+                  if (!file) return;
+
+                  if (!ALLOWED_IMAGE_TYPES.includes(file.type)) {
+                    toast.error("Only JPG, JPEG, PNG, and WEBP formats are supported.");
+                    return;
+                  }
+
+                  if (file.size > 200 * 1024) {
+                    const toastId = toast.loading("Optimizing pharmacy image...");
+                    try {
+                      const compressed = await compressImage(file, 150);
+                      setPharmacyDetails({ ...pharmacyDetails, image: compressed });
+                      toast.update(toastId, { render: "Image optimized!", type: "success", isLoading: false, autoClose: 2000 });
+                    } catch (err) {
+                      toast.update(toastId, { render: "Compression failed, using original...", type: "warning", isLoading: false, autoClose: 2000 });
+                      setPharmacyDetails({ ...pharmacyDetails, image: file });
+                    }
+                  } else {
+                    setPharmacyDetails({ ...pharmacyDetails, image: file });
+                  }
                 }}
               />
               <p className="mt-1 text-sm text-gray-500">
-                PNG or JPG (MAX. 800x400px).
+                PNG, JPG or WEBP (MAX. 200KB).
               </p>
             </div>
             <div className="md:col-span-2 flex justify-end mt-4">

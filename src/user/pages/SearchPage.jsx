@@ -7,7 +7,7 @@ import { FaMagnifyingGlass } from "react-icons/fa6";
 import { LuMapPin } from "react-icons/lu";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import { searchMedicineAPI, getAllPharmaciesAPI } from "../../services/allAPI";
-import { serverURL } from "../../services/serverURL";
+import { getImagePath } from "../../services/imagePath";
 import SearchMedicineCard from "../components/SearchMedicineCard";
 import { toast, ToastContainer } from "react-toastify";
 
@@ -165,11 +165,7 @@ const SearchPage = () => {
                         reviews={pharmacy.pharmacyReviews}
                         inStock={inStock}
                         saved={false}
-                        imageURL={
-                          pharmacy.pharmacyImage
-                            ? `${serverURL}/upload/${pharmacy.pharmacyImage}`
-                            : "https://via.placeholder.com/150"
-                        }
+                        imageURL={getImagePath(pharmacy.pharmacyImage) || "https://via.placeholder.com/150"}
                         
                       />
                     );

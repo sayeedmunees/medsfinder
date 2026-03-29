@@ -1,6 +1,6 @@
 import React from "react";
 import { MdDelete, MdEdit } from "react-icons/md";
-import { serverURL } from "../../services/serverURL";
+import { getImagePath } from "../../services/imagePath";
 
 const AdProductCard = ({ product, onEdit, onDelete, canEdit, canDelete }) => {
   const { productName, brandName, price, uploadedImg } = product;
@@ -10,7 +10,7 @@ const AdProductCard = ({ product, onEdit, onDelete, canEdit, canDelete }) => {
         <img
           alt={productName}
           className="w-full h-40 object-cover rounded-lg mb-4"
-          src={`${serverURL}/upload/${uploadedImg}`}
+          src={getImagePath(uploadedImg)}
         />
         <h4 className="text-xl font-semibold text-gray-900 mb-2">{productName}</h4>
         <p className="text-gray-600 text-sm mb-2">{brandName}</p>

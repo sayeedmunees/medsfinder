@@ -5,20 +5,24 @@ import { ImUser } from "react-icons/im";
 import { IoArrowBackOutline } from "react-icons/io5";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { Link, useNavigate } from "react-router-dom";
+import { getImagePath } from "../../services/imagePath";
+import { compressImage, ALLOWED_IMAGE_TYPES } from "../../services/imageCompression";
 import { getUserProfileAPI, updateUserProfileAPI } from "../../services/allAPI";
 import { toast, ToastContainer } from "react-toastify";
 import ConfirmModal from "../../components/ConfirmModal";
 
 const ProfilePage = () => {
   const navigate = useNavigate();
+  const [preview, setPreview] = useState("");
+  const [image, setImage] = useState(null);
   const [userDetails, setUserDetails] = useState({
     username: "",
     email: "",
     phone: "",
     address: "",
+    profile: ""
   });
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
-
 
   const getUserProfile = async () => {
     const existingUser = JSON.parse(sessionStorage.getItem("existingUser"));
@@ -30,6 +34,12 @@ const ProfilePage = () => {
   useEffect(() => {
     getUserProfile();
   }, []);
+
+  useEffect(() => {
+      if (image) {
+          setPreview(URL.createObjectURL(image));
+      }
+  }, [image]);
 
   const handleUpdate = () => {
     const { username, phone, address } = userDetails;
@@ -52,15 +62,27 @@ const ProfilePage = () => {
     const token = sessionStorage.getItem("token");
     if (token) {
       const reqHeader = {
+        "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${token}`,
       };
-      const reqbody = userDetails;
+      
+      const reqBody = new FormData();
+      reqBody.append("username", userDetails.username);
+      reqBody.append("phone", userDetails.phone);
+      reqBody.append("address", userDetails.address);
+      reqBody.append("profile", userDetails.profile); // Keep existing URL/path if no new image
+      if (image) {
+          reqBody.append("profileImage", image);
+      }
+
       try {
-        const result = await updateUserProfileAPI(reqbody, reqHeader);
+        const result = await updateUserProfileAPI(reqBody, reqHeader);
         if (result.status === 200) {
           toast.success("Profile Updated Successfully");
           setUserDetails(result.data);
           sessionStorage.setItem("existingUser", JSON.stringify(result.data));
+          setPreview("");
+          setImage(null);
         } else {
           toast.error("Failed to update profile");
         }
@@ -85,9 +107,48 @@ const ProfilePage = () => {
       <section className="grow py-10 px-6 md:px-12 bg-background transition-colors duration-300">
         <div className="max-w-4xl mx-auto bg-card border border-border rounded-lg shadow-xl p-8 space-y-12">
           <div className="text-center">
-            <div className="w-32 h-32 rounded-full bg-muted mx-auto mb-6 flex items-center justify-center overflow-hidden">
-              <FaRegCircleUser className="text-8xl text-muted-foreground" />
-            </div>
+            <label htmlFor="profile-upload" className="cursor-pointer group relative block w-32 h-32 mx-auto mb-6">
+              <div className="w-32 h-32 rounded-full bg-muted flex items-center justify-center overflow-hidden border-2 border-border group-hover:border-primary transition-all">
+                {preview ? (
+                  <img src={preview} alt="Preview" className="w-full h-full object-cover" />
+                ) : userDetails.profile ? (
+                  <img src={getImagePath(userDetails.profile)} alt="Profile" className="w-full h-full object-cover" />
+                ) : (
+                  <FaRegCircleUser className="text-8xl text-muted-foreground group-hover:text-primary transition-colors" />
+                )}
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-full">
+                  <span className="text-white text-xs font-semibold">Update Photo</span>
+                </div>
+              </div>
+              <input 
+                id="profile-upload" 
+                type="file" 
+                className="hidden" 
+                accept=".jpg,.jpeg,.png,.webp"
+                onChange={async (e) => {
+                  const file = e.target.files[0];
+                  if (!file) return;
+
+                  if (!ALLOWED_IMAGE_TYPES.includes(file.type)) {
+                    toast.error("Only JPG, JPEG, PNG, and WEBP formats are supported.");
+                    return;
+                  }
+
+                  if (file.size > 50 * 1024) {
+                    const toastId = toast.loading("Optimizing image profile...");
+                    try {
+                      const compressed = await compressImage(file, 30);
+                      setImage(compressed);
+                      toast.update(toastId, { render: "Image optimized!", type: "success", isLoading: false, autoClose: 2000 });
+                    } catch (err) {
+                      toast.update(toastId, { render: "Compression failed, please use a smaller image.", type: "error", isLoading: false, autoClose: 3000 });
+                    }
+                  } else {
+                    setImage(file);
+                  }
+                }}
+              />
+            </label>
             <h1 className="mb-2">
               {userDetails.username}
             </h1>

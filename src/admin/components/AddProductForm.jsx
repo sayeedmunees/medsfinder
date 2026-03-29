@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { addProductAPI } from "../../services/allAPI";
 import { toast } from "react-toastify";
+import { compressImage, ALLOWED_IMAGE_TYPES } from "../../services/imageCompression";
 
 const AddProductForm = ({ showAddProduct }) => {
   const [productData, setProductData] = useState({
@@ -188,12 +189,33 @@ const AddProductForm = ({ showAddProduct }) => {
               </label>
               <div className="flex items-center gap-4">
                 <input
-                  onChange={(e) =>
-                    setProductData({ ...productData, uploadedImg: e.target.files[0] })
-                  }
+                  onChange={async (e) => {
+                    const file = e.target.files[0];
+                    if (!file) return;
+
+                    if (!ALLOWED_IMAGE_TYPES.includes(file.type)) {
+                      toast.error("Only JPG, JPEG, PNG, and WEBP formats are supported.");
+                      return;
+                    }
+
+                    if (file.size > 200 * 1024) {
+                      const toastId = toast.loading("Optimizing product image...");
+                      try {
+                        const compressed = await compressImage(file, 150);
+                        setProductData({ ...productData, uploadedImg: compressed });
+                        toast.update(toastId, { render: "Image optimized!", type: "success", isLoading: false, autoClose: 2000 });
+                      } catch (err) {
+                        toast.update(toastId, { render: "Compression failed, using original...", type: "warning", isLoading: false, autoClose: 2000 });
+                        setProductData({ ...productData, uploadedImg: file });
+                      }
+                    } else {
+                      setProductData({ ...productData, uploadedImg: file });
+                    }
+                  }}
                   className="block w-full p-2 text-gray-700  border border-gray-300 rounded-lg cursor-pointer bg-gray-50 placeholder-gray-400 focus:outline-none"
                   id="product-image"
                   type="file"
+                  accept=".jpg,.jpeg,.png,.webp"
                 />
                 {preview && (
                   <img
@@ -204,7 +226,7 @@ const AddProductForm = ({ showAddProduct }) => {
                 )}
               </div>
               <p className="mt-1 text-sm text-gray-500">
-                PNG or JPG(MAX. 800x400px).
+                PNG, JPG or WEBP (MAX. 200KB).
               </p>
             </div>
 
