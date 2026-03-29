@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { getImagePath } from "../../services/imagePath";
 
 const Header = ({ from }) => {
   const [adminUser, setAdminUser] = useState({
@@ -38,8 +39,8 @@ const Header = ({ from }) => {
           <div className="flex items-center">
             <img
               alt="Admin Icon"
-              className="h-8 md:h-10 w-8 md:w-10 rounded-full object-cover"
-              src={adminUser.profile}
+              className="h-8 w-8 rounded-full object-cover border border-border"
+              src={getImagePath(adminUser.profile)}
             />
             <div className="ml-3 text-left">
               <p className="hidden md:block text-sm font-semibold text-foreground ">

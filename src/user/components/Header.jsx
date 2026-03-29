@@ -14,11 +14,20 @@ import {
   DialogTitle,
 } from "@headlessui/react";
 import Login from "./Login";
+import { getImagePath } from "../../services/imagePath";
 
 const Header = ({ from }) => {
   // const [dropDownStatus, setDropDownStatus] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const navigate = useNavigate();
+  const [userData, setUserData] = useState(null);
+
+  React.useEffect(() => {
+    const existingUser = JSON.parse(sessionStorage.getItem("existingUser"));
+    if (existingUser) {
+      setUserData(existingUser);
+    }
+  }, []);
 
   const hasToken = !!sessionStorage.getItem("token");
 
@@ -57,18 +66,19 @@ const Header = ({ from }) => {
             </Link>
           )}
 
-          {/* <button
-            onClick={() => setDropDownStatus(!dropDownStatus)}
-            className="p-2 rounded-full text-xl md:text-2xl text-gray-800 hover:bg-gray-200 "
-          >
-            <FaRegCircleUser />
-          </button> */}
-
           <div className="text-right">
             {hasToken ? (
               <Menu>
                 <MenuButton className="inline-flex items-center gap-2 rounded-full p-2 text-sm/6 font-semibold text-foreground shadow-inner shadow-white/10 focus:outline-none data-hover:bg-muted data-open:bg-muted transition-colors">
-                  <FaRegCircleUser className="text-xl md:text-2xl" />
+                  {userData?.profile ? (
+                    <img
+                      alt="User profile"
+                      className="h-8 w-8 rounded-full object-cover border border-border"
+                      src={getImagePath(userData.profile)}
+                    />
+                  ) : (
+                    <FaRegCircleUser className="text-xl md:text-2xl" />
+                  )}
                 </MenuButton>
 
                 <MenuItems
@@ -79,42 +89,22 @@ const Header = ({ from }) => {
                   <MenuItem>
                     <Link to={"/profile"}>
                       <p
-                        className="flex justify-start gap-2 px-4 py-2 mb-1 text-sm rounded-md hover:bg-muted text-foreground transition-colors"
+                        className="flex justify-start items-center gap-2 px-4 py-2 mb-1 text-sm rounded-md hover:bg-muted text-foreground transition-colors"
                         role="menuItem"
                       >
-                        <ImUser className="text-xl" />
+                        {userData?.profile ? (
+                          <img
+                            alt="User Profile"
+                            className="h-6 w-6 rounded-full object-cover"
+                            src={getImagePath(userData.profile)}
+                          />
+                        ) : (
+                          <ImUser className="text-xl" />
+                        )}
                         Profile
                       </p>
                     </Link>
                   </MenuItem>
-
-                  {/* Admin and Login */}
-                  {/* <MenuItem>
-                    <Link to={"/dashboard"}>
-                      <p
-                        className="flex gap-2 px-4 py-2 my-1 text-sm rounded-md  hover:bg-gray-200 text-gray-700"
-                        role="menuItem"
-                        tabIndex="-1"
-                        id="menu-item-0"
-                      >
-                        <RiAdminFill className="text-xl" />
-                        Admin
-                      </p>
-                    </Link>
-                  </MenuItem>
-                  <MenuItem>
-                    <button
-                      type="submit"
-                      className="flex gap-2 w-full px-4 py-2 my-1 text-sm rounded-md  hover:bg-gray-200 text-gray-700"
-                      role="menuItem"
-                      tabIndex="-1"
-                      id="menu-item-1"
-                      onClick={onLoginClick}
-                    >
-                      <ImUser className="text-xl" />
-                      Login
-                    </button>
-                  </MenuItem> */}
 
                   <div className="m-1 h-px bg-border/50" />
                   <MenuItem>
