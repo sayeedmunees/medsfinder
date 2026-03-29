@@ -5,6 +5,8 @@ import { IoIosStar, IoIosStarHalf, IoIosStarOutline } from "react-icons/io";
 import { toggleSavedPharmacyAPI } from "../../services/allAPI";
 import { toast } from "react-toastify";
 
+import { Link, useNavigate, useLocation } from "react-router-dom";
+
 const PharmacyCard = ({
   id,
   shopName,
@@ -13,12 +15,13 @@ const PharmacyCard = ({
   reviews,
   inStock,
   imageURL,
-  from,
   direction,
   onToggle,
   showToast = true,
 }) => {
   const [isSaved, setIsSaved] = useState(false);
+  const { pathname } = useLocation();
+  const isSearchPage = pathname === "/search-result";
 
   useEffect(() => {
     const existingUser = JSON.parse(sessionStorage.getItem("existingUser"));
@@ -133,7 +136,7 @@ const PharmacyCard = ({
               </div>
             </div>
             <div>
-              {from ? (
+              {isSearchPage ? (
                 <div className="flex flex-col gap-2 items-start md:items-end">
                   <div className="flex items-center space-x-4">
                     <div>

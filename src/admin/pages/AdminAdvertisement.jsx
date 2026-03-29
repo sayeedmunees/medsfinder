@@ -10,12 +10,15 @@ import EditProductForm from "../components/EditProductForm";
 import { getAllProductsAPI, deleteProductAPI } from "../../services/allAPI";
 import { serverURL } from "../../services/serverURL";
 import { toast } from "react-toastify";
+import ConfirmModal from "../../components/ConfirmModal";
 
 const AdminAdvertisement = () => {
   const [showAddProduct, setShowAddProduct] = useState(false);
   const [showEditProduct, setShowEditProduct] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [allProducts, setAllProducts] = useState([]);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [deleteId, setDeleteId] = useState(null);
   const [userRole, setUserRole] = useState("");
 
   useEffect(() => {
@@ -45,25 +48,29 @@ const AdminAdvertisement = () => {
     getAllProducts();
   }, []);
 
-  const handleDeleteProduct = async (id) => {
-    if (window.confirm("Are you sure you want to delete this product?")) {
-      const token = sessionStorage.getItem("token");
-      if (token) {
-        const reqHeader = {
-          Authorization: `Bearer ${token}`,
-        };
-        try {
-          const result = await deleteProductAPI(id, reqHeader);
-          if (result.status === 200) {
-            toast.success("Product deleted successfully");
-            getAllProducts();
-          } else {
-            toast.error("Failed to delete product");
-          }
-        } catch (error) {
-          console.log(error);
-          toast.error("Something went wrong");
+  const handleDeleteProduct = (id) => {
+    setDeleteId(id);
+    setIsDeleteModalOpen(true);
+  };
+
+  const confirmDelete = async () => {
+    const id = deleteId;
+    const token = sessionStorage.getItem("token");
+    if (token) {
+      const reqHeader = {
+        Authorization: `Bearer ${token}`,
+      };
+      try {
+        const result = await deleteProductAPI(id, reqHeader);
+        if (result.status === 200) {
+          toast.success("Product deleted successfully");
+          getAllProducts();
+        } else {
+          toast.error("Failed to delete product");
         }
+      } catch (error) {
+        console.log(error);
+        toast.error("Something went wrong");
       }
     }
   };
@@ -153,6 +160,14 @@ const AdminAdvertisement = () => {
             onUpdateSuccess={getAllProducts}
           />
         )}
+        <ConfirmModal
+          isOpen={isDeleteModalOpen}
+          onClose={() => setIsDeleteModalOpen(false)}
+          onConfirm={confirmDelete}
+          title="Delete Product"
+          message="Are you sure you want to delete this product? This action cannot be undone."
+          confirmText="Delete"
+        />
       </div>
     </>
   );

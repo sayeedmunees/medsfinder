@@ -6,6 +6,7 @@ import { MdDelete, MdEdit, MdOutlineUnfoldMore } from "react-icons/md";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import AddPharmacyForm from "../components/AddPharmacyForm";
 import { toast } from "react-toastify";
+import ConfirmModal from "../../components/ConfirmModal";
 
 const itemsPerPage = 5;
 
@@ -16,6 +17,8 @@ const AdminPharmacies = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedPharmacy, setSelectedPharmacy] = useState(null);
   const [userRole, setUserRole] = useState("");
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [deleteId, setDeleteId] = useState(null);
 
   useEffect(() => {
     const user = JSON.parse(sessionStorage.getItem("existingUser"));
@@ -61,10 +64,9 @@ const AdminPharmacies = () => {
   }
 
   const handleDelete = (id) => {
-    if(window.confirm("Are you sure you want to delete this pharmacy?")){
-        deletePharmacy(id)
-    }
-  }
+    setDeleteId(id);
+    setIsDeleteModalOpen(true);
+  };
 
   const handleEdit = (pharmacy) => {
     setSelectedPharmacy(pharmacy)
@@ -280,6 +282,14 @@ const AdminPharmacies = () => {
             selectedPharmacy={selectedPharmacy}
           />
         )}
+        <ConfirmModal
+          isOpen={isDeleteModalOpen}
+          onClose={() => setIsDeleteModalOpen(false)}
+          onConfirm={() => deletePharmacy(deleteId)}
+          title="Delete Pharmacy"
+          message="Are you sure you want to delete this pharmacy? This action cannot be undone."
+          confirmText="Delete"
+        />
       </div>
     </>
   );

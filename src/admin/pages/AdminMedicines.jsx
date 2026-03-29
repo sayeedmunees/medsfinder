@@ -7,6 +7,7 @@ import { FaMagnifyingGlass } from "react-icons/fa6";
 import AddMedicineForm from "../components/AddMedicineForm";
 import { getAllMedicinesAPI, deleteMedicineAPI } from "../../services/allAPI";
 import { toast } from "react-toastify";
+import ConfirmModal from "../../components/ConfirmModal";
 
 const itemsPerPage = 5;
 
@@ -17,6 +18,8 @@ const AdminMedicines = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedMedicine, setSelectedMedicine] = useState(null);
   const [userRole, setUserRole] = useState("");
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [deleteId, setDeleteId] = useState(null);
 
   useEffect(() => {
     const user = JSON.parse(sessionStorage.getItem("existingUser"));
@@ -37,17 +40,21 @@ const AdminMedicines = () => {
     }
   };
 
-  const handleDelete = async (id) => {
-    if (window.confirm("Are you sure you want to delete this medicine?")) {
-        const token = sessionStorage.getItem("token");
-        const reqHeader = { Authorization: `Bearer ${token}` };
-        const result = await deleteMedicineAPI(id, reqHeader);
-        if (result.status === 200) {
-            toast.success("Medicine deleted successfully");
-            getAllMedicines();
-        } else {
-            toast.error("Failed to delete medicine");
-        }
+  const handleDelete = (id) => {
+    setDeleteId(id);
+    setIsDeleteModalOpen(true);
+  };
+
+  const confirmDelete = async () => {
+    const id = deleteId;
+    const token = sessionStorage.getItem("token");
+    const reqHeader = { Authorization: `Bearer ${token}` };
+    const result = await deleteMedicineAPI(id, reqHeader);
+    if (result.status === 200) {
+      toast.success("Medicine deleted successfully");
+      getAllMedicines();
+    } else {
+      toast.error("Failed to delete medicine");
     }
   };
 
@@ -274,6 +281,14 @@ const AdminMedicines = () => {
             selectedMedicine={selectedMedicine}
           />
         )}
+        <ConfirmModal
+          isOpen={isDeleteModalOpen}
+          onClose={() => setIsDeleteModalOpen(false)}
+          onConfirm={confirmDelete}
+          title="Delete Medicine"
+          message="Are you sure you want to delete this medicine? This action cannot be undone."
+          confirmText="Delete"
+        />
       </div>
     </>
   );

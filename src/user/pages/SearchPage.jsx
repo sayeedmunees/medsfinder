@@ -9,6 +9,7 @@ import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import { searchMedicineAPI, getAllPharmaciesAPI } from "../../services/allAPI";
 import { serverURL } from "../../services/serverURL";
 import SearchMedicineCard from "../components/SearchMedicineCard";
+import { toast, ToastContainer } from "react-toastify";
 
 const SearchPage = () => {
   const [searchParams] = useSearchParams();
@@ -58,9 +59,9 @@ const SearchPage = () => {
     if (searchTerm.trim() && selectedLocation) {
       window.location.href = `/search-result?search=${searchTerm}&location=${selectedLocation}`;
     } else if (!searchTerm.trim()) {
-      alert("Please enter a medicine name");
+      toast.info("Please enter a medicine name");
     } else {
-      alert("Please select a location");
+      toast.info("Please select a location");
     }
   };
 
@@ -186,6 +187,7 @@ const SearchPage = () => {
         )}
       </div>
       <Footer />
+      <ToastContainer theme="colored" position="top-center" autoClose={2500} />
     </div>
   );
 };

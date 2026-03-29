@@ -9,6 +9,7 @@ import { FaMagnifyingGlass } from "react-icons/fa6";
 import { MdExpandMore } from "react-icons/md";
 import { getAllMedicinesAPI, getAllProductsAPI } from "../../services/allAPI";
 import { serverURL } from "../../services/serverURL";
+import { toast, ToastContainer } from "react-toastify";
 
 const HomePage = () => {
   const [homeMedicines, setHomeMedicines] = useState([]);
@@ -93,9 +94,9 @@ const HomePage = () => {
                   if (searchTerm.trim() && location) {
                     window.location.href = `/search-result?search=${searchTerm}&location=${location}`;
                   } else if (!searchTerm.trim()) {
-                    alert("Please enter a medicine name");
+                    toast.info("Please enter a medicine name");
                   } else {
-                    alert("Please select a location");
+                    toast.info("Please select a location");
                   }
                 }}
                 className="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-6 rounded-md flex justify-center items-center gap-2 w-full "
@@ -161,6 +162,7 @@ const HomePage = () => {
       </main>
 
       <Footer className="overflow-x-clip" />
+      <ToastContainer theme="colored" position="top-center" autoClose={2500} />
     </div>
   );
 };

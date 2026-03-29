@@ -7,6 +7,7 @@ import { FaRegCircleUser } from "react-icons/fa6";
 import { Link, useNavigate } from "react-router-dom";
 import { getUserProfileAPI, updateUserProfileAPI } from "../../services/allAPI";
 import { toast, ToastContainer } from "react-toastify";
+import ConfirmModal from "../../components/ConfirmModal";
 
 const ProfilePage = () => {
   const navigate = useNavigate();
@@ -16,6 +17,8 @@ const ProfilePage = () => {
     phone: "",
     address: "",
   });
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+
 
   const getUserProfile = async () => {
     const existingUser = JSON.parse(sessionStorage.getItem("existingUser"));
@@ -28,30 +31,42 @@ const ProfilePage = () => {
     getUserProfile();
   }, []);
 
-  const handleUpdate = async () => {
+  const handleUpdate = () => {
     const { username, phone, address } = userDetails;
     if (!username || !phone || !address) {
       toast.info("Please fill all fields");
-    } else {
-      const token = sessionStorage.getItem("token");
-      if (token) {
-        const reqHeader = {
-          Authorization: `Bearer ${token}`,
-        };
-        const reqbody = userDetails;
-        try {
-          const result = await updateUserProfileAPI(reqbody, reqHeader);
-          if (result.status === 200) {
-            toast.success("Profile Updated Successfully");
-            setUserDetails(result.data);
-            sessionStorage.setItem("existingUser", JSON.stringify(result.data));
-          } else {
-            toast.error("Failed to update profile");
-          }
-        } catch (error) {
-          console.log(error);
-          toast.error("Something went wrong");
+      return;
+    }
+    
+    // Simple 10-digit phone validation
+    const phoneRegex = /^[0-9]{10}$/;
+    if (!phoneRegex.test(phone)) {
+      toast.warning("Please enter a valid 10-digit phone number");
+      return;
+    }
+
+    setIsConfirmModalOpen(true);
+  };
+
+  const confirmUpdate = async () => {
+    const token = sessionStorage.getItem("token");
+    if (token) {
+      const reqHeader = {
+        Authorization: `Bearer ${token}`,
+      };
+      const reqbody = userDetails;
+      try {
+        const result = await updateUserProfileAPI(reqbody, reqHeader);
+        if (result.status === 200) {
+          toast.success("Profile Updated Successfully");
+          setUserDetails(result.data);
+          sessionStorage.setItem("existingUser", JSON.stringify(result.data));
+        } else {
+          toast.error("Failed to update profile");
         }
+      } catch (error) {
+        console.log(error);
+        toast.error("Something went wrong");
       }
     }
   };
@@ -171,6 +186,15 @@ const ProfilePage = () => {
       </section>
       <Footer />
       <ToastContainer theme="colored" position="top-center" autoClose={3000} />
+      <ConfirmModal
+        isOpen={isConfirmModalOpen}
+        onClose={() => setIsConfirmModalOpen(false)}
+        onConfirm={confirmUpdate}
+        title="Update Profile"
+        message="Are you sure you want to save these changes to your profile?"
+        confirmText="Save"
+        type="success"
+      />
     </div>
   );
 };
