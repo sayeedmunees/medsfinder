@@ -24,18 +24,16 @@ const AdminDashboard = () => {
   const [showAddProduct, setShowAddProduct] = useState(false);
 
   const [stats, setStats] = useState({
-      medicineCount: 0,
-      pharmacyCount: 0,
-      productCount: 0,
+    medicineCount: 0,
+    pharmacyCount: 0,
+    productCount: 0,
   });
 
   const getDashboardStats = async () => {
     try {
-      const [medicineResult, pharmacyResult, productResult] = await Promise.all([
-        getAllMedicinesAPI(),
-        getAllPharmaciesAPI(),
-        getAllProductsAPI(),
-      ]);
+      const [medicineResult, pharmacyResult, productResult] = await Promise.all(
+        [getAllMedicinesAPI(), getAllPharmaciesAPI(), getAllProductsAPI()],
+      );
 
       setStats({
         medicineCount:
@@ -52,7 +50,7 @@ const AdminDashboard = () => {
   };
 
   useEffect(() => {
-      getDashboardStats();
+    getDashboardStats();
   }, []);
 
   const handlePharmacies = () => {
@@ -87,9 +85,21 @@ const AdminDashboard = () => {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-6 mb-2 md:mb-8">
-              <TotalCards icon="medicine" count={stats.medicineCount} item="Medicines" />
-              <TotalCards icon="pharmacy" count={stats.pharmacyCount} item="Pharmacies" />
-              <TotalCards icon="ad" count={stats.productCount} item="Ad Products" />
+              <TotalCards
+                icon="medicine"
+                count={stats.medicineCount}
+                item="Medicines"
+              />
+              <TotalCards
+                icon="pharmacy"
+                count={stats.pharmacyCount}
+                item="Pharmacies"
+              />
+              <TotalCards
+                icon="ad"
+                count={stats.productCount}
+                item="Ad Products"
+              />
             </div>
 
             <div className="bg-white rounded-lg shadow p-6">
@@ -137,7 +147,7 @@ const AdminDashboard = () => {
                   location="Pharmacy"
                   addSubtitle="Onboard a new pharmacy to the network."
                   editSubtitle="Edit or manage details or update status."
-                  path="admin-pharmacies"
+                  path="dashboard/pharmacies"
                   showAddForm={() => setShowAddPharmacy(true)}
                 />
               )}
@@ -147,7 +157,7 @@ const AdminDashboard = () => {
                   location="Medicine"
                   addSubtitle="Add a new medicine to the database."
                   editSubtitle=" Update medicine information and stock."
-                  path="admin-medicines"
+                  path="dashboard/medicines"
                   showAddForm={() => setShowAddMedicine(true)}
                 />
               )}
@@ -157,7 +167,7 @@ const AdminDashboard = () => {
                   location="Ad"
                   addSubtitle="Create a new ad product listing."
                   editSubtitle=" Edit existing advertisement details."
-                  path="admin-advertisement"
+                  path="dashboard/advertisement"
                   showAddForm={() => setShowAddProduct(true)}
                 />
               )}

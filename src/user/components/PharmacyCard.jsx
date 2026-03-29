@@ -163,7 +163,7 @@ const PharmacyCard = ({
 
                   <a
                     href={direction}
-                    className="bg-primary hover:bg-primary-hover text-primary-foreground font-semibold py-3 px-4 w-full rounded-md flex justify-center items-center gap-2 mr-1 transition-colors"
+                    className="btn-primary w-full flex justify-center items-center gap-2 mr-1"
                   >
                     Get Directions
                   </a>
@@ -172,7 +172,7 @@ const PharmacyCard = ({
                 <div className="flex flex-row gap-3 items-center justify-center">
                   <a
                     href={direction}
-                    className="bg-primary hover:bg-primary-hover text-primary-foreground font-semibold py-3 px-6 rounded-md flex justify-center items-center gap-2 transition-colors"
+                    className="btn-primary flex justify-center items-center gap-2"
                   >
                     Get Directions
                   </a>

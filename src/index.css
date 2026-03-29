@@ -113,4 +113,22 @@
   h3 { @apply text-lg md:text-xl font-semibold text-foreground; }
   p { @apply text-sm md:text-base text-foreground leading-relaxed; }
   small { @apply text-xs text-muted-foreground; }
+
+  /* Consistent Button Base Styles */
+  button {
+    @apply transition-all duration-300 active:scale-95 cursor-pointer;
+  }
+
+  /* Core Button Utilities */
+  .btn-primary {
+    @apply bg-primary text-primary-foreground font-semibold py-2.5 px-6 rounded-md hover:bg-primary/90 hover:shadow-md disabled:opacity-50;
+  }
+
+  .btn-brand {
+    @apply bg-brand-primary text-brand-text font-semibold py-2.5 px-6 rounded-md hover:bg-brand-primary/90 hover:shadow-md;
+  }
+
+  .btn-outline {
+    @apply bg-card text-foreground border border-border font-semibold py-2.5 px-6 rounded-md hover:bg-muted transition-all;
+  }
 }

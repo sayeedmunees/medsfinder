@@ -97,21 +97,21 @@ const SavedPage = () => {
           <div className="flex border-b border-border">
             <button
               onClick={handlemedicineTab}
-              className={
+              className={`px-4 py-2 font-semibold transition-all border-b-2 ${
                 medicineTab
-                  ? "px-4 py-2 text-base md:text-lg font-semibold text-primary border-b-2 border-primary transition-all"
-                  : "px-4 py-2 text-base md:text-lg font-semibold text-muted-foreground hover:text-primary transition-all"
-              }
+                  ? "text-primary border-primary"
+                  : "text-muted-foreground border-transparent hover:text-primary"
+              }`}
             >
               Saved Medicines
             </button>
             <button
               onClick={handlePharmacyTab}
-              className={
+              className={`px-4 py-2 font-semibold transition-all border-b-2 ${
                 pharmacyTab
-                  ? "px-4 py-2 text-base md:text-lg font-semibold text-primary border-b-2 border-primary transition-all"
-                  : "px-4 py-2 text-base md:text-lg font-semibold text-muted-foreground hover:text-primary transition-all"
-              }
+                  ? "text-primary border-primary"
+                  : "text-muted-foreground border-transparent hover:text-primary"
+              }`}
             >
               Saved Pharmacies
             </button>

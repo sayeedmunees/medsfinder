@@ -252,7 +252,7 @@ const Login = ({ onLoginClick }) => {
 
                 <button
                   onClick={handleSignup}
-                  className="w-full py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-primary-foreground bg-primary hover:bg-primary-hover transition-colors cursor-pointer"
+                  className="btn-primary w-full text-base"
                   type="button"
                 >
                   Sign Up
@@ -361,7 +361,7 @@ const Login = ({ onLoginClick }) => {
 
                 <button
                   onClick={handleSignin}
-                  className="w-full py-3 px-4 border border-transparent rounded-md shadow-sm text-xs md:text-sm font-medium text-primary-foreground bg-primary hover:bg-primary-hover transition-colors cursor-pointer"
+                  className="btn-primary w-full text-base"
                   type="button"
                 >
                   Sign In

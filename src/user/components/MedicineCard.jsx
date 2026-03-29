@@ -82,7 +82,7 @@ const MedicineCard = ({
 
         <button
           onClick={handleSave}
-          className="mt-4 p-2 rounded-full hover:bg-muted text-primary text-xl transition-colors"
+          className="mt-4 p-2 rounded-full hover:bg-muted text-primary text-xl transition-all"
         >
           {isSaved ? <FaBookmark /> : <FaRegBookmark />}
         </button>

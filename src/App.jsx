@@ -55,7 +55,7 @@ function App() {
           }
         />
         <Route
-          path="/admin-pharmacies"
+          path="/dashboard/pharmacies"
           element={
             <AdminProtected>
               <AdminPharmacies />
@@ -63,7 +63,7 @@ function App() {
           }
         />
         <Route
-          path="/admin-medicines"
+          path="/dashboard/medicines"
           element={
             <AdminProtected>
               <AdminMedicines />
@@ -71,7 +71,7 @@ function App() {
           }
         />
         <Route
-          path="/admin-advertisement"
+          path="/dashboard/advertisement"
           element={
             <AdminProtected>
               <AdminAdvertisement />

@@ -137,7 +137,7 @@ const ProductDetailsPage = () => {
             <div className="flex gap-4 flex-wrap">
               {isMedicine && (
                 <Link to={`/search-result?search=${product.medicineName}`}>
-                  <button className="bg-primary hover:bg-primary-hover text-primary-foreground font-semibold px-6 py-3 rounded-full transition-colors shadow-md">
+                  <button className="btn-primary rounded-full px-8 shadow-lg">
                     Find Pharmacies With Availability
                   </button>
                 </Link>
@@ -146,16 +146,16 @@ const ProductDetailsPage = () => {
               {isMedicine && (
                 <button
                   onClick={handleSave}
-                  className="bg-card border border-border hover:bg-muted text-primary hover:text-primary-hover font-semibold px-6 py-3 rounded-full transition-all shadow-md group"
+                  className="btn-outline rounded-full px-8 shadow-md group flex items-center gap-2"
                 >
                   {isSaved ? (
-                    <span className="flex items-center gap-2">
+                    <>
                       <FaBookmark className="group-hover:scale-110 transition-transform"/> Saved
-                    </span>
+                    </>
                   ) : (
-                    <span className="flex items-center gap-2">
+                    <>
                       <FaRegBookmark className="group-hover:scale-110 transition-transform"/> Save
-                    </span>
+                    </>
                   )}
                 </button>
               )}

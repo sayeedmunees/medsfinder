@@ -60,7 +60,7 @@ const ProductsPage = () => {
               onChange={(e) => setSearchKey(e.target.value)}
             />
             <div className="w-[90%] md:hidden border-t my-3 border-border "/>
-            <button className="bg-brand-primary hover:bg-brand-primary/90 text-brand-text font-semibold py-3 px-6 rounded-md flex justify-center items-center gap-2 w-full md:w-fit transition-colors">
+            <button className="btn-primary flex justify-center items-center gap-2 w-full md:w-fit">
               Search
               <FaMagnifyingGlass className="text-xl" />
             </button>

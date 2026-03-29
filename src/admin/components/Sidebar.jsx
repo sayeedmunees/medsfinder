@@ -43,7 +43,7 @@ const Sidebar = ({ from }) => {
             </span>
           </Link>
           <Link
-            to={"/admin-medicines"}
+            to={"/dashboard/medicines"}
             className={
               from == "medicine"
                 ? "flex items-center py-3 px-2 md:px-6 text-white bg-teal-600"
@@ -54,7 +54,7 @@ const Sidebar = ({ from }) => {
             <span className="hidden md:block md:ml-4">Medicines</span>
           </Link>
           <Link
-            to={"/admin-pharmacies"}
+            to={"/dashboard/pharmacies"}
             className={
               from == "pharmacy"
                 ? "flex items-center py-3 px-2 md:px-6 text-white bg-teal-600"
@@ -65,7 +65,7 @@ const Sidebar = ({ from }) => {
             <span className="hidden md:block md:ml-4">Pharmacies</span>
           </Link>
           <Link
-            to={"/admin-advertisement"}
+            to={"/dashboard/advertisement"}
             className={
               from == "advertisement"
                 ? "flex items-center py-3 px-2 md:px-6 text-white bg-teal-600"

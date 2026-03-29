@@ -97,7 +97,7 @@ const HomePage = () => {
                     toast.info("Please select a location");
                   }
                 }}
-                className="bg-primary hover:bg-primary-hover text-primary-foreground font-semibold py-3 px-6 rounded-md flex justify-center items-center gap-2 w-full transition-colors"
+                className="btn-primary w-full flex justify-center items-center gap-2"
               >
                 Search
                 <FaMagnifyingGlass className="text-xl" />

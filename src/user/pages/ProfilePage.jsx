@@ -170,13 +170,13 @@ const ProfilePage = () => {
             </div>
             <div className="flex flex-col md:flex-row items-end gap-2 justify-end pt-4">
               <Link to={"/"}>
-                <button className="px-6 py-3 bg-muted text-foreground text-sm md:text-base rounded-md font-semibold hover:bg-border transition-colors shadow-md">
+                <button className="btn-outline">
                   Cancel
                 </button>
               </Link>
               <button
                 onClick={handleUpdate}
-                className="px-6 py-3 bg-primary text-primary-foreground text-sm md:text-base rounded-md font-semibold hover:bg-primary-hover transition-colors shadow-md"
+                className="btn-primary"
               >
                 Save Changes
               </button>
