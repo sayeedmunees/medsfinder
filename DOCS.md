@@ -1,6 +1,6 @@
 # MedsFinder Frontend Documentation
 
-This project was developed as a modern, responsive, and secure web application designed to facilitate the process of finding medicines from nearby pharmacies. It serves as a comprehensive case study in full-stack integration, implementing advanced frontend patterns and secure authentication.
+This project was developed as a modern, responsive, and secure web application designed to facilitate the process of finding medicines from nearby pharmacies. It serves as a comprehensive case study in full-stack integration, implementing advanced frontend patterns, secure authentication, and cloud-based asset management.
 
 ---
 
@@ -14,6 +14,7 @@ The application leverages a modern React ecosystem for performance, accessibilit
 | **Vite** | Build Tool | Development environment and optimized production builds. |
 | **Tailwind CSS v4** | Styling | Centralized semantic design system and responsive layout. |
 | **React Router (v7)** | Routing | Client-side navigation across multiple application views. |
+| **Browser-image-compression** | Optimization | Client-side image optimization and format conversion (WebP). |
 | **Axios** | API Client | Standardized HTTP requests with authorization interceptors. |
 | **React-icons** | Iconography | Unified icon sets for UI consistency (Lucide, FontAwesome). |
 | **@react-oauth/google** | Authentication | Managed Google OAuth 2.0 integration for secure identity provider access. |
@@ -31,17 +32,39 @@ The project follows a split architecture to separate the public-facing applicati
 frontend/
 ├── src/
 │   ├── admin/             # Dashboard and management logic.
-│   │   ├── components/    # Reusable dashboard elements.
+│   │   ├── components/    # Reusable dashboard elements (AdProductCard, etc.).
 │   │   └── pages/         # High-level management views.
 │   ├── user/              # Public-facing application views.
 │   │   ├── components/    # Reusable user section elements.
-│   │   └── pages/         # User interface views.
-│   ├── services/          # API layer and server configuration.
+│   │   └── pages/         # User interface views (ProfilePage, SearchPage).
+│   ├── services/          # API layer and specialized utilities.
+│   │   ├── allAPI.js      # Unified API request map.
+│   │   ├── imagePath.js   # Cloudinary-aware asset path resolver.
+│   │   ├── imageCompression.js # Client-side image optimization logic.
+│   │   └── serverURL.js   # Backend endpoint configuration.
 │   ├── App.jsx            # Routing and application entry.
 │   ├── main.jsx           # Global providers and root rendering.
 │   └── index.css          # Semantic design system tokens and Tailwind v4 config.
 └── .env                   # Environment-specific configuration.
 ```
+
+---
+
+## Image Optimization Workflow
+
+MedsFinder implements a sophisticated image management system to ensure high performance and persistence.
+
+### 1. **Client-Side Compression (`imageCompression.js`)**
+Before any image is uploaded to the server, it is processed locally in the browser:
+- **Profile Avatars**: Automatically compressed to a **30KB** target size.
+- **Medicines & Products**: Automatically compressed to a **150KB** target size.
+- **Format Conversion**: All assets are converted to the efficient **WebP** format to reduce bandwidth consumption.
+
+### 2. **Cloudinary-Aware Rendering (`imagePath.js`)**
+The `getImagePath` utility automatically detects the source of an image:
+- **CDN URLs**: Renders directly from Cloudinary using the stored HTTPS path.
+- **Legacy Filenames**: Automatically prepends the legacy server path for backward compatibility.
+- **External URLs**: Supports Google OAuth profile pictures without modification.
 
 ---
 
@@ -97,11 +120,14 @@ The application utilizes a hierarchical component model to promote code reusabil
 - **MedicineCard (`MedicineCard.jsx`)**: Data card for medicine entities with bookmarking lifecycle management.
 - **PharmacyCard (`PharmacyCard.jsx`)**: Specialized card for search results with rating and maps integration.
 - **Login Modal (`Login.jsx`)**: Centralized authentication modal supporting Email/Password and third-party identity providers.
+- **Header (`Header.jsx`)**: Dynamically displays the user's Cloudinary avatar or Google profile picture.
+- **MedicineCard (`MedicineCard.jsx`)**: Data card with path-agnostic image rendering for cloud assets.
 
 ### Admin Components
 - **Sidebar (`Sidebar.jsx`)**: Navigation controller for dashboard-related views.
 - **Header (`Header.jsx`)**: Specialized dashboard header for management context.
 - **Management Forms**: Dedicated forms for data entry (`AddMedicineForm`, `AddPharmacyForm`, `AddProductForm`, `EditProductForm`).
+
 
 ---
 
@@ -123,6 +149,8 @@ To ensure data integrity and user protection, several security protocols were im
 2. **Password Hashing**: Traditional credentials are salted and hashed using `bcrypt` protocols before database storage.
 3. **JWT Lifecycle**: Authentication tokens are configured with a 24-hour expiration to mitigate session hijacking risks.
 4. **CORS Restriction**: The backend API is restricted to authorized origins, preventing unauthorized cross-origin access.
+5. **Cloud Persistence**: Using Cloudinary ensures images are not lost during ephemeral deployment cycles (e.g., Render/Vercel).
+6. **Format Validation**: Strict validation for JPG, JPEG, PNG, and WebP is enforced at both the UI and API layers.
 
 ---
 
