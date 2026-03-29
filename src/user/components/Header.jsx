@@ -74,7 +74,7 @@ const Header = ({ from }) => {
                 <MenuItems
                   transition
                   anchor="bottom end"
-                  className="w-52 origin-top-right mt-5 rounded-xl border border-primary bg-card p-2 text-sm/6 text-foreground transition duration-100 ease-out [--anchor-gap:--spacing(1)] focus:outline-none data-closed:scale-95 data-closed:opacity-0 "
+                  className="w-52 origin-top-right mt-5 rounded-xl bg-card p-2 text-sm/6 text-foreground transition duration-100 ease-out [--anchor-gap:--spacing(1)] focus:outline-none data-closed:scale-95 data-closed:opacity-0 "
                 >
                   <MenuItem>
                     <Link to={"/profile"}>
@@ -90,7 +90,7 @@ const Header = ({ from }) => {
 
                   {/* Admin and Login */}
                   {/* <MenuItem>
-                    <Link to={"/admin-dashboard"}>
+                    <Link to={"/dashboard"}>
                       <p
                         className="flex gap-2 px-4 py-2 my-1 text-sm rounded-md  hover:bg-gray-200 text-gray-700"
                         role="menuItem"
@@ -140,63 +140,6 @@ const Header = ({ from }) => {
             )}
           </div>
         </div>
-        {/* {dropDownStatus && (
-          <div
-            className="absolute right-1 md:right-10 top-16 md:top-17 z-10 mt-2 w-46 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-hidden p-2 font-semibold "
-            role="menu"
-            aria-orientation=""
-            tabIndex="-1"
-          >
-            <div role="none">
-              <Link to={"/profile"}>
-                <p
-                  className="flex justify-start gap-2 px-4 py-2 my-1 text-sm rounded-md  hover:bg-gray-200 text-gray-700"
-                  role="menuItem"
-                  tabIndex="-1"
-                  id="menu-item-0"
-                >
-                  <ImUser className="text-xl" />
-                  Profile
-                </p>
-              </Link>
-
-              <Link to={"/admin-dashboard"}>
-                <p
-                  className="flex gap-2 px-4 py-2 my-1 text-sm rounded-md  hover:bg-gray-200 text-gray-700"
-                  role="menuItem"
-                  tabIndex="-1"
-                  id="menu-item-0"
-                >
-                  <RiAdminFill className="text-xl" />
-                  Admin
-                </p>
-              </Link>
-
-              <button
-                type="submit"
-                className="flex gap-2 w-full px-4 py-2 my-1 text-sm rounded-md  hover:bg-gray-200 text-gray-700"
-                role="menuItem"
-                tabIndex="-1"
-                id="menu-item-1"
-                onClick={onLoginClick}
-              >
-                <ImUser className="text-xl" />
-                Login
-              </button>
-
-              <button
-                type="submit"
-                className="flex gap-2 w-full rounded-md px-4 py-2 text-left text-sm text-red-600 hover:bg-red-200"
-                role="menuItem"
-                tabIndex="-1"
-                id="menu-item-1"
-              >
-                <FiLogOut className="text-xl" />
-                Logout
-              </button>
-            </div>
-          </div>
-        )} */}
       </header>
       {/* login dropdown dialog using headless UI */}
       <Dialog open={showLogin} onClose={setShowLogin} className="relative z-10">

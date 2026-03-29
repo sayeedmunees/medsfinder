@@ -19,7 +19,7 @@ import "react-toastify/dist/ReactToastify.css";
 const AdminProtected = ({ children }) => {
   const existingUser = JSON.parse(sessionStorage.getItem("existingUser"));
   const adminRoles = ["assistant", "editor", "admin"];
-  
+
   if (existingUser && adminRoles.includes(existingUser.role)) {
     return children;
   } else {
@@ -47,7 +47,7 @@ function App() {
         <Route path="/signin" element={<Login />} />
 
         <Route
-          path="/admin-dashboard"
+          path="/dashboard"
           element={
             <AdminProtected>
               <AdminDashboard />

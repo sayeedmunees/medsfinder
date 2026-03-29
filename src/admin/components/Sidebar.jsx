@@ -30,7 +30,7 @@ const Sidebar = ({ from }) => {
         </Link>
         <nav className="mt-6 flex-1">
           <Link
-            to={"/admin-dashboard"}
+            to={"/dashboard"}
             className={
               from == "dashboard"
                 ? "flex items-center py-3 px-2 md:px-6 text-white bg-teal-600"

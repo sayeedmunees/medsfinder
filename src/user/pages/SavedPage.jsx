@@ -79,28 +79,28 @@ const SavedPage = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen transition-colors duration-300">
       <Header />
-      <div className="bg-gray-200 px-6 md:px-12 pt-6">
+      <div className="bg-background px-6 md:px-12 pt-6 transition-colors duration-300">
         <button
           onClick={() => navigate(-1)}
-          className="flex items-center gap-2 text-teal-600 hover:text-teal-700 font-semibold transition-colors"
+          className="flex items-center gap-2 text-primary hover:text-primary/80 font-semibold transition-colors"
         >
           <FaArrowLeft /> Back
         </button>
       </div>
-      <div className="grow px-6 md:px-12 py-8 bg-gray-200">
-        <h2 className="text-xl md:text-4xl font-bold mb-8 text-gray-800 ">
+      <div className="grow px-6 md:px-12 py-8 bg-background transition-colors duration-300">
+        <h1 className="mb-8">
           Your Saved List
-        </h2>
+        </h1>
         <section className="mb-8">
-          <div className="flex border-b border-gray-200 ">
+          <div className="flex border-b border-border">
             <button
               onClick={handlemedicineTab}
               className={
                 medicineTab
-                  ? "px-4 py-2 text-base md:text-lg font-semibold text-teal-600 border-b-2 border-teal-600 hover:text-teal-500"
-                  : "px-4 py-2 text-base md:text-lg font-semibold text-gray-600  hover:text-teal-500"
+                  ? "px-4 py-2 text-base md:text-lg font-semibold text-primary border-b-2 border-primary transition-all"
+                  : "px-4 py-2 text-base md:text-lg font-semibold text-muted-foreground hover:text-primary transition-all"
               }
             >
               Saved Medicines
@@ -109,8 +109,8 @@ const SavedPage = () => {
               onClick={handlePharmacyTab}
               className={
                 pharmacyTab
-                  ? "px-4 py-2 text-base md:text-lg font-semibold text-teal-600 border-b-2 border-teal-500 hover:text-teal-500"
-                  : "px-4 py-2 text-base md:text-lg font-semibold text-gray-600  hover:text-teal-500"
+                  ? "px-4 py-2 text-base md:text-lg font-semibold text-primary border-b-2 border-primary transition-all"
+                  : "px-4 py-2 text-base md:text-lg font-semibold text-muted-foreground hover:text-primary transition-all"
               }
             >
               Saved Pharmacies
@@ -135,7 +135,7 @@ const SavedPage = () => {
                 />
               ))
             ) : (
-              <p className="text-gray-500">No saved medicines found.</p>
+              <p className="text-muted-foreground">No saved medicines found.</p>
             )}
           </section>
         )}
@@ -161,7 +161,7 @@ const SavedPage = () => {
                 />
               ))
             ) : (
-              <p className="text-gray-500">No saved pharmacies found.</p>
+              <p className="text-muted-foreground">No saved pharmacies found.</p>
             )}
           </section>
         )}

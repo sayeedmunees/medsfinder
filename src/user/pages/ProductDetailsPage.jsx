@@ -93,19 +93,19 @@ const ProductDetailsPage = () => {
   }
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen transition-colors duration-300">
       <Header />
 
-      <div className="bg-gray-100 px-6 md:px-12 pt-6">
+      <div className="bg-background px-6 md:px-12 pt-6">
         <button
           onClick={() => navigate(-1)}
-          className="flex items-center gap-2 text-teal-600 hover:text-teal-700 font-semibold transition-colors"
+          className="flex items-center gap-2 text-primary hover:text-primary-hover font-semibold transition-colors"
         >
           <FaArrowLeft /> Back
         </button>
       </div>
 
-      <section className="grow py-10 px-6 md:px-12 bg-gray-100">
+      <section className="grow py-10 px-6 md:px-12 bg-background transition-colors duration-300">
         <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-16">
           <div className="lg:w-1/2 flex justify-center">
             <img
@@ -115,29 +115,29 @@ const ProductDetailsPage = () => {
                   : "https://via.placeholder.com/400"
               }
               alt={product.medicineName}
-              className="max-h-[600px] rounded-lg shadow-xl"
+              className="max-h-[600px] rounded-lg shadow-xl border border-border"
             />
           </div>
 
           <div className="lg:w-1/2 pt-6">
-            <h1 className="text-3xl md:text-4xl font-semibold text-gray-800 mb-2">
+            <h1 className="mb-2">
               {product.medicineName}
             </h1>
 
-            <p className="text-lg text-gray-500 mb-2">{product.brandName}</p>
-            <p className="text-2xl font-bold text-teal-600 mb-6">
+            <p className="text-lg text-muted-foreground mb-2">{product.brandName}</p>
+            <p className="text-2xl font-bold text-primary mb-6">
               ₹{product.price}
             </p>
 
-            <h2 className="text-xl font-semibold mb-2">Description</h2>
-            <p className="text-gray-700 leading-relaxed mb-8">
+            <h2 className="mb-2">Description</h2>
+            <p className="text-muted-foreground leading-relaxed mb-8">
               {product.description}
             </p>
 
             <div className="flex gap-4 flex-wrap">
               {isMedicine && (
                 <Link to={`/search-result?search=${product.medicineName}`}>
-                  <button className="bg-teal-600 hover:bg-teal-700 text-white font-semibold px-6 py-3 rounded-full">
+                  <button className="bg-primary hover:bg-primary-hover text-primary-foreground font-semibold px-6 py-3 rounded-full transition-colors shadow-md">
                     Find Pharmacies With Availability
                   </button>
                 </Link>
@@ -146,15 +146,15 @@ const ProductDetailsPage = () => {
               {isMedicine && (
                 <button
                   onClick={handleSave}
-                  className="bg-gray-200 hover:bg-teal-600 text-teal-600 hover:text-white font-semibold px-6 py-3 rounded-full transition-colors"
+                  className="bg-card border border-border hover:bg-muted text-primary hover:text-primary-hover font-semibold px-6 py-3 rounded-full transition-all shadow-md group"
                 >
                   {isSaved ? (
                     <span className="flex items-center gap-2">
-                      <FaBookmark /> Saved
+                      <FaBookmark className="group-hover:scale-110 transition-transform"/> Saved
                     </span>
                   ) : (
                     <span className="flex items-center gap-2">
-                      <FaRegBookmark /> Save
+                      <FaRegBookmark className="group-hover:scale-110 transition-transform"/> Save
                     </span>
                   )}
                 </button>

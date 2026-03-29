@@ -32,41 +32,41 @@ const ProductsPage = () => {
   );
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen transition-colors duration-300">
       <Header />
-      <div className="bg-teal-600 px-6 md:px-12 pt-6">
+      <div className="bg-brand-primary px-6 md:px-12 pt-6">
         <button
           onClick={() => navigate(-1)}
-          className="flex items-center gap-2 text-white hover:text-teal-100 font-semibold transition-colors"
+          className="flex items-center gap-2 text-brand-text hover:text-brand-muted font-semibold transition-colors"
         >
           <FaArrowLeft /> Back
         </button>
       </div>
       <div className="grow">
-        <section className="bg-teal-600 text-white py-10 px-6 md:px-12 text-center">
-          <h2 className="text-2xl md:text-5xl font-bold mb-3">
+        <section className="bg-brand-primary text-brand-text py-10 px-6 md:px-12 text-center">
+          <h1 className="text-2xl md:text-5xl font-bold text-brand-text mb-3">
             Personal Care & Hygiene Products
-          </h2>
-          <p className="text-base md:text-xl text-teal-100 dark:text-teal-200">
+          </h1>
+          <p className="text-base md:text-xl text-brand-text/80">
             Discover a wide range of products for your daily personal care
             needs.
           </p>
-          <div className="mt-16 md:mt-8 max-w-md mx-auto bg-white rounded-lg shadow-lg p-2 flex flex-col md:flex-row items-center space-x-2 group focus-within:outline-2 focus-within:outline-teal-300 focus-within:shadow-2xl">
+          <div className="mt-16 md:mt-8 max-w-md mx-auto bg-card rounded-lg shadow-lg p-2 flex flex-col md:flex-row items-center space-x-2 group focus-within:outline-2 focus-within:outline-brand-primary/50 focus-within:shadow-2xl transition-all">
             <input
-              className="w-full border-none pl-8 md:pl-1 outline-none bg-transparent text-gray-700 placeholder-gray-500 mt-5 md:my-0"
+              className="w-full border-none pl-8 md:pl-1 outline-none bg-transparent text-foreground placeholder-muted-foreground mt-5 md:my-0 focus:ring-0"
               placeholder="Search for a product"
               type="text"
               value={searchKey}
               onChange={(e) => setSearchKey(e.target.value)}
             />
-            <div className="w-[90%] md:hidden border-t my-3 border-gray-300 "></div>
-            <button className="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-6 rounded-md flex justify-center items-center gap-2 w-full md:w-fit">
+            <div className="w-[90%] md:hidden border-t my-3 border-border "/>
+            <button className="bg-brand-primary hover:bg-brand-primary/90 text-brand-text font-semibold py-3 px-6 rounded-md flex justify-center items-center gap-2 w-full md:w-fit transition-colors">
               Search
               <FaMagnifyingGlass className="text-xl" />
             </button>
           </div>
         </section>
-        <section className="py-16 px-6 md:px-12 bg-gray-50 ">
+        <section className="py-16 px-6 md:px-12 bg-background transition-colors duration-300">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {filteredProducts.length > 0 ? (
               filteredProducts.map((item) => (
@@ -81,7 +81,7 @@ const ProductsPage = () => {
               ))
             ) : (
               <div className="col-span-full text-center py-10">
-                <p className="text-gray-500 text-lg">
+                <p className="text-muted-foreground text-lg">
                   No products found matching your search.
                 </p>
               </div>

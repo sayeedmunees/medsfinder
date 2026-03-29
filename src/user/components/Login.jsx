@@ -51,7 +51,7 @@ const Login = ({ onLoginClick }) => {
         if (result.status == 200) {
           sessionStorage.setItem(
             "existingUser",
-            JSON.stringify(result.data.existingUser)
+            JSON.stringify(result.data.existingUser),
           );
           sessionStorage.setItem("token", result.data.token);
           setTimeout(() => {
@@ -84,13 +84,13 @@ const Login = ({ onLoginClick }) => {
         toast.success("Sign In Succesful");
         sessionStorage.setItem(
           "existingUser",
-          JSON.stringify(result.data.existingUser)
+          JSON.stringify(result.data.existingUser),
         );
         sessionStorage.setItem("token", result.data.token);
         setTimeout(() => {
           const adminRoles = ["assistant", "editor", "admin"];
           if (adminRoles.includes(result.data.existingUser.role)) {
-            navigate("/admin-dashboard");
+            navigate("/dashboard");
           } else {
             onLoginClick();
           }
@@ -130,13 +130,13 @@ const Login = ({ onLoginClick }) => {
       toast.success("Sign In Successful");
       sessionStorage.setItem(
         "existingUser",
-        JSON.stringify(result.data.existingUser)
+        JSON.stringify(result.data.existingUser),
       );
       sessionStorage.setItem("token", result.data.token);
       setTimeout(() => {
         const adminRoles = ["assistant", "editor", "admin"];
         if (adminRoles.includes(result.data.existingUser.role)) {
-          navigate("/admin-dashboard");
+          navigate("/dashboard");
         } else {
           onLoginClick();
         }
@@ -151,41 +151,41 @@ const Login = ({ onLoginClick }) => {
       <div className="w-auto lg:w-200">
         {/* signup */}
         {signup && (
-          <div className="grid grid-cols-1 md:grid-cols-2 bg-white rounded-lg shadow-xl overflow-hidden max-w-4xl w-full min-h-80 md:min-h-150">
-            <div className="hidden md:flex col-span-1 bg-teal-600 items-center justify-center p-8 lg:p-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 bg-card rounded-lg shadow-xl overflow-hidden max-w-4xl w-full min-h-80 md:min-h-150 transition-colors duration-300">
+            <div className="hidden md:flex col-span-1 bg-brand-primary items-center justify-center p-8 lg:p-0 relative">
               <div className="absolute top-0 left-0">
                 <button
                   onClick={onLoginClick}
-                  className="relative left-5 top-5 text-3xl text-white font-semibold hover:transition-transform hover:scale-105 duration-300 hover:font-bold"
+                  className="relative left-5 top-5 text-3xl text-brand-text font-semibold hover:scale-105 transition-transform duration-300"
                 >
                   <IoMdClose />
                 </button>
               </div>
-              <div className="z-10 text-white text-center p-4">
-                <h2 className="flex items-center gap-2 text-3xl md:text-4xl font-bold mb-4 drop-shadow-md">
+              <div className="z-10 text-brand-text text-center p-4">
+                <h2 className="flex flex-col items-center gap-2 text-3xl md:text-4xl font-bold mb-4 drop-shadow-md text-brand-text">
                   Find medicines faster nearby you
                 </h2>
-                <p className="text-lg text-teal-100 drop-shadow-sm">
+                <p className="text-lg text-brand-muted drop-shadow-sm">
                   No more queues to just hear the medicine is out of stock.
                 </p>
               </div>
             </div>
-            <div className="col-span-1 p-8 md:p-12 flex flex-col justify-center">
+            <div className="col-span-1 p-8 md:p-12 flex flex-col justify-center bg-card">
               <div className="absolute top-0 right-0">
                 <button
                   onClick={onLoginClick}
-                  className=" md:hidden relative top-3 right-4 text-xs text-gray-500 font-semibold hover:text-gray-700"
+                  className="md:hidden relative top-3 right-4 text-xs text-muted-foreground font-semibold hover:text-foreground transition-colors"
                 >
                   Close
                 </button>
               </div>
-              <h3 className="text-xl md:text-3xl font-bold text-gray-800 my-6 text-center">
+              <h1 className="text-xl md:text-3xl font-bold text-foreground my-6 text-center">
                 Join MedsFinder
-              </h3>
+              </h1>
               <div className="space-y-6">
                 <div>
                   <label
-                    className="block text-xs md:text-sm font-medium text-gray-700"
+                    className="block text-xs md:text-sm font-medium text-muted-foreground"
                     htmlFor="name"
                   >
                     Full Name
@@ -198,7 +198,7 @@ const Login = ({ onLoginClick }) => {
                         username: e.target.value,
                       });
                     }}
-                    className="mt-1 text-sm md:text-base block w-full rounded-md border-gray-300 shadow-sm px-4 py-2 placeholder:text-gray-500 focus:outline-teal-500 bg-gray-200"
+                    className="mt-1 text-sm md:text-base block w-full rounded-md border border-border shadow-sm px-4 py-2 placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary bg-muted/30 text-foreground transition-all"
                     id="name"
                     name="name"
                     placeholder="John Doe"
@@ -207,7 +207,7 @@ const Login = ({ onLoginClick }) => {
                 </div>
                 <div>
                   <label
-                    className="block text-xs md:text-sm font-medium text-gray-700"
+                    className="block text-xs md:text-sm font-medium text-muted-foreground"
                     htmlFor="email"
                   >
                     Email Address
@@ -220,7 +220,7 @@ const Login = ({ onLoginClick }) => {
                         email: e.target.value,
                       });
                     }}
-                    className="mt-1 text-sm md:text-base block w-full rounded-md border-gray-300 shadow-sm px-4 py-2 placeholder:text-gray-500 focus:outline-teal-500 bg-gray-200"
+                    className="mt-1 text-sm md:text-base block w-full rounded-md border border-border shadow-sm px-4 py-2 placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary bg-muted/30 text-foreground transition-all"
                     id="email"
                     name="email"
                     placeholder="you@example.com"
@@ -229,7 +229,7 @@ const Login = ({ onLoginClick }) => {
                 </div>
                 <div>
                   <label
-                    className="block text-xs md:text-sm font-medium text-gray-700"
+                    className="block text-xs md:text-sm font-medium text-muted-foreground"
                     htmlFor="password"
                   >
                     Set a Password
@@ -242,7 +242,7 @@ const Login = ({ onLoginClick }) => {
                         password: e.target.value,
                       });
                     }}
-                    className="mt-1 text-sm md:text-base block w-full rounded-md border-gray-300 shadow-sm px-4 py-2 placeholder:text-gray-500 focus:outline-teal-500 bg-gray-200 "
+                    className="mt-1 text-sm md:text-base block w-full rounded-md border border-border shadow-sm px-4 py-2 placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary bg-muted/30 text-foreground transition-all"
                     id="password"
                     name="password"
                     placeholder="••••••••"
@@ -252,7 +252,7 @@ const Login = ({ onLoginClick }) => {
 
                 <button
                   onClick={handleSignup}
-                  className="w-full py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-teal-600 hover:bg-teal-700 transition-colors cursor-pointer"
+                  className="w-full py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-primary-foreground bg-primary hover:bg-primary-hover transition-colors cursor-pointer"
                   type="button"
                 >
                   Sign Up
@@ -260,10 +260,10 @@ const Login = ({ onLoginClick }) => {
 
                 {/* Google Signup */}
                 <div className="flex flex-col items-center justify-center w-full">
-                  <p className="text-center text-xs md:text-sm text-gray-600 mb-3 -mt-3 cursor-default">
+                  <p className="text-center text-xs md:text-sm text-muted-foreground mb-3 -mt-3 cursor-default">
                     or
                   </p>
-                  <div className="bg-teal-600 p-0.5 rounded-full flex items-center justify-center w-fit">
+                  <div className="p-0.5 rounded-full flex items-center justify-center w-fit border border-border">
                     <GoogleLogin
                       onSuccess={(credentialResponse) => {
                         console.log(credentialResponse);
@@ -279,27 +279,17 @@ const Login = ({ onLoginClick }) => {
                     />
                   </div>
                 </div>
-
-                {/* Custom Google button */}
-                {/* <button
-                  onClick={() => googleSignin()}
-                  className="flex items-center justify-center gap-4 w-full py-3 px-4 border border-transparent rounded-md shadow-sm text-xs md:text-sm font-medium text-white bg-teal-600 hover:bg-teal-700 transition-colors cursor-pointer"
-                  type="button"
-                >
-                  <FaGoogle className="text-xl" />
-                  Sign Up with Google
-                </button> */}
               </div>
-              <p className="mt-6 text-center text-xs md:text-sm text-gray-600 cursor-default">
+              <p className="mt-6 text-center text-xs md:text-sm text-muted-foreground cursor-default">
                 Already have an account?
-                <a
-                  className="font-medium text-teal-600 hover:text-teal-700 transition-colors ml-2 underline cursor-pointer"
+                <button
+                  className="font-medium text-primary hover:text-primary-hover transition-colors ml-2 underline cursor-pointer"
                   onClick={() => {
                     setSignup(false);
                   }}
                 >
                   Sign In
-                </a>
+                </button>
               </p>
             </div>
           </div>
@@ -307,24 +297,24 @@ const Login = ({ onLoginClick }) => {
 
         {/* signin */}
         {!signup && (
-          <div className="grid grid-cols-1 md:grid-cols-2 bg-white rounded-lg shadow-xl overflow-hidden max-w-4xl w-full min-h-80 md:min-h-150">
-            <div className="col-span-1 p-8 md:p-12 flex flex-col justify-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 bg-card rounded-lg shadow-xl overflow-hidden max-w-4xl w-full min-h-80 md:min-h-150 transition-colors duration-300">
+            <div className="col-span-1 p-8 md:p-12 flex flex-col justify-center bg-card">
               <div className="absolute top-0 right-0">
                 <button
                   onClick={onLoginClick}
-                  className=" md:hidden relative top-3 right-4 text-xs text-gray-500 font-semibold hover:text-gray-700"
+                  className="md:hidden relative top-3 right-4 text-xs text-muted-foreground font-semibold hover:text-foreground transition-colors"
                 >
                   Close
                 </button>
               </div>
-              <h3 className="text-xl md:text-3xl font-bold text-gray-800 my-6 text-center">
+              <h1 className="text-xl md:text-3xl font-bold text-foreground my-6 text-center">
                 Welcome Back
-              </h3>
+              </h1>
               <div className="space-y-6">
                 <div>
                   <label
-                    className="block text-xs md:text-sm font-medium text-gray-700"
-                    htmlFor="email"
+                    className="block text-xs md:text-sm font-medium text-muted-foreground"
+                    htmlFor="email-in"
                   >
                     Email Address
                   </label>
@@ -336,8 +326,8 @@ const Login = ({ onLoginClick }) => {
                         email: e.target.value,
                       });
                     }}
-                    className="mt-1 text-sm md:text-base block w-full rounded-md border-gray-300 shadow-sm px-4 py-2 placeholder:text-gray-500 focus:outline-teal-500 bg-gray-200"
-                    id="email"
+                    className="mt-1 text-sm md:text-base block w-full rounded-md border border-border shadow-sm px-4 py-2 placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary bg-muted/30 text-foreground transition-all"
+                    id="email-in"
                     name="email"
                     placeholder="you@example.com"
                     type="email"
@@ -345,8 +335,8 @@ const Login = ({ onLoginClick }) => {
                 </div>
                 <div>
                   <label
-                    className="block text-xs md:text-sm font-medium text-gray-700"
-                    htmlFor="password"
+                    className="block text-xs md:text-sm font-medium text-muted-foreground"
+                    htmlFor="password-in"
                   >
                     Password
                   </label>
@@ -358,20 +348,20 @@ const Login = ({ onLoginClick }) => {
                         password: e.target.value,
                       });
                     }}
-                    className="mt-1 text-sm md:text-base block w-full rounded-md border-gray-300 shadow-sm px-4 py-2 placeholder:text-gray-500 focus:outline-teal-500 bg-gray-200 "
-                    id="password"
+                    className="mt-1 text-sm md:text-base block w-full rounded-md border border-border shadow-sm px-4 py-2 placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary bg-muted/30 text-foreground transition-all"
+                    id="password-in"
                     name="password"
                     placeholder="••••••••"
                     type="password"
                   />
-                  <a className="block text-teal-700 text-sm pt-4 text-right underline hover:cursor-pointer hover:text-teal-600">
+                  <button className="block text-primary text-sm pt-4 ml-auto underline hover:cursor-pointer hover:text-primary-hover transition-colors">
                     Forgot Password
-                  </a>
+                  </button>
                 </div>
 
                 <button
                   onClick={handleSignin}
-                  className="w-full py-3 px-4 border border-transparent rounded-md shadow-sm text-xs md:text-sm font-medium text-white bg-teal-600 hover:bg-teal-700 transition-colors cursor-pointer"
+                  className="w-full py-3 px-4 border border-transparent rounded-md shadow-sm text-xs md:text-sm font-medium text-primary-foreground bg-primary hover:bg-primary-hover transition-colors cursor-pointer"
                   type="button"
                 >
                   Sign In
@@ -379,10 +369,10 @@ const Login = ({ onLoginClick }) => {
 
                 {/* Google Signin */}
                 <div className="flex flex-col items-center justify-center w-full">
-                  <p className="text-center text-xs md:text-sm text-gray-600 mb-3 -mt-3 cursor-default">
+                  <p className="text-center text-xs md:text-sm text-muted-foreground mb-3 -mt-3 cursor-default">
                     or
                   </p>
-                  <div className="bg-teal-600 p-0.5 rounded-full flex items-center justify-center">
+                  <div className="p-0.5 rounded-full flex items-center justify-center border border-border">
                     <GoogleLogin
                       onSuccess={(credentialResponse) => {
                         console.log(credentialResponse);
@@ -398,44 +388,34 @@ const Login = ({ onLoginClick }) => {
                     />
                   </div>
                 </div>
-
-                {/* Custom Google Signin */}
-                {/* <button
-                  onClick={() => googleSignin()}
-                  className="flex items-center justify-center gap-4 w-full py-3 px-4 border border-transparent rounded-md shadow-sm text-xs md:text-sm font-medium text-white bg-teal-600 hover:bg-teal-700 transition-colors cursor-pointer"
-                  type="button"
-                >
-                  <FaGoogle className="text-xl" />
-                  Sign In with Google
-                </button> */}
               </div>
-              <p className="mt-6 text-center text-xs md:text-sm text-gray-600 cursor-default">
+              <p className="mt-6 text-center text-xs md:text-sm text-muted-foreground cursor-default">
                 Don't have an account?
-                <a
-                  className="font-medium text-teal-600 hover:text-teal-700 transition-colors ml-2 underline cursor-pointer"
+                <button
+                  className="font-medium text-primary hover:text-primary-hover transition-colors ml-2 underline cursor-pointer"
                   onClick={() => {
                     setSignup(true);
                   }}
                 >
                   Sign Up
-                </a>
+                </button>
               </p>
             </div>
-            <div className="hidden md:flex col-span-1 bg-teal-600 items-center justify-center p-8 lg:p-0">
-              <div className="absolute top-0 right-0 hover:transition-transform hover:scale-105 duration-300 hover:font-bold">
+            <div className="hidden md:flex col-span-1 bg-brand-primary items-center justify-center p-8 lg:p-0 relative">
+              <div className="absolute top-0 right-0">
                 <button
                   onClick={onLoginClick}
-                  className="relative top-5 right-5 text-3xl text-white font-semibold"
+                  className="relative top-5 right-5 text-3xl text-brand-text font-semibold hover:scale-105 transition-transform duration-300"
                 >
                   <IoMdClose />
                 </button>
               </div>
-              <div className="z-10 text-white text-center p-4">
-                <h2 className="flex items-center gap-2 text-3xl md:text-4xl font-bold mb-4 drop-shadow-md">
-                  <PiPillFill />
+              <div className="z-10 text-brand-text text-center p-4">
+                <h2 className="flex flex-col items-center gap-2 text-3xl md:text-4xl font-bold mb-4 drop-shadow-md text-brand-text">
+                  <PiPillFill className="text-5xl" />
                   MedsFinder
                 </h2>
-                <p className="text-lg text-teal-100 drop-shadow-sm">
+                <p className="text-lg text-brand-muted drop-shadow-sm">
                   Find medicines faster nearby you.
                 </p>
               </div>
